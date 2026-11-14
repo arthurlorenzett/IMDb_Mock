@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450" role="img" aria-label="Pôster indisponível">
+  <!-- sem-poster.svg: imagem padrão quando um título não tem pôster -->
+  <rect width="300" height="450" fill="#1F1F1F"/>
+  <rect x="105" y="160" width="90" height="70" rx="8" fill="none" stroke="#B3B3B3" stroke-width="6"/>
+  <circle cx="150" cy="195" r="16" fill="none" stroke="#B3B3B3" stroke-width="6"/>
+  <text x="150" y="275" fill="#B3B3B3" font-family="Roboto, Arial, sans-serif" font-size="20" text-anchor="middle">Sem pôster</text>
+</svg>

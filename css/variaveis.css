@@ -1,0 +1,93 @@
+/* ==========================================================================
+   variaveis.css — tokens do guia de estilo (Parte 1, seção 4)
+   Valores medidos no IMDb em 08/11/2026. Importado antes de todos os outros CSS.
+   Tema escuro é o padrão; o tema claro troca só as variáveis (html[data-tema="claro"]).
+   ========================================================================== */
+
+:root {
+  /* ---- Cores fixas (iguais nos dois temas) ---- */
+  --cor-destaque: #F5C518;        /* botão primário, estrelas, barra dos títulos */
+  --cor-sobre-destaque: #000000;  /* texto em cima do amarelo (contraste 12,9:1) */
+
+  /* ---- Tema escuro (padrão) ---- */
+  --cor-fundo: #000000;
+  --cor-cabecalho: #121212;
+  --cor-superficie: #1F1F1F;      /* busca, campos, menus */
+  --cor-card: #1A1A1A;            /* cards e pôsteres */
+  --cor-botao-secundario: #2C2C2C;
+  --cor-borda: #3A3A3A;
+  --cor-texto: #FFFFFF;           /* 21:1 sobre o fundo */
+  --cor-texto-2: #B3B3B3;         /* secundário: metadados, rodapé (10:1) */
+  --cor-link: #5799EF;            /* links e "Avaliar" (7,2:1) */
+  --cor-erro: #FB3C3C;            /* 5,8:1 */
+  --cor-sucesso: #67AD4B;         /* 7,7:1 */
+  --cor-foco: #5799EF;            /* contorno de foco visível (teclado) */
+
+  /* ---- Tipografia ---- */
+  --fonte: "Roboto", Helvetica, Arial, sans-serif;
+  --tam-h1: 3rem;          /* 48px / 50px — peso 300 */
+  --alt-h1: 3.125rem;
+  --tam-h2: 1.375rem;      /* 22px / 26px — peso 600 */
+  --alt-h2: 1.625rem;
+  --tam-texto: 1rem;       /* 16px / 24px — peso 400 */
+  --alt-texto: 1.5rem;
+  --tam-botao: 0.875rem;   /* 14px / 20px — peso 500 */
+  --alt-botao: 1.25rem;
+  --tam-legenda: 0.75rem;  /* 12px / 16px — peso 400 */
+  --alt-legenda: 1rem;
+  --peso-leve: 300;
+  --peso-normal: 400;
+  --peso-medio: 500;
+  --peso-forte: 600;
+
+  /* ---- Formas e medidas ---- */
+  --raio-botao: 24px;      /* pílula */
+  --raio-card: 12px;
+  --raio-chip: 16px;
+  --raio-campo: 4px;
+  --altura-botao: 36px;
+  --altura-botao-grande: 48px;
+  --altura-chip: 30px;
+  --altura-cabecalho: 56px;
+  --largura-maxima: 1280px;
+  --barra-titulo: 4px;     /* barra amarela à esquerda do h2 */
+  --espaco-1: 0.25rem;
+  --espaco-2: 0.5rem;
+  --espaco-3: 1rem;
+  --espaco-4: 1.5rem;
+  --espaco-5: 2rem;
+
+  /* ---- Movimento ---- */
+  --transicao: 0.2s ease;
+}
+
+/* Tema claro (alternância via js/componentes/tema.js) */
+html[data-tema="claro"] {
+  --cor-fundo: #FFFFFF;
+  --cor-cabecalho: #F0F0F0;
+  --cor-superficie: #FAFAFA;
+  --cor-card: #FFFFFF;
+  --cor-botao-secundario: #F0F0F0;
+  --cor-borda: #D0D0D0;
+  --cor-texto: #212121;           /* 16,1:1 sobre branco */
+  --cor-texto-2: #5F5F5F;
+  --cor-link: #0E63BE;            /* 5,9:1 */
+  --cor-erro: #BD2404;            /* 6,1:1 */
+  --cor-sucesso: #008A00;         /* só ícone e borda (4,5:1) */
+  --cor-foco: #0E63BE;
+}
+
+/* Breakpoints adotados (não dá para usar variável dentro de @media):
+   mobile  : até 599px
+   tablet  : a partir de 600px   → @media (min-width: 600px)
+   desktop : a partir de 1024px  → @media (min-width: 1024px) */
+
+/* Mobile: títulos menores (h1 28/32, h2 18/22) */
+@media (max-width: 599px) {
+  :root {
+    --tam-h1: 1.75rem;
+    --alt-h1: 2rem;
+    --tam-h2: 1.125rem;
+    --alt-h2: 1.375rem;
+  }
+}
