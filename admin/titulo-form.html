@@ -15,9 +15,12 @@
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/componentes.css">
   <link rel="stylesheet" href="../css/paginas.css">
+  <!-- Aplica o tema salvo antes de desenhar a página (evita piscar) -->
+  <script src="../js/tema-inicial.js"></script>
 </head>
 <body data-pagina="titulo-form" data-raiz="..">
   <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+  <noscript><p class="alerta alerta-erro">Este site precisa de JavaScript ativado para carregar os títulos e as interações.</p></noscript>
 
   <!-- ===== Cabeçalho do painel (área restrita) ===== -->
   <header class="cabecalho" id="cabecalho">
@@ -84,7 +87,7 @@
 
         <div class="campo area-nome">
           <label class="rotulo" for="titulo-nome-campo">Título <span class="obrigatorio" aria-hidden="true">*</span></label>
-          <input class="controle" type="text" id="titulo-nome-campo" name="titulo" required minlength="2" maxlength="120" placeholder="Ex.: O Último Farol" aria-describedby="erro-titulo-nome">
+          <input class="controle" type="text" id="titulo-nome-campo" name="titulo" required minlength="2" maxlength="120" placeholder="Ex.: Interestelar" aria-describedby="erro-titulo-nome">
           <p class="mensagem-erro" id="erro-titulo-nome" aria-live="polite"></p>
         </div>
 
@@ -131,13 +134,6 @@
         <fieldset class="campo area-generos">
           <legend>Gêneros <span class="obrigatorio" aria-hidden="true">*</span></legend>
           <div class="opcoes">
-                <label class="opcao"><input type="checkbox" name="generos[]" value="ação"> Ação</label>
-                <label class="opcao"><input type="checkbox" name="generos[]" value="aventura"> Aventura</label>
-                <label class="opcao"><input type="checkbox" name="generos[]" value="comédia"> Comédia</label>
-                <label class="opcao"><input type="checkbox" name="generos[]" value="drama"> Drama</label>
-                <label class="opcao"><input type="checkbox" name="generos[]" value="ficção científica"> Ficção científica</label>
-                <label class="opcao"><input type="checkbox" name="generos[]" value="suspense"> Suspense</label>
-                <label class="opcao"><input type="checkbox" name="generos[]" value="terror"> Terror</label>
           </div>
           <!-- "Pelo menos um gênero" não existe em HTML puro: o JS valida e escreve aqui -->
           <p class="mensagem-erro" id="erro-titulo-generos" aria-live="polite"></p>
@@ -164,7 +160,7 @@
 
         <div class="campo area-direcao">
           <label class="rotulo" for="titulo-direcao">Direção</label>
-          <input class="controle" type="text" id="titulo-direcao" name="direcao" maxlength="120" placeholder="Nome Fictício">
+          <input class="controle" type="text" id="titulo-direcao" name="direcao" maxlength="120" placeholder="Nome da direção">
         </div>
 
         <div class="campo area-elenco">
@@ -196,8 +192,10 @@
         <li><a href="https://github.com/arthurlorenzett/IMDb_Mock">Repositório no GitHub</a></li>
       </ul>
     </nav>
-    <p>IMDb Clone: projeto acadêmico para fins educacionais (Desenvolvimento Web I, IFC Concórdia), sem vínculo com o IMDb ou a Amazon. Todos os dados são fictícios.</p>
-    <p>Logotipo: marca registrada da IMDb.com, Inc., arquivo do Wikimedia Commons. Imagens: Lorem Picsum. Ícones: Bootstrap Icons.</p>
+    <p>IMDb Clone: trabalho acadêmico feito apenas para fins educacionais (Desenvolvimento Web I, IFC Concórdia). Este não é o site oficial do IMDb e não representa o IMDb nem a Amazon. As informações dos filmes e séries foram consultadas no IMDb; os pôsteres e as imagens pertencem aos seus detentores e são exibidos a partir do IMDb; avaliações e usuários são ilustrativos.</p>
+    <p>Logotipo: marca registrada da IMDb.com, Inc., arquivo do Wikimedia Commons. Dados, pôsteres e imagens dos títulos: IMDb. Ícones: Bootstrap Icons.</p>
   </footer>
+  <!-- JS externo (módulos ES): app.js carrega o site.json e o script desta página -->
+  <script type="module" src="../js/app.js"></script>
 </body>
 </html>
