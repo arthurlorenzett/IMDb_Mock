@@ -3,17 +3,285 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Detalhe do título · IMDb Clone</title>
+  <title>O Último Farol · IMDb Clone</title>
+  <meta name="description" content="Ficha do título fictício O Último Farol: sinopse, elenco, nota média e avaliações.">
+  <!-- Fonte Roboto (Google Fonts) e Bootstrap Icons (CDN), conforme a Tabela 5 da Parte 1 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- CSS próprio, em camadas: variáveis → base → componentes → páginas -->
   <link rel="stylesheet" href="css/variaveis.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/componentes.css">
   <link rel="stylesheet" href="css/paginas.css">
 </head>
 <body data-pagina="titulo" data-raiz=".">
-  <header id="cabecalho"></header>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ===== Cabeçalho global (igual em todas as páginas públicas) ===== -->
+  <header class="cabecalho" id="cabecalho">
+    <div class="cabecalho-interno">
+      <!-- Botão do menu: o JS alterna .aberta em #menu-principal e aria-expanded -->
+      <button class="botao-menu" id="botao-menu" type="button" aria-controls="menu-principal" aria-expanded="false">
+        <i class="bi bi-list" aria-hidden="true"></i>
+        <span class="botao-menu-texto">Menu</span>
+        <span class="visualmente-oculto">Abrir menu</span>
+      </button>
+
+      <a class="logo" href="index.html">
+        <img src="img/logo-imdb.svg" alt="IMDb Clone, ir para a página inicial" width="64" height="32">
+      </a>
+
+      <!-- Busca do cabeçalho: envia por GET para a página de busca -->
+      <form class="busca-cabecalho" id="form-busca-cabecalho" action="busca.html" method="get" role="search">
+        <label class="visualmente-oculto" for="busca-tipo">Tipo de título</label>
+        <select id="busca-tipo" name="tipo">
+          <option value="">Todos</option>
+          <option value="filme">Filmes</option>
+          <option value="serie">Séries</option>
+        </select>
+        <label class="visualmente-oculto" for="busca-termo">Buscar títulos</label>
+        <input type="search" id="busca-termo" name="q" placeholder="Buscar filmes, séries..." autocomplete="off">
+        <button type="submit">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <span class="visualmente-oculto">Buscar</span>
+        </button>
+      </form>
+
+      <div class="atalhos">
+        <a class="atalho atalho-mobile" href="busca.html"><i class="bi bi-search" aria-hidden="true"></i> Buscar</a>
+        <a class="atalho atalho-desktop" href="top250.html">Top 250</a>
+        <a class="atalho atalho-desktop" href="watchlist.html">
+          <i class="bi bi-bookmark-plus" aria-hidden="true"></i> Watchlist
+          <span class="contador" data-contador-watchlist>3</span>
+        </a>
+        <a class="atalho" href="admin/login.html">Entrar</a>
+      </div>
+
+      <!-- Alternar tema: o JS troca html[data-tema="escuro"] -->
+      <button class="botao-tema" id="botao-tema" type="button" aria-pressed="false">
+        <i class="bi bi-moon" aria-hidden="true"></i>
+        <span class="visualmente-oculto">Ativar tema escuro</span>
+      </button>
+    </div>
+
+    <!-- Gaveta do menu (estado "menu aberto" do wireframe) -->
+    <nav class="gaveta" id="menu-principal" aria-label="Menu principal">
+      <div class="gaveta-topo">
+        <button class="botao botao-contorno botao-icone" id="fechar-menu" type="button">
+          <i class="bi bi-x-lg" aria-hidden="true"></i>
+          <span class="visualmente-oculto">Fechar menu</span>
+        </button>
+      </div>
+      <ul class="gaveta-lista">
+        <li><a href="index.html"><i class="bi bi-house" aria-hidden="true"></i> Início</a></li>
+        <li><a href="busca.html"><i class="bi bi-search" aria-hidden="true"></i> Busca</a></li>
+        <li><a href="top250.html"><i class="bi bi-trophy" aria-hidden="true"></i> Top 250</a></li>
+        <li><a href="watchlist.html"><i class="bi bi-bookmark-plus" aria-hidden="true"></i> <span>Watchlist (<span data-contador-watchlist>3</span>)</span></a></li>
+        <li><a href="admin/login.html"><i class="bi bi-person-circle" aria-hidden="true"></i> Entrar</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <main id="conteudo">
-    <h1>Detalhe do título</h1>
+    <!-- ===== Ficha do título (o JS/PHP preenche a partir do id na URL) ===== -->
+    <article class="ficha" id="ficha-titulo" data-id="1">
+      <header class="ficha-topo">
+        <div>
+          <h1 id="titulo-nome">O Último Farol</h1>
+          <ul class="metadados">
+            <li><time datetime="2024">2024</time></li>
+            <li>14 anos</li>
+            <li>2h 05min</li>
+            <li>Filme</li>
+          </ul>
+        </div>
+        <div class="ficha-notas">
+          <div>
+            <p class="rotulo-nota">Nota média</p>
+            <p class="nota"><i class="bi bi-star-fill" aria-hidden="true"></i> <span class="nota-valor" id="nota-media">8,1</span><span class="nota-max">/10</span> <span class="nota-votos">(325 avaliações)</span></p>
+          </div>
+          <div>
+            <p class="rotulo-nota">Sua avaliação</p>
+            <button class="botao botao-contorno botao-pequeno" type="button" data-abrir-modal="modal-avaliacao">
+              <i class="bi bi-star" aria-hidden="true"></i> Avaliar
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Mídia: pôster, trailer e ações principais -->
+      <div class="ficha-midia">
+        <img class="poster ficha-poster" src="https://picsum.photos/seed/farol/300/450" alt="Pôster de O Último Farol: imagem ilustrativa de paisagem" width="300" height="450">
+
+        <!-- Trailer: imagem de capa com botão; o JS pode abrir um modal com o vídeo -->
+        <figure class="trailer">
+          <img src="https://picsum.photos/seed/farol-banner/1280/720" alt="Cena ilustrativa do trailer de O Último Farol" width="1280" height="720">
+          <button class="trailer-play" id="botao-trailer" type="button">
+            <i class="bi bi-play-circle-fill" aria-hidden="true"></i>
+            <span>Trailer <span class="visualmente-oculto">de O Último Farol</span></span>
+          </button>
+          <figcaption class="visualmente-oculto">Trailer oficial (fictício)</figcaption>
+        </figure>
+
+        <div class="ficha-acoes">
+          <button class="botao botao-primario botao-grande botao-bloco botao-watchlist" type="button" data-id="1" aria-pressed="false">
+            <i class="bi bi-plus-lg" aria-hidden="true"></i> Adicionar à Watchlist
+          </button>
+          <button class="botao botao-contorno botao-bloco ficha-acao-secundaria" type="button" data-abrir-trailer>
+            <i class="bi bi-play-fill" aria-hidden="true"></i> Assistir trailer
+          </button>
+          <a class="botao botao-contorno botao-bloco ficha-acao-secundaria" href="#">
+            <i class="bi bi-images" aria-hidden="true"></i> Fotos (12)
+          </a>
+        </div>
+      </div>
+
+      <!-- Gêneros, sinopse e equipe -->
+      <div class="ficha-info">
+        <ul class="lista-chips" aria-label="Gêneros">
+            <li><a class="chip" href="busca.html?genero=drama">Drama</a></li>
+            <li><a class="chip" href="busca.html?genero=suspense">Suspense</a></li>
+        </ul>
+        <p class="sinopse" id="titulo-sinopse">Depois da morte do pai, Helena volta à ilha onde cresceu para desativar o último farol da costa. Durante uma tempestade de três dias, ela encontra no diário do pai pistas de um naufrágio que a cidade inteira prefere esquecer.</p>
+        <dl class="ficha-equipe">
+          <div>
+            <dt>Direção</dt>
+            <dd><a href="busca.html?q=Clara+Moreira">Clara Moreira</a></dd>
+          </div>
+          <div>
+            <dt>Elenco</dt>
+            <dd>
+              <ul class="lista-elenco">
+                <li><a href="busca.html?q=Ana+Ribeiro">Ana Ribeiro</a></li>
+                <li><a href="busca.html?q=Bruno+Tavares">Bruno Tavares</a></li>
+                <li><a href="busca.html?q=Lia+Fontes">Lia Fontes</a></li>
+              </ul>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </article>
+
+    <!-- ===== Avaliações aprovadas (RN02: só aparecem depois da moderação) ===== -->
+    <section class="avaliacoes" id="avaliacoes" aria-labelledby="titulo-avaliacoes">
+      <div class="secao-topo">
+        <h2 class="titulo-secao" id="titulo-avaliacoes">Avaliações de usuários <span class="nota-votos">(325)</span></h2>
+        <button class="botao botao-contorno" type="button" id="avaliar" data-abrir-modal="modal-avaliacao">
+          <i class="bi bi-plus-lg" aria-hidden="true"></i> Escrever avaliação
+        </button>
+      </div>
+      <div class="grade-avaliacoes" id="lista-avaliacoes">
+        <article class="avaliacao">
+          <p class="nota"><i class="bi bi-star-fill" aria-hidden="true"></i> <span class="nota-valor">9</span><span class="nota-max">/10</span></p>
+          <h3>Tensão do começo ao fim</h3>
+          <p>A fotografia do farol à noite é linda e o final pega de surpresa. Vale cada minuto.</p>
+          <p class="subtitulo">Marina S. · <time datetime="2026-10-12">12/10/2026</time></p>
+        </article>
+        <article class="avaliacao">
+          <p class="nota"><i class="bi bi-star-fill" aria-hidden="true"></i> <span class="nota-valor">7</span><span class="nota-max">/10</span></p>
+          <h3>Bom, mas devagar no meio</h3>
+          <p>Atuações ótimas, porém o segundo ato se arrasta um pouco. Ainda assim recomendo.</p>
+          <p class="subtitulo">Rafael T. · <time datetime="2026-10-05">05/10/2026</time></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Modal: escrever avaliação (POST na Parte 3) ===== -->
+    <dialog class="modal" id="modal-avaliacao" aria-labelledby="titulo-modal-avaliacao">
+      <form id="form-avaliacao" action="#" method="post">
+        <div class="modal-topo">
+          <h2 id="titulo-modal-avaliacao">Avaliar: O Último Farol</h2>
+          <button class="botao botao-contorno botao-icone" type="button" data-fechar-modal>
+            <i class="bi bi-x-lg" aria-hidden="true"></i>
+            <span class="visualmente-oculto">Fechar</span>
+          </button>
+        </div>
+
+        <input type="hidden" name="titulo_id" value="1">
+
+        <div class="modal-corpo">
+          <!-- Nota de 1 a 10 com estrelas (radios em ordem invertida, ver componentes.css) -->
+          <fieldset class="campo">
+            <legend>Nota <span class="obrigatorio" aria-hidden="true">*</span></legend>
+            <div class="estrelas">
+                <input type="radio" id="nota-10" name="nota" value="10" required>
+                <label for="nota-10"><i class="bi bi-star-fill" aria-hidden="true"></i><span class="visualmente-oculto">10 de 10</span></label>
+                <input type="radio" id="nota-9" name="nota" value="9" required>
+                <label for="nota-9"><i class="bi bi-star-fill" aria-hidden="true"></i><span class="visualmente-oculto">9 de 10</span></label>
+                <input type="radio" id="nota-8" name="nota" value="8" required>
+                <label for="nota-8"><i class="bi bi-star-fill" aria-hidden="true"></i><span class="visualmente-oculto">8 de 10</span></label>
+                <input type="radio" id="nota-7" name="nota" value="7" required>
+                <label for="nota-7"><i class="bi bi-star-fill" aria-hidden="true"></i><span class="visualmente-oculto">7 de 10</span></label>
+                <input type="radio" id="nota-6" name="nota" value="6" required>
+                <label for="nota-6"><i class="bi bi-star-fill" aria-hidden="true"></i><span class="visualmente-oculto">6 de 10</span></label>
+                <input type="radio" id="nota-5" name="nota" value="5" required>
+                <label for="nota-5"><i class="bi bi-star-fill" aria-hidden="true"></i><span class="visualmente-oculto">5 de 10</span></label>
+                <input type="radio" id="nota-4" name="nota" value="4" required>
+                <label for="nota-4"><i class="bi bi-star-fill" aria-hidden="true"></i><span class="visualmente-oculto">4 de 10</span></label>
+                <input type="radio" id="nota-3" name="nota" value="3" required>
+                <label for="nota-3"><i class="bi bi-star-fill" aria-hidden="true"></i><span class="visualmente-oculto">3 de 10</span></label>
+                <input type="radio" id="nota-2" name="nota" value="2" required>
+                <label for="nota-2"><i class="bi bi-star-fill" aria-hidden="true"></i><span class="visualmente-oculto">2 de 10</span></label>
+                <input type="radio" id="nota-1" name="nota" value="1" required>
+                <label for="nota-1"><i class="bi bi-star-fill" aria-hidden="true"></i><span class="visualmente-oculto">1 de 10</span></label>
+            </div>
+            <p class="mensagem-erro" id="erro-nota" aria-live="polite"></p>
+          </fieldset>
+
+          <div class="campos-linha">
+            <div class="campo">
+              <label class="rotulo" for="avaliacao-nome">Nome <span class="obrigatorio" aria-hidden="true">*</span></label>
+              <input class="controle" type="text" id="avaliacao-nome" name="nome" required minlength="2" maxlength="60" autocomplete="name" aria-describedby="erro-avaliacao-nome">
+              <p class="mensagem-erro" id="erro-avaliacao-nome" aria-live="polite"></p>
+            </div>
+            <div class="campo">
+              <label class="rotulo" for="avaliacao-email">E-mail <span class="obrigatorio" aria-hidden="true">*</span></label>
+              <input class="controle" type="email" id="avaliacao-email" name="email" required maxlength="120" autocomplete="email" placeholder="nome@exemplo.com" aria-describedby="erro-avaliacao-email">
+              <p class="mensagem-erro" id="erro-avaliacao-email" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label class="rotulo" for="avaliacao-titulo">Título da avaliação</label>
+            <input class="controle" type="text" id="avaliacao-titulo" name="titulo" maxlength="80">
+          </div>
+
+          <div class="campo">
+            <label class="rotulo" for="avaliacao-comentario">Comentário <span class="obrigatorio" aria-hidden="true">*</span></label>
+            <textarea class="controle" id="avaliacao-comentario" name="comentario" required minlength="10" maxlength="600" aria-describedby="dica-comentario erro-avaliacao-comentario"></textarea>
+            <p class="dica" id="dica-comentario">Até 600 caracteres.</p>
+            <p class="mensagem-erro" id="erro-avaliacao-comentario" aria-live="polite"></p>
+          </div>
+
+          <!-- Mensagem geral do envio: o JS mostra (remove hidden) e troca a classe/texto -->
+          <p class="alerta alerta-erro" id="alerta-avaliacao" role="alert" hidden>
+            <i class="bi bi-x-circle" aria-hidden="true"></i>
+            <span>Este e-mail já avaliou o título.</span>
+          </p>
+        </div>
+
+        <div class="modal-acoes">
+          <button class="botao botao-contorno" type="button" data-fechar-modal>Cancelar</button>
+          <button class="botao botao-primario" type="submit">Enviar avaliação</button>
+        </div>
+      </form>
+    </dialog>
   </main>
-  <footer id="rodape"></footer>
+
+  <!-- ===== Rodapé (aviso de clone educacional exigido pelo enunciado) ===== -->
+  <footer class="rodape" id="rodape">
+    <nav aria-label="Links do rodapé">
+      <ul class="rodape-links">
+        <li><a href="#">Ajuda</a></li>
+        <li><a href="#">Termos de uso</a></li>
+        <li><a href="#">Privacidade</a></li>
+        <li><a href="https://github.com/arthurlorenzett/IMDb_Mock">Repositório no GitHub</a></li>
+      </ul>
+    </nav>
+    <p>IMDb Clone: projeto acadêmico para fins educacionais (Desenvolvimento Web I, IFC Concórdia), sem vínculo com o IMDb ou a Amazon. Todos os dados são fictícios.</p>
+    <p>Logotipo: marca registrada da IMDb.com, Inc., arquivo do Wikimedia Commons. Imagens: Lorem Picsum. Ícones: Bootstrap Icons.</p>
+  </footer>
 </body>
 </html>
