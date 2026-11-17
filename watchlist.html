@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Watchlist · IMDb Clone</title>
-  <meta name="description" content="Sua lista de títulos fictícios para assistir depois, salva no navegador.">
+  <meta name="description" content="Sua lista de títulos para assistir depois, salva no navegador.">
   <!-- Fonte Roboto (Google Fonts) e Bootstrap Icons (CDN), conforme a Tabela 5 da Parte 1 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,9 +15,12 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/componentes.css">
   <link rel="stylesheet" href="css/paginas.css">
+  <!-- Aplica o tema salvo antes de desenhar a página (evita piscar) -->
+  <script src="js/tema-inicial.js"></script>
 </head>
 <body data-pagina="watchlist" data-raiz=".">
   <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+  <noscript><p class="alerta alerta-erro">Este site precisa de JavaScript ativado para carregar os títulos e as interações.</p></noscript>
 
   <!-- ===== Cabeçalho global (igual em todas as páginas públicas) ===== -->
   <header class="cabecalho" id="cabecalho">
@@ -54,7 +57,7 @@
         <a class="atalho atalho-desktop" href="top250.html">Top 250</a>
         <a class="atalho atalho-desktop" href="watchlist.html" aria-current="page">
           <i class="bi bi-bookmark-plus" aria-hidden="true"></i> Watchlist
-          <span class="contador" data-contador-watchlist>3</span>
+          <span class="contador" data-contador-watchlist>0</span>
         </a>
         <a class="atalho" href="admin/login.html">Entrar</a>
       </div>
@@ -78,7 +81,7 @@
         <li><a href="index.html"><i class="bi bi-house" aria-hidden="true"></i> Início</a></li>
         <li><a href="busca.html"><i class="bi bi-search" aria-hidden="true"></i> Busca</a></li>
         <li><a href="top250.html"><i class="bi bi-trophy" aria-hidden="true"></i> Top 250</a></li>
-        <li><a href="watchlist.html" aria-current="page"><i class="bi bi-bookmark-plus" aria-hidden="true"></i> <span>Watchlist (<span data-contador-watchlist>3</span>)</span></a></li>
+        <li><a href="watchlist.html" aria-current="page"><i class="bi bi-bookmark-plus" aria-hidden="true"></i> <span>Watchlist (<span data-contador-watchlist>0</span>)</span></a></li>
         <li><a href="admin/login.html"><i class="bi bi-person-circle" aria-hidden="true"></i> Entrar</a></li>
       </ul>
     </nav>
@@ -87,7 +90,7 @@
   <main id="conteudo">
     <header class="cabecalho-pagina">
       <h1>Sua Watchlist</h1>
-      <p class="subtitulo"><span id="contador-watchlist-pagina">3 títulos</span> · lista salva neste navegador</p>
+      <p class="subtitulo"><span id="contador-watchlist-pagina"></span> · lista salva neste navegador</p>
     </header>
 
     <!-- ===== Controles (o JS ordena, filtra e limpa a lista do localStorage) ===== -->
@@ -116,78 +119,6 @@
 
     <!-- ===== Lista (o JS gera os itens a partir do localStorage) ===== -->
     <ol class="lista-itens" id="lista-watchlist">
-        <li>
-          <article class="item-lista" data-id="1">
-            <img class="poster" src="https://picsum.photos/seed/farol/144/216" alt="Pôster de O Último Farol" width="72" height="108" loading="lazy">
-            <div class="item-info">
-              <h2><a href="titulo.html?id=1">1. O Último Farol (2024)</a></h2>
-              <ul class="metadados">
-            <li>2024</li>
-            <li>14 anos</li>
-            <li>2h 05min</li>
-            <li>Drama, Suspense</li>
-              </ul>
-              <div class="item-nota">
-                <p class="nota"><i class="bi bi-star-fill" aria-hidden="true"></i> <span class="nota-valor">8,1</span></p>
-                <a class="botao botao-texto" href="titulo.html?id=1#avaliar"><i class="bi bi-star" aria-hidden="true"></i> Avaliar</a>
-              </div>
-            </div>
-            <div class="item-acoes">
-              <a class="botao botao-contorno botao-pequeno" href="titulo.html?id=1"><i class="bi bi-play-fill" aria-hidden="true"></i> Trailer</a>
-              <button class="botao botao-contorno botao-pequeno botao-remover" type="button" data-id="1">
-                <i class="bi bi-x-lg" aria-hidden="true"></i> Remover<span class="visualmente-oculto"> O Último Farol</span>
-              </button>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="item-lista" data-id="3">
-            <img class="poster" src="https://picsum.photos/seed/mares/144/216" alt="Pôster de Marés de Inverno" width="72" height="108" loading="lazy">
-            <div class="item-info">
-              <h2><a href="titulo.html?id=3">2. Marés de Inverno (2022)</a></h2>
-              <ul class="metadados">
-            <li>2022</li>
-            <li>14 anos</li>
-            <li>2h 12min</li>
-            <li>Drama</li>
-              </ul>
-              <div class="item-nota">
-                <p class="nota"><i class="bi bi-star-fill" aria-hidden="true"></i> <span class="nota-valor">7,8</span></p>
-                <a class="botao botao-texto" href="titulo.html?id=3#avaliar"><i class="bi bi-star" aria-hidden="true"></i> Avaliar</a>
-              </div>
-            </div>
-            <div class="item-acoes">
-              <a class="botao botao-contorno botao-pequeno" href="titulo.html?id=3"><i class="bi bi-play-fill" aria-hidden="true"></i> Trailer</a>
-              <button class="botao botao-contorno botao-pequeno botao-remover" type="button" data-id="3">
-                <i class="bi bi-x-lg" aria-hidden="true"></i> Remover<span class="visualmente-oculto"> Marés de Inverno</span>
-              </button>
-            </div>
-          </article>
-        </li>
-        <li>
-          <article class="item-lista" data-id="7">
-            <img class="poster" src="https://picsum.photos/seed/relogio/144/216" alt="Pôster de Os Relojoeiros" width="72" height="108" loading="lazy">
-            <div class="item-info">
-              <h2><a href="titulo.html?id=7">3. Os Relojoeiros (2025)</a></h2>
-              <ul class="metadados">
-            <li>2025</li>
-            <li>14 anos</li>
-            <li>8 episódios</li>
-            <li>Ficção científica, Drama</li>
-              </ul>
-              <div class="item-nota">
-                <p class="nota"><i class="bi bi-star-fill" aria-hidden="true"></i> <span class="nota-valor">8,4</span></p>
-                <a class="botao botao-texto" href="titulo.html?id=7#avaliar"><i class="bi bi-star" aria-hidden="true"></i> Avaliar</a>
-              </div>
-            </div>
-            <div class="item-acoes">
-              <a class="botao botao-contorno botao-pequeno" href="titulo.html?id=7"><i class="bi bi-play-fill" aria-hidden="true"></i> Trailer</a>
-              <button class="botao botao-contorno botao-pequeno botao-remover" type="button" data-id="7">
-                <i class="bi bi-x-lg" aria-hidden="true"></i> Remover<span class="visualmente-oculto"> Os Relojoeiros</span>
-              </button>
-            </div>
-          </article>
-        </li>
     </ol>
 
     <!-- ===== Estado vazio: o JS remove o hidden quando a lista estiver vazia ===== -->
@@ -201,7 +132,7 @@
     <!-- ===== Modal: confirmar limpeza ===== -->
     <dialog class="modal modal-pequeno" id="modal-limpar" aria-labelledby="titulo-modal-limpar">
       <h2 id="titulo-modal-limpar">Limpar a Watchlist?</h2>
-      <p class="modal-texto">Os 3 títulos serão removidos deste navegador.</p>
+      <p class="modal-texto">Os títulos serão removidos deste navegador.</p>
       <div class="modal-acoes">
         <button class="botao botao-contorno" type="button" data-fechar-modal>Cancelar</button>
         <button class="botao botao-perigo" type="button" id="confirmar-limpar">Limpar</button>
@@ -219,8 +150,10 @@
         <li><a href="https://github.com/arthurlorenzett/IMDb_Mock">Repositório no GitHub</a></li>
       </ul>
     </nav>
-    <p>IMDb Clone: projeto acadêmico para fins educacionais (Desenvolvimento Web I, IFC Concórdia), sem vínculo com o IMDb ou a Amazon. Todos os dados são fictícios.</p>
-    <p>Logotipo: marca registrada da IMDb.com, Inc., arquivo do Wikimedia Commons. Imagens: Lorem Picsum. Ícones: Bootstrap Icons.</p>
+    <p>IMDb Clone: trabalho acadêmico feito apenas para fins educacionais (Desenvolvimento Web I, IFC Concórdia). Este não é o site oficial do IMDb e não representa o IMDb nem a Amazon. As informações dos filmes e séries foram consultadas no IMDb; os pôsteres e as imagens pertencem aos seus detentores e são exibidos a partir do IMDb; avaliações e usuários são ilustrativos.</p>
+    <p>Logotipo: marca registrada da IMDb.com, Inc., arquivo do Wikimedia Commons. Dados, pôsteres e imagens dos títulos: IMDb. Ícones: Bootstrap Icons.</p>
   </footer>
+  <!-- JS externo (módulos ES): app.js carrega o site.json e o script desta página -->
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>
