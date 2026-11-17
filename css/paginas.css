@@ -1,1 +1,808 @@
-/* paginas.css: ajustes específicos de cada página (um bloco comentado por página). */
+/* ==========================================================================
+   paginas.css — ajustes específicos de cada página (um bloco por página).
+   Mobile primeiro; os @media de 600 px e 1024 px ficam no fim de cada bloco.
+   ========================================================================== */
+
+/* ---- Peças repetidas entre páginas ---- */
+
+/* Topo de seção: título à esquerda, link/ação à direita */
+.secao-topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-3);
+  margin-bottom: var(--espaco-3);
+}
+
+.ver-mais {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-1);
+  font-size: var(--tam-botao);
+  font-weight: var(--peso-medio);
+}
+
+/* Barra de controles (ordenar, filtrar) acima de listas e tabelas */
+.barra-controles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espaco-2) var(--espaco-3);
+  margin-bottom: var(--espaco-3);
+}
+
+.campo-inline {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-2);
+}
+
+.campo-inline .controle {
+  width: auto;
+  min-height: var(--altura-botao);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.barra-contador,
+.barra-direita {
+  margin-left: auto;
+}
+
+.centralizar {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--espaco-4);
+}
+
+/* Linha "★ 7,8 (1,2 mil)   ☆ Avaliar" dos itens de lista */
+.item-nota {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-4);
+  font-size: var(--tam-botao);
+}
+
+/* ==========================================================================
+   P1 — Início
+   ========================================================================== */
+.inicio-destaques {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);   /* impede que o conteúdo largo estique a coluna */
+  gap: var(--espaco-4);
+  margin-bottom: var(--espaco-5);
+}
+
+.top10 {
+  padding: var(--espaco-3);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-card);
+  background: var(--cor-card);
+}
+
+.top10-lista {
+  display: grid;
+  gap: var(--espaco-3);
+  margin: var(--espaco-3) 0;
+}
+
+.top10-item {
+  display: grid;
+  grid-template-columns: 1.5rem 40px 1fr;
+  align-items: center;
+  gap: var(--espaco-3);
+  font-size: var(--tam-botao);
+  line-height: var(--alt-botao);
+}
+
+.top10-posicao {
+  font-size: var(--tam-h2);
+  font-weight: var(--peso-forte);
+  text-align: center;
+}
+
+.top10-item .poster {
+  border-radius: var(--raio-campo);
+}
+
+.top10-item a {
+  color: var(--cor-texto);
+  font-weight: var(--peso-medio);
+  text-decoration: none;
+}
+
+.top10-item a:hover {
+  text-decoration: underline;
+}
+
+.top10-item .nota {
+  display: flex;
+  font-size: var(--tam-legenda);
+}
+
+/* "Em alta": rolagem horizontal no mobile, grade de 6 colunas no desktop */
+.grade-cartoes {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 42%;
+  gap: var(--espaco-3);
+  padding-bottom: var(--espaco-3);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.grade-cartoes > li {
+  scroll-snap-align: start;
+}
+
+.grade-cartoes .cartao-titulo {
+  height: 100%;
+}
+
+@media (min-width: 600px) {
+  .grade-cartoes {
+    grid-auto-columns: 28%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .inicio-destaques {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .grade-cartoes {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(6, 1fr);
+    overflow: visible;
+  }
+}
+
+/* ==========================================================================
+   P2 — Busca e catálogo
+   ========================================================================== */
+.busca-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--espaco-4);
+  align-items: start;
+}
+
+/* No mobile o painel de filtros fica escondido até o JS adicionar .aberto */
+.filtros {
+  display: none;
+  padding: var(--espaco-3);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-card);
+  background: var(--cor-superficie);
+}
+
+.filtros.aberto {
+  display: block;
+  animation: aparecer 0.25s ease;
+}
+
+.filtros-form {
+  display: grid;
+  gap: var(--espaco-4);
+}
+
+.filtros-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filtros-limpar {
+  font-size: var(--tam-botao);
+  text-align: center;
+}
+
+.barra-resultados {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espaco-2) var(--espaco-3);
+  margin-bottom: var(--espaco-3);
+}
+
+.alternar-visualizacao {
+  display: none;               /* grade/lista só faz sentido com tela larga */
+  gap: var(--espaco-1);
+  margin-left: auto;
+}
+
+.alternar-visualizacao [aria-pressed="true"] {
+  border-color: var(--cor-link);
+  background: color-mix(in srgb, var(--cor-link) 12%, transparent);
+}
+
+/* Visualização em grade (o JS troca data-visualizacao="grade") */
+.lista-itens[data-visualizacao="grade"] {
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+
+.lista-itens[data-visualizacao="grade"] .item-lista {
+  grid-template-columns: 72px 1fr;
+}
+
+.lista-itens[data-visualizacao="grade"] .item-acoes {
+  flex-direction: row;
+  grid-column: 1 / -1;
+}
+
+.resultados .paginacao {
+  display: none;
+  margin-top: var(--espaco-4);
+}
+
+.carregar-mais {
+  margin-top: var(--espaco-4);
+}
+
+@media (min-width: 600px) {
+  .alternar-visualizacao {
+    display: flex;
+  }
+
+  .resultados .paginacao {
+    display: block;
+  }
+
+  .carregar-mais {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .busca-layout {
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+
+  .filtros {
+    display: block;
+    position: sticky;
+    top: calc(var(--altura-cabecalho) + var(--espaco-3));
+  }
+
+  .filtros-fechar,
+  .filtros-abrir {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   P3 — Detalhe do título
+   ========================================================================== */
+.ficha {
+  display: grid;
+  gap: var(--espaco-4);
+  margin-bottom: var(--espaco-5);
+}
+
+.ficha-topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--espaco-3);
+}
+
+.ficha-topo .metadados {
+  margin-top: var(--espaco-2);
+  font-size: var(--tam-botao);
+}
+
+.ficha-notas {
+  display: flex;
+  gap: var(--espaco-4);
+}
+
+.rotulo-nota {
+  color: var(--cor-texto-2);
+  font-size: var(--tam-legenda);
+  font-weight: var(--peso-medio);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ficha-notas .nota {
+  font-size: var(--tam-h2);
+  line-height: var(--alt-h2);
+}
+
+/* Mobile: trailer em cima; pôster e ações embaixo */
+.ficha-midia {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: var(--espaco-3);
+}
+
+.ficha-poster {
+  grid-row: 2;
+  border-radius: var(--raio-card);
+}
+
+.trailer {
+  position: relative;
+  grid-column: 1 / -1;
+  border-radius: var(--raio-card);
+  overflow: hidden;
+}
+
+.trailer img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.trailer-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--espaco-2);
+  padding: var(--espaco-3);
+  border: 0;
+  background: linear-gradient(transparent 50%, var(--cor-veu-foto));
+  color: var(--cor-sobre-foto);  /* fica sobre a foto nos dois temas */
+  font-size: var(--tam-h2);
+  font-weight: var(--peso-medio);
+  cursor: pointer;
+}
+
+.trailer-play .bi {
+  font-size: 3rem;
+  line-height: 1;
+  transition: color var(--transicao), transform var(--transicao);
+}
+
+.trailer-play:hover .bi {
+  color: var(--cor-destaque);
+  transform: scale(1.1);
+}
+
+.ficha-acoes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  grid-row: 2;
+}
+
+.ficha-acao-secundaria {
+  display: none;               /* no mobile só a ação principal */
+}
+
+.ficha-info {
+  display: grid;
+  gap: var(--espaco-3);
+  max-width: 860px;
+}
+
+.sinopse {
+  line-height: var(--alt-texto);
+}
+
+.ficha-equipe {
+  display: grid;
+  margin: 0;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.ficha-equipe > div {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: var(--espaco-3);
+  padding: var(--espaco-2) 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.ficha-equipe dt {
+  font-weight: var(--peso-forte);
+}
+
+.ficha-equipe dd {
+  margin: 0;
+}
+
+.lista-elenco {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--espaco-2);
+}
+
+.lista-elenco li + li::before {
+  content: "·";
+  margin-right: var(--espaco-2);
+  color: var(--cor-texto-2);
+}
+
+.grade-avaliacoes {
+  display: grid;
+  gap: var(--espaco-3);
+}
+
+.avaliacao {
+  display: grid;
+  gap: var(--espaco-2);
+  padding: var(--espaco-3);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-card);
+  background: var(--cor-card);
+}
+
+.avaliacao > p:not(.nota):not(.subtitulo) {
+  color: var(--cor-texto-2);
+  font-size: var(--tam-botao);
+  line-height: var(--alt-botao);
+}
+
+@media (min-width: 600px) {
+  .grade-avaliacoes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ficha-acao-secundaria {
+    display: inline-flex;
+  }
+}
+
+/* Desktop: pôster | trailer | ações lado a lado (wireframe P3) */
+@media (min-width: 1024px) {
+  .ficha-midia {
+    grid-template-columns: 1fr 3fr 1.2fr;
+    align-items: start;
+  }
+
+  .ficha-poster,
+  .trailer,
+  .ficha-acoes {
+    grid-row: auto;
+    grid-column: auto;
+  }
+
+  .ficha-poster,
+  .trailer img {
+    height: 100%;
+  }
+}
+
+/* ==========================================================================
+   P4 — Top 250
+   ========================================================================== */
+.top-titulo {
+  font-weight: var(--peso-normal);
+}
+
+.top-titulo,
+.top-titulo > span {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-3);
+}
+
+.top-titulo > span {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.top-titulo .poster {
+  width: 32px;
+  border-radius: var(--raio-campo);
+}
+
+.top-posicao {
+  font-weight: var(--peso-forte);
+}
+
+.top-meta {
+  display: none;               /* só aparece na versão em cards (mobile) */
+  color: var(--cor-texto-2);
+  font-size: var(--tam-legenda);
+}
+
+/* Mobile: cada linha da tabela vira um card (mesma ordem e dados, wireframe P4) */
+@media (max-width: 599px) {
+  .tabela-top {
+    border: 0;
+    overflow: visible;
+  }
+
+  .tabela-top thead {
+    display: none;
+  }
+
+  .tabela-top tbody {
+    display: grid;
+    gap: var(--espaco-3);
+  }
+
+  .tabela-top tbody tr {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas:
+      "pos titulo acao1"
+      "pos nota   acao2";
+    align-items: center;
+    gap: var(--espaco-1) var(--espaco-3);
+    padding: var(--espaco-3);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-card);
+    background: var(--cor-card);
+  }
+
+  .tabela-top tbody tr:nth-child(even) {
+    background: var(--cor-card);
+  }
+
+  .tabela-top td,
+  .tabela-top th {
+    padding: 0;
+    border: 0;
+  }
+
+  .tabela-top .top-posicao { grid-area: pos; }
+  .tabela-top .top-titulo  { grid-area: titulo; }
+  .tabela-top .top-nota    { grid-area: nota; text-align: left; padding-left: 48px; }
+  .tabela-top .top-acao:nth-last-child(2) { grid-area: acao2; }
+  .tabela-top .top-acao:last-child        { grid-area: acao1; }
+
+  .tabela-top .top-ano,
+  .tabela-top .top-votos {
+    display: none;
+  }
+
+  .top-meta {
+    display: block;
+  }
+}
+
+/* ==========================================================================
+   P5 — Watchlist
+   ========================================================================== */
+.modal-pequeno {
+  width: min(420px, calc(100% - 2rem));
+}
+
+.modal-texto {
+  margin-top: var(--espaco-2);
+  color: var(--cor-texto-2);
+}
+
+#lista-watchlist .item-acoes .botao {
+  min-width: 7rem;
+}
+
+/* ==========================================================================
+   P6 — Login (cartão centralizado)
+   ========================================================================== */
+.main-centralizado {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.cartao-form {
+  display: grid;
+  gap: var(--espaco-3);
+  width: 100%;
+  max-width: 420px;
+  padding: var(--espaco-4);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-card);
+  background: var(--cor-card);
+  box-shadow: 0 4px 16px var(--cor-sombra);
+}
+
+.cartao-form h1 {
+  font-size: var(--tam-h2);
+  line-height: var(--alt-h2);
+  font-weight: var(--peso-forte);
+}
+
+.form-login {
+  display: grid;
+  gap: var(--espaco-3);
+}
+
+.link-voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-1);
+  font-size: var(--tam-botao);
+}
+
+@media (min-width: 600px) {
+  .main-centralizado {
+    padding-top: var(--espaco-5);
+  }
+}
+
+/* ==========================================================================
+   P7 — Painel administrativo
+   ========================================================================== */
+.painel-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  flex: 1;
+  width: 100%;
+  max-width: var(--largura-maxima);
+  margin: 0 auto;
+}
+
+.secao-painel + .secao-painel {
+  margin-top: var(--espaco-5);
+}
+
+.secao-painel > .titulo-secao {
+  margin-bottom: var(--espaco-3);
+}
+
+#alerta-painel {
+  margin-bottom: var(--espaco-4);
+}
+
+.secao-topo-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+}
+
+.secao-topo-acoes .controle {
+  width: auto;
+  min-height: var(--altura-botao);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.acoes-tabela {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-1);
+}
+
+.poster-mini {
+  width: 32px;
+  border-radius: var(--raio-campo);
+}
+
+.comentario-celula {
+  min-width: 14rem;
+  color: var(--cor-texto-2);
+}
+
+/* Desktop: a gaveta vira barra lateral fixa à esquerda (wireframe P7) */
+@media (min-width: 1024px) {
+  .painel-layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+  }
+
+  .menu-admin {
+    position: static;
+    width: auto;
+    padding: var(--espaco-4) var(--espaco-3);
+    border-right: 1px solid var(--cor-borda);
+    background: transparent;
+    box-shadow: none;
+    transform: none;
+    visibility: visible;
+  }
+
+  .menu-admin .gaveta-topo,
+  .botao-menu-admin {
+    display: none;
+  }
+
+  .menu-admin .gaveta-lista {
+    position: sticky;
+    top: calc(var(--altura-cabecalho) + var(--espaco-4));
+    display: grid;
+    gap: var(--espaco-1);
+  }
+}
+
+/* ==========================================================================
+   P8 — Cadastro e edição de título (grid com áreas nomeadas)
+   ========================================================================== */
+.trilha ol {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+  margin-bottom: var(--espaco-2);
+  font-size: var(--tam-legenda);
+}
+
+.trilha li + li::before {
+  content: "›";
+  margin-right: var(--espaco-2);
+  color: var(--cor-texto-2);
+}
+
+.cabecalho-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--espaco-2);
+}
+
+.form-titulo {
+  display: grid;
+  grid-template-areas:
+    "nome"
+    "tipo"
+    "numeros"
+    "classificacao"
+    "generos"
+    "poster"
+    "previa"
+    "trailer"
+    "direcao"
+    "elenco"
+    "sinopse"
+    "acoes";
+  gap: var(--espaco-4);
+}
+
+.area-nome          { grid-area: nome; }
+.area-tipo          { grid-area: tipo; }
+.area-numeros       { grid-area: numeros; }
+.area-classificacao { grid-area: classificacao; }
+.area-generos       { grid-area: generos; }
+.area-poster        { grid-area: poster; }
+.area-previa        { grid-area: previa; }
+.area-trailer       { grid-area: trailer; }
+.area-direcao       { grid-area: direcao; }
+.area-elenco        { grid-area: elenco; }
+.area-sinopse       { grid-area: sinopse; }
+.area-acoes         { grid-area: acoes; }
+
+.previa-poster {
+  display: grid;
+  justify-items: center;
+  gap: var(--espaco-1);
+}
+
+.previa-poster .poster {
+  width: 120px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-campo);
+}
+
+.form-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+}
+
+.form-acoes .botao {
+  min-width: 8rem;
+}
+
+/* Desktop: duas colunas de campos + coluna estreita da prévia */
+@media (min-width: 1024px) {
+  .form-titulo {
+    grid-template-columns: 1fr 1fr 160px;
+    grid-template-areas:
+      "nome    tipo          tipo"
+      "numeros classificacao classificacao"
+      "generos poster        previa"
+      "direcao trailer       previa"
+      "elenco  elenco        elenco"
+      "sinopse sinopse       sinopse"
+      "acoes   acoes         acoes";
+  }
+
+  .area-classificacao .controle {
+    max-width: 16rem;
+  }
+
+  .area-numeros {
+    grid-template-columns: 1fr 1.4fr 1fr;   /* o campo de data precisa de mais espaço */
+  }
+}
