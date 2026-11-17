@@ -1,0 +1,684 @@
+[
+  {
+    "id": 1,
+    "slug": "um-sonho-de-liberdade",
+    "titulo": "Um Sonho de Liberdade",
+    "tipo": "filme",
+    "ano": 1994,
+    "lancamento": "1995-03-17",
+    "duracao_min": 142,
+    "episodios": null,
+    "classificacao": "16",
+    "generos": [
+      "Drama"
+    ],
+    "sinopse": "Condenado à prisão perpétua por um crime que diz não ter cometido, um bancário tenta manter a esperança dentro de uma penitenciária violenta e constrói, ao longo de duas décadas, uma amizade improvável com outro detento.",
+    "direcao": "Frank Darabont",
+    "elenco": [
+      "Tim Robbins",
+      "Morgan Freeman",
+      "Bob Gunton"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2UxYWVkNGY2ZjljXkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BNjQ2NDA3MDcxMF5BMl5BanBnXkFtZTgwMjE5NTU0NzE@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi3877612057/",
+    "popularidade": 90,
+    "destaque": false,
+    "criado_em": "2026-11-01T10:00:00"
+  },
+  {
+    "id": 2,
+    "slug": "o-poderoso-chefao",
+    "titulo": "O Poderoso Chefão",
+    "tipo": "filme",
+    "ano": 1972,
+    "lancamento": "1972-09-10",
+    "duracao_min": 175,
+    "episodios": null,
+    "classificacao": "14",
+    "generos": [
+      "Policial",
+      "Drama"
+    ],
+    "sinopse": "O patriarca de uma poderosa família mafiosa de Nova York sofre um atentado, e o filho caçula, que queria distância dos negócios da família, acaba sendo arrastado para o centro da disputa pelo poder.",
+    "direcao": "Francis Ford Coppola",
+    "elenco": [
+      "Marlon Brando",
+      "Al Pacino",
+      "James Caan"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BYTRmMjkwYzYtYTRiMi00NDJjLTk1NjctMDA3MjY2ZWIyMGQ5XkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BYWNlN2U4YjQtMzI3NC00ZjkxLWEwMTItYWRlNDUxYTYwYjVlXkEyXkFqcGdeQWpvaG5oYXJ0._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi1348706585/",
+    "popularidade": 86,
+    "destaque": false,
+    "criado_em": "2026-11-01T10:05:00"
+  },
+  {
+    "id": 3,
+    "slug": "batman-o-cavaleiro-das-trevas",
+    "titulo": "Batman: O Cavaleiro das Trevas",
+    "tipo": "filme",
+    "ano": 2008,
+    "lancamento": "2008-07-18",
+    "duracao_min": 152,
+    "episodios": null,
+    "classificacao": "12",
+    "generos": [
+      "Policial",
+      "Suspense"
+    ],
+    "sinopse": "Batman, o comissário Gordon e o novo promotor de Gotham se unem contra o crime organizado, até que um criminoso imprevisível, o Coringa, decide testar até onde vão os princípios de cada um deles.",
+    "direcao": "Christopher Nolan",
+    "elenco": [
+      "Christian Bale",
+      "Heath Ledger",
+      "Aaron Eckhart"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BMTRkYjU1MjQtODMxMS00YTNmLThkOTYtZThlMjE4YWZkZDI0XkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BNWJkYWJlOWMtY2ZhZi00YWM0LTliZDktYmRiMGYwNzczMTZhXkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi324468761/",
+    "popularidade": 95,
+    "destaque": true,
+    "criado_em": "2026-11-01T10:10:00"
+  },
+  {
+    "id": 4,
+    "slug": "a-origem",
+    "titulo": "A Origem",
+    "tipo": "filme",
+    "ano": 2010,
+    "lancamento": "2010-08-06",
+    "duracao_min": 148,
+    "episodios": null,
+    "classificacao": "14",
+    "generos": [
+      "Aventura",
+      "Ficção científica",
+      "Suspense"
+    ],
+    "sinopse": "Um especialista em roubar segredos de dentro dos sonhos recebe uma proposta inversa: implantar uma ideia na mente de um herdeiro. Para isso, ele e sua equipe precisam descer por várias camadas de sonho ao mesmo tempo.",
+    "direcao": "Christopher Nolan",
+    "elenco": [
+      "Leonardo DiCaprio",
+      "Joseph Gordon-Levitt",
+      "Elliot Page"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BZmIxYzJkYWQtOWQ4ZS00NjhlLTk0OTMtN2I4ZWQxZGEyZDVhXkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BMTQ1ZmIzOTAtNDcwZi00NDVkLWE4NWItYWNhZGY1MmVlZGU0XkEyXkFqcGdeQWRvb2xpbmhk._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi2959588889/",
+    "popularidade": 88,
+    "destaque": false,
+    "criado_em": "2026-11-01T10:15:00"
+  },
+  {
+    "id": 5,
+    "slug": "interestelar",
+    "titulo": "Interestelar",
+    "tipo": "filme",
+    "ano": 2014,
+    "lancamento": "2014-11-06",
+    "duracao_min": 169,
+    "episodios": null,
+    "classificacao": "10",
+    "generos": [
+      "Aventura",
+      "Ficção científica"
+    ],
+    "sinopse": "Com a Terra devastada por pragas nas lavouras, um ex-piloto deixa os filhos para trás e parte com uma equipe de cientistas por um buraco de minhoca em busca de um novo planeta onde a humanidade possa viver.",
+    "direcao": "Christopher Nolan",
+    "elenco": [
+      "Matthew McConaughey",
+      "Anne Hathaway",
+      "Jessica Chastain"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BMmUwMmFlMzktYWVlNy00N2I0LWFhMTYtZWI2ZTM4N2I3ZTk0XkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BNjM5OTQzMTg4N15BMl5BanBnXkFtZTgwOTgyMjM0NTE@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi1586278169/",
+    "popularidade": 92,
+    "destaque": true,
+    "criado_em": "2026-11-01T10:20:00"
+  },
+  {
+    "id": 6,
+    "slug": "cidade-de-deus",
+    "titulo": "Cidade de Deus",
+    "tipo": "filme",
+    "ano": 2002,
+    "lancamento": "2002-08-30",
+    "duracao_min": 130,
+    "episodios": null,
+    "classificacao": "16",
+    "generos": [
+      "Policial",
+      "Drama"
+    ],
+    "sinopse": "Entre os anos 1960 e 1980, um jovem que sonha ser fotógrafo acompanha o crescimento da violência e do tráfico em uma comunidade do Rio de Janeiro, enquanto amigos de infância seguem caminhos muito diferentes.",
+    "direcao": "Fernando Meirelles e Kátia Lund",
+    "elenco": [
+      "Alexandre Rodrigues",
+      "Leandro Firmino",
+      "Matheus Nachtergaele"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BNTUyODNkNTItMGUwNi00MTlhLWE5YzMtOTA5MTljNTFhNGRhXkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BNTQzY2M4ZTctZWRjZS00NzlmLWI4YzgtMDUzZGU5YjlmYzkxXkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi1783208985/",
+    "popularidade": 84,
+    "destaque": true,
+    "criado_em": "2026-11-01T10:25:00"
+  },
+  {
+    "id": 7,
+    "slug": "breaking-bad",
+    "titulo": "Breaking Bad",
+    "tipo": "serie",
+    "ano": 2008,
+    "lancamento": "2008-01-20",
+    "duracao_min": 48,
+    "episodios": 62,
+    "classificacao": "16",
+    "generos": [
+      "Policial",
+      "Drama",
+      "Suspense"
+    ],
+    "sinopse": "Um professor de química com um diagnóstico grave decide garantir o futuro da família produzindo drogas com um ex-aluno. A cada temporada, o homem pacato se aprofunda mais no mundo do crime.",
+    "direcao": "Vince Gilligan",
+    "elenco": [
+      "Bryan Cranston",
+      "Aaron Paul",
+      "Anna Gunn"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BMTJiMzgwZTktYzZhZC00YzhhLWEzZDUtMGM2NTE4MzQ4NGFmXkEyXkFqcGdeQWpybA@@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi338798873/",
+    "popularidade": 99,
+    "destaque": true,
+    "criado_em": "2026-11-01T10:30:00"
+  },
+  {
+    "id": 8,
+    "slug": "parasita",
+    "titulo": "Parasita",
+    "tipo": "filme",
+    "ano": 2019,
+    "lancamento": "2019-11-07",
+    "duracao_min": 132,
+    "episodios": null,
+    "classificacao": "16",
+    "generos": [
+      "Drama",
+      "Suspense"
+    ],
+    "sinopse": "Uma família pobre de Seul consegue, um a um, empregos na casa de uma família rica, escondendo que são parentes. O plano parece perfeito até que um segredo guardado na mansão muda tudo.",
+    "direcao": "Bong Joon Ho",
+    "elenco": [
+      "Song Kang-ho",
+      "Lee Sun-kyun",
+      "Cho Yeo-jeong"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BYjk1Y2U4MjQtY2ZiNS00OWQyLWI3MmYtZWUwNmRjYWRiNWNhXkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BYWJjNWYzMzItYmEyNC00ODdmLWJmOGEtMWY0N2E2NGJlNTY0XkEyXkFqcGdeQWFybm8@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi1015463705/",
+    "popularidade": 80,
+    "destaque": false,
+    "criado_em": "2026-11-01T10:35:00"
+  },
+  {
+    "id": 9,
+    "slug": "o-auto-da-compadecida",
+    "titulo": "O Auto da Compadecida",
+    "tipo": "filme",
+    "ano": 2000,
+    "lancamento": "2000-09-10",
+    "duracao_min": 104,
+    "episodios": null,
+    "classificacao": "L",
+    "generos": [
+      "Comédia",
+      "Drama",
+      "Fantasia"
+    ],
+    "sinopse": "No sertão da Paraíba, os amigos João Grilo e Chicó sobrevivem à base de esperteza e mentiras, enganando o padre, o padeiro e o coronel, até que as trapaças os levam a um julgamento muito especial.",
+    "direcao": "Guel Arraes",
+    "elenco": [
+      "Matheus Nachtergaele",
+      "Selton Mello",
+      "Rogério Cardoso"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BYzE4YzlmNjctNGFmOC00Nzg3LWFlOWQtMDU4YTA0MTJhODY3XkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BOTliNTYyZTgtMjQzYS00ODVlLWFkMWEtMGVjZmM0MTJlMzJmXkEyXkFqcGdeQWRpZWdtb25n._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi1285472793/",
+    "popularidade": 78,
+    "destaque": false,
+    "criado_em": "2026-11-01T10:40:00"
+  },
+  {
+    "id": 10,
+    "slug": "o-iluminado",
+    "titulo": "O Iluminado",
+    "tipo": "filme",
+    "ano": 1980,
+    "lancamento": "1980-12-25",
+    "duracao_min": 146,
+    "episodios": null,
+    "classificacao": "16",
+    "generos": [
+      "Drama",
+      "Terror"
+    ],
+    "sinopse": "Um escritor aceita cuidar de um hotel isolado nas montanhas durante o inverno, levando a esposa e o filho. Com a neve bloqueando as estradas, a presença do lugar começa a afetar a sanidade dele.",
+    "direcao": "Stanley Kubrick",
+    "elenco": [
+      "Jack Nicholson",
+      "Shelley Duvall",
+      "Danny Lloyd"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BMGMzODJhZmYtODFhOC00N2Y2LThkMDEtNzAxMGUwMTFlNWQxXkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BN2NmM2ZlMmMtN2Q0MS00N2FkLWE4NzUtMzljNTIyNGJjNmE0XkEyXkFqcGdeQTNwaW5nZXN0._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi2689121305/",
+    "popularidade": 74,
+    "destaque": false,
+    "criado_em": "2026-11-01T10:45:00"
+  },
+  {
+    "id": 11,
+    "slug": "a-viagem-de-chihiro",
+    "titulo": "A Viagem de Chihiro",
+    "tipo": "filme",
+    "ano": 2001,
+    "lancamento": "2003-07-18",
+    "duracao_min": 124,
+    "episodios": null,
+    "classificacao": "L",
+    "generos": [
+      "Animação",
+      "Aventura",
+      "Família"
+    ],
+    "sinopse": "Durante uma mudança de cidade, uma menina de dez anos entra com os pais em um mundo de espíritos. Depois que os pais são transformados, ela precisa trabalhar em uma casa de banhos mágica para salvá-los.",
+    "direcao": "Hayao Miyazaki",
+    "elenco": [
+      "Miyu Irino",
+      "Rumi Hiiragi",
+      "Mari Natsuki"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BYmZmMmM4OTYtMDkyNi00ZDI5LThiODItNzhlZGI3ZDJmZDZiXkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BMzZjOWEyNTEtNjhmMC00YmZlLTkyMzAtM2Y5MzFjYmJlODIzXkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi3619684633/",
+    "popularidade": 82,
+    "destaque": false,
+    "criado_em": "2026-11-01T10:50:00"
+  },
+  {
+    "id": 12,
+    "slug": "planeta-terra-ii",
+    "titulo": "Planeta Terra II",
+    "tipo": "serie",
+    "ano": 2016,
+    "lancamento": "2016-11-06",
+    "duracao_min": 50,
+    "episodios": 6,
+    "classificacao": "10",
+    "generos": [
+      "Documentário",
+      "Família"
+    ],
+    "sinopse": "Série documental que mostra a vida selvagem em ilhas, montanhas, selvas, desertos, campos e cidades, acompanhando como os animais se adaptam a cada um desses ambientes.",
+    "direcao": "",
+    "elenco": [
+      "David Attenborough"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BMzY4NDBkMWYtYzdkYy00YzBjLWJmODctMWM4YjYzZTdjNWE5XkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BMzBjOGVlODctMjgzNi00OGMwLTkzYjYtYTIwZjcyZDUwOTQ2XkEyXkFqcGdeQXVyNzkyNzc3NjU@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi2095757337/",
+    "popularidade": 70,
+    "destaque": false,
+    "criado_em": "2026-11-01T10:55:00"
+  },
+  {
+    "id": 13,
+    "slug": "matrix",
+    "titulo": "Matrix",
+    "tipo": "filme",
+    "ano": 1999,
+    "lancamento": "1999-05-21",
+    "duracao_min": 136,
+    "episodios": null,
+    "classificacao": "14",
+    "generos": [
+      "Ação",
+      "Ficção científica"
+    ],
+    "sinopse": "Um programador que leva uma vida dupla como hacker descobre que o mundo à sua volta é uma simulação controlada por máquinas e é convidado a se juntar à resistência que luta para libertar a humanidade.",
+    "direcao": "Lana Wachowski e Lilly Wachowski",
+    "elenco": [
+      "Keanu Reeves",
+      "Laurence Fishburne",
+      "Carrie-Anne Moss"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BNThiYTQzOTUtNmFjYy00OWEwLTg2NWUtMmM3NGE0YjFjOWRjXkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BNDQ4NTRmN2ItYjgzMS00MzY3LWEwNmYtYmE2ODllZDdhNGI1XkEyXkFqcGdeQXdvbmtpbQ@@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi1032782617/",
+    "popularidade": 87,
+    "destaque": true,
+    "criado_em": "2026-11-02T10:00:00"
+  },
+  {
+    "id": 14,
+    "slug": "o-senhor-dos-aneis-a-sociedade-do-anel",
+    "titulo": "O Senhor dos Anéis: A Sociedade do Anel",
+    "tipo": "filme",
+    "ano": 2001,
+    "lancamento": "2002-01-01",
+    "duracao_min": 178,
+    "episodios": null,
+    "classificacao": "12",
+    "generos": [
+      "Aventura",
+      "Drama",
+      "Fantasia"
+    ],
+    "sinopse": "Um jovem hobbit herda um anel de poder cobiçado pelo senhor das trevas e parte com um grupo de companheiros de diferentes povos em uma longa viagem para destruí-lo.",
+    "direcao": "Peter Jackson",
+    "elenco": [
+      "Elijah Wood",
+      "Ian McKellen",
+      "Orlando Bloom"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BNzIxMDQ2YTctNDY4MC00ZTRhLTk4ODQtMTVlOWY4NTdiYmMwXkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BMzQ2YjI2YzgtZmNmMy00ZjUyLWE0NGItY2Y3NjUzZWM4NmM3XkEyXkFqcGdeQWxiaWFtb250._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi684573465/",
+    "popularidade": 85,
+    "destaque": false,
+    "criado_em": "2026-11-02T10:05:00"
+  },
+  {
+    "id": 15,
+    "slug": "forrest-gump",
+    "titulo": "Forrest Gump - O Contador de Histórias",
+    "tipo": "filme",
+    "ano": 1994,
+    "lancamento": "1994-12-07",
+    "duracao_min": 142,
+    "episodios": null,
+    "classificacao": "14",
+    "generos": [
+      "Drama",
+      "Romance"
+    ],
+    "sinopse": "Sentado em um ponto de ônibus, um homem de bom coração conta como, sem perceber, participou de momentos marcantes da história dos Estados Unidos enquanto nunca deixou de pensar no amor de infância.",
+    "direcao": "Robert Zemeckis",
+    "elenco": [
+      "Tom Hanks",
+      "Robin Wright",
+      "Gary Sinise"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BOGE2OTRmZTAtN2ViZS00YTEzLWIxYzQtMjc1YmNmODBmZDdmXkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BYzQyMWQ1ODMtZGE2OS00YzQyLWE2OWYtZmU5OGFiMWMwYmIyXkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi3567517977/",
+    "popularidade": 79,
+    "destaque": false,
+    "criado_em": "2026-11-02T10:10:00"
+  },
+  {
+    "id": 16,
+    "slug": "clube-da-luta",
+    "titulo": "Clube da Luta",
+    "tipo": "filme",
+    "ano": 1999,
+    "lancamento": "1999-10-29",
+    "duracao_min": 139,
+    "episodios": null,
+    "classificacao": "18",
+    "generos": [
+      "Policial",
+      "Drama",
+      "Suspense"
+    ],
+    "sinopse": "Um funcionário de escritório que sofre de insônia conhece um vendedor de sabonetes carismático, e os dois criam um clube secreto de lutas que logo se transforma em algo muito maior e mais perigoso.",
+    "direcao": "David Fincher",
+    "elenco": [
+      "Brad Pitt",
+      "Edward Norton",
+      "Meat Loaf"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BNjQ3NzM1ZWMtMTExZS00YWU3LTk2MGYtNDI1NDkxZDhiMWJjXkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BMzVjNDRkMTYtMTczYS00ZTEyLWI3NTQtYTc3NWE4MTY3OGNkXkEyXkFqcGdeQWRvb2xpbmhk._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi123455001/",
+    "popularidade": 77,
+    "destaque": false,
+    "criado_em": "2026-11-02T10:15:00"
+  },
+  {
+    "id": 17,
+    "slug": "o-silencio-dos-inocentes",
+    "titulo": "O Silêncio dos Inocentes",
+    "tipo": "filme",
+    "ano": 1991,
+    "lancamento": "1991-05-17",
+    "duracao_min": 118,
+    "episodios": null,
+    "classificacao": "14",
+    "generos": [
+      "Policial",
+      "Drama",
+      "Terror"
+    ],
+    "sinopse": "Uma aluna da academia do FBI precisa da ajuda de um psiquiatra brilhante e perigoso, preso por seus crimes, para entender a mente de um assassino em série que continua à solta.",
+    "direcao": "Jonathan Demme",
+    "elenco": [
+      "Jodie Foster",
+      "Anthony Hopkins",
+      "Scott Glenn"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BMTBlY2FjM2EtMWIxYy00NWE2LWE0MWUtMjI2NjZjZDE2YWYwXkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BN2ZiYzIyMWQtNDUyNy00YmExLWIwNmMtN2FhNzFiODgyYmU4XkEyXkFqcGdeQXRodW1ibmFpbC1pbml0aWFsaXplcg@@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi3377380121/",
+    "popularidade": 72,
+    "destaque": false,
+    "criado_em": "2026-11-02T10:20:00"
+  },
+  {
+    "id": 18,
+    "slug": "toy-story",
+    "titulo": "Toy Story",
+    "tipo": "filme",
+    "ano": 1995,
+    "lancamento": "1996-01-12",
+    "duracao_min": 81,
+    "episodios": null,
+    "classificacao": "L",
+    "generos": [
+      "Animação",
+      "Aventura",
+      "Comédia"
+    ],
+    "sinopse": "O caubói de brinquedo preferido de um menino sente o lugar ameaçado com a chegada de um astronauta moderno. A rivalidade entre os dois os leva a se perder longe de casa, e eles precisam se unir para voltar.",
+    "direcao": "John Lasseter",
+    "elenco": [
+      "Tom Hanks",
+      "Tim Allen",
+      "Don Rickles"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BODdhYzcxYmYtOTAzZS00YTRkLTgzODYtNGUzN2Y2ZjNlZTBmXkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BMjAwOTYzODExMF5BMl5BanBnXkFtZTcwNDYyNjc4Mg@@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi2052129305/",
+    "popularidade": 76,
+    "destaque": false,
+    "criado_em": "2026-11-02T10:25:00"
+  },
+  {
+    "id": 19,
+    "slug": "tropa-de-elite",
+    "titulo": "Tropa de Elite",
+    "tipo": "filme",
+    "ano": 2007,
+    "lancamento": "2007-10-12",
+    "duracao_min": 115,
+    "episodios": null,
+    "classificacao": "16",
+    "generos": [
+      "Ação",
+      "Policial",
+      "Drama"
+    ],
+    "sinopse": "No Rio de Janeiro de 1997, um capitão do BOPE procura um substituto antes do nascimento do filho, enquanto dois policiais novatos tentam sobreviver à corrupção e à violência dentro e fora da corporação.",
+    "direcao": "José Padilha",
+    "elenco": [
+      "Wagner Moura",
+      "André Ramiro",
+      "Caio Junqueira"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BZTE1ZTlhNWEtNTAwMi00MmUzLTk3MGEtZjJiYjc3NTc0ZTc1XkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BMTc3ODI0MTQ1OF5BMl5BanBnXkFtZTcwODM0MjQ5MQ@@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi3323330585/",
+    "popularidade": 83,
+    "destaque": true,
+    "criado_em": "2026-11-02T10:30:00"
+  },
+  {
+    "id": 20,
+    "slug": "o-rei-leao",
+    "titulo": "O Rei Leão",
+    "tipo": "filme",
+    "ano": 1994,
+    "lancamento": "1994-07-08",
+    "duracao_min": 88,
+    "episodios": null,
+    "classificacao": "L",
+    "generos": [
+      "Animação",
+      "Aventura",
+      "Drama"
+    ],
+    "sinopse": "Depois de uma tragédia armada pelo tio ambicioso, um jovem leão foge do reino que deveria herdar e cresce longe de casa, até perceber que precisa voltar e assumir o seu lugar.",
+    "direcao": "Roger Allers e Rob Minkoff",
+    "elenco": [
+      "Matthew Broderick",
+      "Jeremy Irons",
+      "James Earl Jones"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BNzJmNDVmNTAtODI3Mi00Y2Y2LTg4MDItNGI0ODE4NTQ1ZmNlXkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BMTU1MzkwNDI5OV5BMl5BanBnXkFtZTgwODU2MTkwMDI@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi3764362265/",
+    "popularidade": 75,
+    "destaque": false,
+    "criado_em": "2026-11-02T10:35:00"
+  },
+  {
+    "id": 21,
+    "slug": "gladiador",
+    "titulo": "Gladiador",
+    "tipo": "filme",
+    "ano": 2000,
+    "lancamento": "2000-05-19",
+    "duracao_min": 155,
+    "episodios": null,
+    "classificacao": "14",
+    "generos": [
+      "Ação",
+      "Aventura",
+      "Drama"
+    ],
+    "sinopse": "Traído pelo filho do imperador, um general romano perde a família e é vendido como escravo. Transformado em gladiador, ele luta nas arenas até chegar a Roma, onde pode enfim buscar justiça.",
+    "direcao": "Ridley Scott",
+    "elenco": [
+      "Russell Crowe",
+      "Joaquin Phoenix",
+      "Connie Nielsen"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BNWQxNzkzMmEtNTliNy00NWU2LWI0ZjgtNTI1NjBjZGRmZjAzXkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BMTU1NTQ0OTkyNF5BMl5BanBnXkFtZTgwMTQzMjIwMDI@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi2628367897/",
+    "popularidade": 73,
+    "destaque": false,
+    "criado_em": "2026-11-02T10:40:00"
+  },
+  {
+    "id": 22,
+    "slug": "de-volta-para-o-futuro",
+    "titulo": "De Volta para o Futuro",
+    "tipo": "filme",
+    "ano": 1985,
+    "lancamento": "1985-12-25",
+    "duracao_min": 116,
+    "episodios": null,
+    "classificacao": "L",
+    "generos": [
+      "Aventura",
+      "Comédia",
+      "Ficção científica"
+    ],
+    "sinopse": "Um adolescente viaja sem querer para 1955 em uma máquina do tempo criada por um cientista excêntrico e precisa garantir que os pais se apaixonem, ou deixará de existir.",
+    "direcao": "Robert Zemeckis",
+    "elenco": [
+      "Michael J. Fox",
+      "Christopher Lloyd",
+      "Lea Thompson"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BZDcyNmYxN2QtMmViZS00NTQ4LTlhZTAtZjc4MzY2Yjg0M2ZmXkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BNzQ0MmJjMzEtZTE4Zi00ZmU5LTlhYTEtMzdjY2EwOTliY2JkXkEyXkFqcGdeQXNvbG5vbXM@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi1126811673/",
+    "popularidade": 71,
+    "destaque": false,
+    "criado_em": "2026-11-02T10:45:00"
+  },
+  {
+    "id": 23,
+    "slug": "stranger-things",
+    "titulo": "Stranger Things",
+    "tipo": "serie",
+    "ano": 2016,
+    "lancamento": "2016-07-15",
+    "duracao_min": 60,
+    "episodios": 42,
+    "classificacao": "14",
+    "generos": [
+      "Drama",
+      "Fantasia",
+      "Terror"
+    ],
+    "sinopse": "Nos anos 1980, o desaparecimento de um menino em uma pequena cidade americana leva os amigos, a mãe e o delegado a descobrir experimentos secretos e uma menina com poderes misteriosos.",
+    "direcao": "Matt Duffer e Ross Duffer",
+    "elenco": [
+      "Millie Bobby Brown",
+      "Finn Wolfhard",
+      "Winona Ryder"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BMjEzMDAxOTUyMV5BMl5BanBnXkFtZTgwNzAxMzYzOTE@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BNTViYjE3NjUtYWM1MS00ODhmLTgwYmItZWQ5YzRlZTNmNGI4XkEyXkFqcGdeQWFybm8@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi412273433/",
+    "popularidade": 96,
+    "destaque": false,
+    "criado_em": "2026-11-02T10:50:00"
+  },
+  {
+    "id": 24,
+    "slug": "game-of-thrones",
+    "titulo": "Game of Thrones",
+    "tipo": "serie",
+    "ano": 2011,
+    "lancamento": "2011-05-08",
+    "duracao_min": 60,
+    "episodios": 74,
+    "classificacao": "18",
+    "generos": [
+      "Drama",
+      "Fantasia"
+    ],
+    "sinopse": "Famílias nobres disputam o Trono de Ferro dos Sete Reinos com alianças, traições e guerras, enquanto uma ameaça antiga desperta além da grande muralha do norte.",
+    "direcao": "David Benioff e D.B. Weiss",
+    "elenco": [
+      "Emilia Clarke",
+      "Peter Dinklage",
+      "Kit Harington"
+    ],
+    "poster": "https://m.media-amazon.com/images/M/MV5BNGYxOGJkMjItZjVkZC00OGEzLWExNjktOTZmNGZhZmRlMTk2XkEyXkFqcGc@._V1_SX300.jpg",
+    "banner": "https://m.media-amazon.com/images/M/MV5BZTg4YzdjNTctNDg5Mi00ZmU1LTkzOWEtNmMyNDBjZjNhNTJiXkEyXkFqcGdeQXRyYW5zY29kZS13b3JrZmxvdw@@._V1_SX1280.jpg",
+    "trailer": "https://www.imdb.com/pt/video/vi59490329/",
+    "popularidade": 93,
+    "destaque": false,
+    "criado_em": "2026-11-02T10:55:00"
+  }
+]

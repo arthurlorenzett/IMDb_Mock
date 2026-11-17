@@ -1,0 +1,122 @@
+{
+  "projeto": {
+    "nome": "IMDb Clone",
+    "grupo": "Grupo 9",
+    "integrantes": ["Arthur Lorenzett", "Lorenzo May", "Carlos Conceição"],
+    "repositorio": "https://github.com/arthurlorenzett/IMDb_Mock",
+    "site_publicado": "https://arthurlorenzett.github.io/IMDb_Mock/",
+    "aviso_rodape": "IMDb Clone: trabalho acadêmico feito apenas para fins educacionais. Este não é o site oficial do IMDb e não representa o IMDb nem a Amazon. As informações dos filmes e séries foram consultadas no IMDb; os pôsteres e as imagens pertencem aos seus detentores e são exibidos a partir do IMDb; avaliações e usuários são ilustrativos."
+  },
+
+  "dados": {
+    "fonte": "json",
+    "json": {
+      "titulos": "data/titulos.json",
+      "avaliacoes": "data/avaliacoes.json"
+    },
+    "api": {
+      "titulos": "api/titulos.php",
+      "avaliacoes": "api/avaliacoes.php"
+    }
+  },
+
+  "armazenamento": {
+    "prefixo": "imdbclone:",
+    "chaves": {
+      "watchlist": "watchlist",
+      "tema": "tema",
+      "avaliacoes_enviadas": "avaliacoes-enviadas",
+      "moderacao": "moderacao",
+      "titulos_salvos": "titulos-salvos",
+      "titulos_excluidos": "titulos-excluidos",
+      "sessao_admin": "sessao-admin"
+    }
+  },
+
+  "paginas": [
+    { "id": "P1", "pagina": "inicio",      "arquivo": "index.html",             "titulo": "Início",              "acesso": "publica" },
+    { "id": "P2", "pagina": "busca",       "arquivo": "busca.html",             "titulo": "Busca",               "acesso": "publica" },
+    { "id": "P3", "pagina": "titulo",      "arquivo": "titulo.html",            "titulo": "Detalhe do título",   "acesso": "publica" },
+    { "id": "P4", "pagina": "top250",      "arquivo": "top250.html",            "titulo": "Top 250",             "acesso": "publica" },
+    { "id": "P5", "pagina": "watchlist",   "arquivo": "watchlist.html",         "titulo": "Watchlist",           "acesso": "publica" },
+    { "id": "P6", "pagina": "login",       "arquivo": "admin/login.html",       "titulo": "Entrar",              "acesso": "publica" },
+    { "id": "P7", "pagina": "painel",      "arquivo": "admin/painel.html",      "titulo": "Painel",              "acesso": "restrita" },
+    { "id": "P8", "pagina": "titulo-form", "arquivo": "admin/titulo-form.html", "titulo": "Cadastro de título",  "acesso": "restrita" }
+  ],
+
+  "regras": {
+    "RN01": {
+      "descricao": "Cada e-mail avalia um mesmo título uma única vez.",
+      "mensagem": "Este e-mail já avaliou este título."
+    },
+    "RN02": {
+      "descricao": "Toda avaliação entra como pendente; só as aprovadas aparecem e entram na média.",
+      "status_inicial": "pendente",
+      "status_visivel": "aprovada",
+      "casas_decimais": 1,
+      "mensagem": "Avaliação enviada! Ela aparecerá depois de aprovada."
+    },
+    "RN03": {
+      "descricao": "Só entra no Top 250 o título com pelo menos 3 avaliações aprovadas.",
+      "minimo_aprovadas": 3,
+      "limite": 250
+    }
+  },
+
+  "validacao": {
+    "mensagens": {
+      "obrigatorio": "Preencha este campo.",
+      "obrigatorio_opcao": "Escolha uma opção.",
+      "email": "Informe um e-mail válido, como nome@exemplo.com.",
+      "url": "Informe um endereço válido começando com https://.",
+      "curto": "Use pelo menos {min} caracteres.",
+      "longo": "Use no máximo {max} caracteres.",
+      "menor": "O valor mínimo é {min}.",
+      "maior": "O valor máximo é {max}.",
+      "inteiro": "Use um número inteiro.",
+      "formato": "Formato inválido.",
+      "generos": "Escolha pelo menos um gênero.",
+      "ano_intervalo": "O ano inicial não pode ser maior que o final.",
+      "login_invalido": "E-mail ou senha inválidos.",
+      "corrija": "Corrija os campos destacados."
+    }
+  },
+
+  "admin_demo": {
+    "aviso": "Login de demonstração só para a Parte 2. Na Parte 3 a senha fica no MySQL com password_hash.",
+    "email": "admin@exemplo.com",
+    "senha": "admin123",
+    "nome": "Administrador"
+  },
+
+  "catalogo": {
+    "tipos": [
+      { "valor": "filme", "rotulo": "Filme" },
+      { "valor": "serie", "rotulo": "Série" }
+    ],
+    "generos": ["Ação", "Animação", "Aventura", "Comédia", "Documentário", "Drama", "Família", "Fantasia", "Ficção científica", "Policial", "Romance", "Suspense", "Terror"],
+    "classificacoes": [
+      { "valor": "L",  "rotulo": "Livre" },
+      { "valor": "10", "rotulo": "10 anos" },
+      { "valor": "12", "rotulo": "12 anos" },
+      { "valor": "14", "rotulo": "14 anos" },
+      { "valor": "16", "rotulo": "16 anos" },
+      { "valor": "18", "rotulo": "18 anos" }
+    ],
+    "resultados_por_pagina": 10,
+    "top250_por_vez": 10,
+    "home": {
+      "destaques_carrossel": 4,
+      "top_semana": 3,
+      "em_alta": 6
+    }
+  },
+
+  "interface": {
+    "tema_padrao": "claro",
+    "carrossel_intervalo_ms": 6000,
+    "alerta_some_ms": 5000,
+    "imagem_padrao": "img/sem-poster.svg",
+    "logo": "img/logo-imdb.svg"
+  }
+}
