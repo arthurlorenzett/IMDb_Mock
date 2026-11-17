@@ -560,6 +560,18 @@
   }
 }
 
+/* Modal do trailer (P3): cena em 16:9 ocupando a largura do modal */
+.modal-trailer {
+  width: min(720px, calc(100% - 2rem));
+}
+
+.modal-trailer img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--raio-card);
+}
+
 /* ==========================================================================
    P5 — Watchlist
    ========================================================================== */

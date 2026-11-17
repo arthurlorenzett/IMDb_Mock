@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>O Último Farol · IMDb Clone</title>
-  <meta name="description" content="Ficha do título fictício O Último Farol: sinopse, elenco, nota média e avaliações.">
+  <title>Título · IMDb Clone</title>
+  <meta name="description" content="Ficha do título: sinopse, elenco, nota média e avaliações.">
   <!-- Fonte Roboto (Google Fonts) e Bootstrap Icons (CDN), conforme a Tabela 5 da Parte 1 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,9 +15,12 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/componentes.css">
   <link rel="stylesheet" href="css/paginas.css">
+  <!-- Aplica o tema salvo antes de desenhar a página (evita piscar) -->
+  <script src="js/tema-inicial.js"></script>
 </head>
 <body data-pagina="titulo" data-raiz=".">
   <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+  <noscript><p class="alerta alerta-erro">Este site precisa de JavaScript ativado para carregar os títulos e as interações.</p></noscript>
 
   <!-- ===== Cabeçalho global (igual em todas as páginas públicas) ===== -->
   <header class="cabecalho" id="cabecalho">
@@ -54,7 +57,7 @@
         <a class="atalho atalho-desktop" href="top250.html">Top 250</a>
         <a class="atalho atalho-desktop" href="watchlist.html">
           <i class="bi bi-bookmark-plus" aria-hidden="true"></i> Watchlist
-          <span class="contador" data-contador-watchlist>3</span>
+          <span class="contador" data-contador-watchlist>0</span>
         </a>
         <a class="atalho" href="admin/login.html">Entrar</a>
       </div>
@@ -78,7 +81,7 @@
         <li><a href="index.html"><i class="bi bi-house" aria-hidden="true"></i> Início</a></li>
         <li><a href="busca.html"><i class="bi bi-search" aria-hidden="true"></i> Busca</a></li>
         <li><a href="top250.html"><i class="bi bi-trophy" aria-hidden="true"></i> Top 250</a></li>
-        <li><a href="watchlist.html"><i class="bi bi-bookmark-plus" aria-hidden="true"></i> <span>Watchlist (<span data-contador-watchlist>3</span>)</span></a></li>
+        <li><a href="watchlist.html"><i class="bi bi-bookmark-plus" aria-hidden="true"></i> <span>Watchlist (<span data-contador-watchlist>0</span>)</span></a></li>
         <li><a href="admin/login.html"><i class="bi bi-person-circle" aria-hidden="true"></i> Entrar</a></li>
       </ul>
     </nav>
@@ -86,21 +89,17 @@
 
   <main id="conteudo">
     <!-- ===== Ficha do título (o JS/PHP preenche a partir do id na URL) ===== -->
-    <article class="ficha" id="ficha-titulo" data-id="1">
+    <article class="ficha" id="ficha-titulo" hidden>
       <header class="ficha-topo">
         <div>
-          <h1 id="titulo-nome">O Último Farol</h1>
+          <h1 id="titulo-nome">Carregando título…</h1>
           <ul class="metadados">
-            <li><time datetime="2024">2024</time></li>
-            <li>14 anos</li>
-            <li>2h 05min</li>
-            <li>Filme</li>
           </ul>
         </div>
         <div class="ficha-notas">
           <div>
             <p class="rotulo-nota">Nota média</p>
-            <p class="nota"><i class="bi bi-star-fill" aria-hidden="true"></i> <span class="nota-valor" id="nota-media">8,1</span><span class="nota-max">/10</span> <span class="nota-votos">(325 avaliações)</span></p>
+            <p class="nota"><i class="bi bi-star-fill" aria-hidden="true"></i> <span class="nota-valor" id="nota-media">—</span><span class="nota-max">/10</span> <span class="nota-votos"></span></p>
           </div>
           <div>
             <p class="rotulo-nota">Sua avaliação</p>
@@ -113,27 +112,27 @@
 
       <!-- Mídia: pôster, trailer e ações principais -->
       <div class="ficha-midia">
-        <img class="poster ficha-poster" src="https://picsum.photos/seed/farol/300/450" alt="Pôster de O Último Farol: imagem ilustrativa de paisagem" width="300" height="450">
+        <img class="poster ficha-poster" src="img/sem-poster.svg" alt="" width="300" height="450">
 
         <!-- Trailer: imagem de capa com botão; o JS pode abrir um modal com o vídeo -->
         <figure class="trailer">
-          <img src="https://picsum.photos/seed/farol-banner/1280/720" alt="Cena ilustrativa do trailer de O Último Farol" width="1280" height="720">
+          <img src="img/sem-poster.svg" alt="" width="1280" height="720">
           <button class="trailer-play" id="botao-trailer" type="button">
             <i class="bi bi-play-circle-fill" aria-hidden="true"></i>
-            <span>Trailer <span class="visualmente-oculto">de O Último Farol</span></span>
+            <span>Trailer <span class="visualmente-oculto"></span></span>
           </button>
-          <figcaption class="visualmente-oculto">Trailer oficial (fictício)</figcaption>
+          <figcaption class="visualmente-oculto">Trailer do título</figcaption>
         </figure>
 
         <div class="ficha-acoes">
-          <button class="botao botao-primario botao-grande botao-bloco botao-watchlist" type="button" data-id="1" aria-pressed="false">
+          <button class="botao botao-primario botao-grande botao-bloco botao-watchlist" type="button" aria-pressed="false">
             <i class="bi bi-plus-lg" aria-hidden="true"></i> Adicionar à Watchlist
           </button>
           <button class="botao botao-contorno botao-bloco ficha-acao-secundaria" type="button" data-abrir-trailer>
             <i class="bi bi-play-fill" aria-hidden="true"></i> Assistir trailer
           </button>
           <a class="botao botao-contorno botao-bloco ficha-acao-secundaria" href="#">
-            <i class="bi bi-images" aria-hidden="true"></i> Fotos (12)
+            <i class="bi bi-images" aria-hidden="true"></i> Ver foto
           </a>
         </div>
       </div>
@@ -141,50 +140,30 @@
       <!-- Gêneros, sinopse e equipe -->
       <div class="ficha-info">
         <ul class="lista-chips" aria-label="Gêneros">
-            <li><a class="chip" href="busca.html?genero=drama">Drama</a></li>
-            <li><a class="chip" href="busca.html?genero=suspense">Suspense</a></li>
         </ul>
-        <p class="sinopse" id="titulo-sinopse">Depois da morte do pai, Helena volta à ilha onde cresceu para desativar o último farol da costa. Durante uma tempestade de três dias, ela encontra no diário do pai pistas de um naufrágio que a cidade inteira prefere esquecer.</p>
+        <p class="sinopse" id="titulo-sinopse"></p>
         <dl class="ficha-equipe">
           <div>
             <dt>Direção</dt>
-            <dd><a href="busca.html?q=Clara+Moreira">Clara Moreira</a></dd>
+            <dd></dd>
           </div>
           <div>
             <dt>Elenco</dt>
-            <dd>
-              <ul class="lista-elenco">
-                <li><a href="busca.html?q=Ana+Ribeiro">Ana Ribeiro</a></li>
-                <li><a href="busca.html?q=Bruno+Tavares">Bruno Tavares</a></li>
-                <li><a href="busca.html?q=Lia+Fontes">Lia Fontes</a></li>
-              </ul>
-            </dd>
+            <dd></dd>
           </div>
         </dl>
       </div>
     </article>
 
     <!-- ===== Avaliações aprovadas (RN02: só aparecem depois da moderação) ===== -->
-    <section class="avaliacoes" id="avaliacoes" aria-labelledby="titulo-avaliacoes">
+    <section class="avaliacoes" id="avaliacoes" aria-labelledby="titulo-avaliacoes" hidden>
       <div class="secao-topo">
-        <h2 class="titulo-secao" id="titulo-avaliacoes">Avaliações de usuários <span class="nota-votos">(325)</span></h2>
+        <h2 class="titulo-secao" id="titulo-avaliacoes">Avaliações de usuários <span class="nota-votos"></span></h2>
         <button class="botao botao-contorno" type="button" id="avaliar" data-abrir-modal="modal-avaliacao">
           <i class="bi bi-plus-lg" aria-hidden="true"></i> Escrever avaliação
         </button>
       </div>
       <div class="grade-avaliacoes" id="lista-avaliacoes">
-        <article class="avaliacao">
-          <p class="nota"><i class="bi bi-star-fill" aria-hidden="true"></i> <span class="nota-valor">9</span><span class="nota-max">/10</span></p>
-          <h3>Tensão do começo ao fim</h3>
-          <p>A fotografia do farol à noite é linda e o final pega de surpresa. Vale cada minuto.</p>
-          <p class="subtitulo">Marina S. · <time datetime="2026-10-12">12/10/2026</time></p>
-        </article>
-        <article class="avaliacao">
-          <p class="nota"><i class="bi bi-star-fill" aria-hidden="true"></i> <span class="nota-valor">7</span><span class="nota-max">/10</span></p>
-          <h3>Bom, mas devagar no meio</h3>
-          <p>Atuações ótimas, porém o segundo ato se arrasta um pouco. Ainda assim recomendo.</p>
-          <p class="subtitulo">Rafael T. · <time datetime="2026-10-05">05/10/2026</time></p>
-        </article>
       </div>
     </section>
 
@@ -192,14 +171,14 @@
     <dialog class="modal" id="modal-avaliacao" aria-labelledby="titulo-modal-avaliacao">
       <form id="form-avaliacao" action="#" method="post">
         <div class="modal-topo">
-          <h2 id="titulo-modal-avaliacao">Avaliar: O Último Farol</h2>
+          <h2 id="titulo-modal-avaliacao">Avaliar</h2>
           <button class="botao botao-contorno botao-icone" type="button" data-fechar-modal>
             <i class="bi bi-x-lg" aria-hidden="true"></i>
             <span class="visualmente-oculto">Fechar</span>
           </button>
         </div>
 
-        <input type="hidden" name="titulo_id" value="1">
+        <input type="hidden" name="titulo_id" value="">
 
         <div class="modal-corpo">
           <!-- Nota de 1 a 10 com estrelas (radios em ordem invertida, ver componentes.css) -->
@@ -268,6 +247,27 @@
         </div>
       </form>
     </dialog>
+
+    <!-- ===== Modal: trailer (o JS preenche a cena e o link para o vídeo no IMDb) ===== -->
+    <dialog class="modal modal-trailer" id="modal-trailer" aria-labelledby="titulo-modal-trailer">
+      <div class="modal-topo">
+        <h2 id="titulo-modal-trailer">Trailer</h2>
+        <button class="botao botao-contorno botao-icone" type="button" data-fechar-modal>
+          <i class="bi bi-x-lg" aria-hidden="true"></i>
+          <span class="visualmente-oculto">Fechar</span>
+        </button>
+      </div>
+      <div class="modal-corpo">
+        <img id="trailer-imagem" src="img/sem-poster.svg" alt="" width="1280" height="720">
+        <p class="modal-texto" id="trailer-texto">O vídeo do trailer abre no site do IMDb, em uma nova aba.</p>
+      </div>
+      <div class="modal-acoes">
+        <a class="botao botao-primario" id="trailer-link" href="#" target="_blank" rel="noopener" hidden>
+          <i class="bi bi-play-fill" aria-hidden="true"></i> Abrir trailer
+        </a>
+        <button class="botao botao-contorno" type="button" data-fechar-modal>Fechar</button>
+      </div>
+    </dialog>
   </main>
 
   <!-- ===== Rodapé (aviso de clone educacional exigido pelo enunciado) ===== -->
@@ -280,8 +280,10 @@
         <li><a href="https://github.com/arthurlorenzett/IMDb_Mock">Repositório no GitHub</a></li>
       </ul>
     </nav>
-    <p>IMDb Clone: projeto acadêmico para fins educacionais (Desenvolvimento Web I, IFC Concórdia), sem vínculo com o IMDb ou a Amazon. Todos os dados são fictícios.</p>
-    <p>Logotipo: marca registrada da IMDb.com, Inc., arquivo do Wikimedia Commons. Imagens: Lorem Picsum. Ícones: Bootstrap Icons.</p>
+    <p>IMDb Clone: trabalho acadêmico feito apenas para fins educacionais (Desenvolvimento Web I, IFC Concórdia). Este não é o site oficial do IMDb e não representa o IMDb nem a Amazon. As informações dos filmes e séries foram consultadas no IMDb; os pôsteres e as imagens pertencem aos seus detentores e são exibidos a partir do IMDb; avaliações e usuários são ilustrativos.</p>
+    <p>Logotipo: marca registrada da IMDb.com, Inc., arquivo do Wikimedia Commons. Dados, pôsteres e imagens dos títulos: IMDb. Ícones: Bootstrap Icons.</p>
   </footer>
+  <!-- JS externo (módulos ES): app.js carrega o site.json e o script desta página -->
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>
