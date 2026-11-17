@@ -1,1 +1,842 @@
-/* componentes.css: botões, cards, chips, campos de formulário, alertas, modal, tabela e carrossel. */
+/* ==========================================================================
+   componentes.css — botões, chips, nota, cards, campos de formulário, alertas,
+   modal, tabela, carrossel e paginação (guia de estilo 4.3, Figura 10).
+   ========================================================================== */
+
+/* ==========================================================================
+   Botões: pílula de 36 px; 48 px nas ações de destaque.
+   O amarelo fica reservado à ação principal de cada tela.
+   ========================================================================== */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espaco-2);
+  height: var(--altura-botao);
+  padding: 0 var(--espaco-3);
+  border: 1px solid transparent;
+  border-radius: var(--raio-botao);
+  font-size: var(--tam-botao);
+  line-height: var(--alt-botao);
+  font-weight: var(--peso-medio);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--transicao), border-color var(--transicao),
+              color var(--transicao), transform var(--transicao);
+}
+
+.botao:active {
+  transform: scale(0.97);      /* "afunda" um pouco ao clicar */
+}
+
+.botao-primario {
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+}
+
+.botao-primario:hover {
+  background: color-mix(in srgb, var(--cor-destaque) 85%, var(--cor-sobre-destaque));
+}
+
+.botao-secundario {
+  background: var(--cor-botao-secundario);
+  color: var(--cor-link);
+}
+
+.botao-secundario:hover {
+  background: color-mix(in srgb, var(--cor-botao-secundario) 85%, var(--cor-texto));
+}
+
+.botao-contorno {
+  background: transparent;
+  border-color: var(--cor-borda);
+  color: var(--cor-link);
+}
+
+.botao-contorno:hover {
+  border-color: var(--cor-link);
+  background: color-mix(in srgb, var(--cor-link) 8%, transparent);
+}
+
+/* Botão com cara de link (ex.: "Avaliar", "Limpar filtros") */
+.botao-texto {
+  height: auto;
+  padding: 0;
+  background: transparent;
+  color: var(--cor-link);
+}
+
+.botao-texto:hover {
+  text-decoration: underline;
+}
+
+.botao-perigo {
+  background: var(--cor-erro);
+  color: var(--cor-fundo);
+}
+
+.botao-perigo:hover {
+  background: color-mix(in srgb, var(--cor-erro) 85%, var(--cor-texto));
+}
+
+.botao-grande {
+  height: var(--altura-botao-grande);
+  padding: 0 var(--espaco-4);
+}
+
+.botao-pequeno {
+  height: var(--altura-chip);
+  padding: 0 var(--espaco-3);
+  font-size: var(--tam-legenda);
+}
+
+.botao-bloco {
+  width: 100%;
+}
+
+/* Só ícone (ex.: ×, ☆, +); o texto fica em .visualmente-oculto */
+.botao-icone {
+  width: var(--altura-botao);
+  padding: 0;
+  border-radius: 50%;
+}
+
+.botao-icone.botao-pequeno {
+  width: var(--altura-chip);
+}
+
+/* Watchlist: o JS troca aria-pressed="true" quando o título é salvo */
+.botao-watchlist[aria-pressed="true"] {
+  background: var(--cor-link);
+  border-color: var(--cor-link);
+  color: var(--cor-fundo);
+}
+
+/* ==========================================================================
+   Chips de gênero (30 px de altura)
+   ========================================================================== */
+.lista-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: var(--altura-chip);
+  padding: 0 var(--espaco-3);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-chip);
+  color: var(--cor-texto);
+  font-size: var(--tam-botao);
+  text-decoration: none;
+  transition: background-color var(--transicao), border-color var(--transicao);
+}
+
+.chip:hover {
+  border-color: var(--cor-texto-2);
+  background: var(--cor-botao-secundario);
+}
+
+/* ==========================================================================
+   Nota (estrela amarela + valor)
+   ========================================================================== */
+.nota {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-1);
+  white-space: nowrap;
+}
+
+.nota .bi-star-fill {
+  color: var(--cor-destaque);
+}
+
+.nota-valor {
+  font-weight: var(--peso-forte);
+}
+
+.nota-max,
+.nota-votos {
+  color: var(--cor-texto-2);
+  font-size: var(--tam-legenda);
+}
+
+/* Metadados: ano · classificação · duração · gêneros */
+.metadados {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--espaco-2);
+  color: var(--cor-texto-2);
+  font-size: var(--tam-legenda);
+  line-height: var(--alt-legenda);
+}
+
+.metadados li + li::before {
+  content: "·";
+  margin-right: var(--espaco-2);
+}
+
+/* ==========================================================================
+   Card de título (pôster vertical) — Início
+   ========================================================================== */
+.cartao-titulo {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-card);
+  background: var(--cor-card);
+  overflow: hidden;
+  transition: transform var(--transicao), box-shadow var(--transicao);
+}
+
+.cartao-titulo:hover,
+.cartao-titulo:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px var(--cor-sombra);
+}
+
+/* Pôster sempre 2:3, recortado sem distorcer */
+.poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  background: var(--cor-superficie);
+}
+
+.cartao-corpo {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--espaco-2);
+  padding: var(--espaco-2) var(--espaco-3) var(--espaco-3);
+}
+
+.cartao-linha-nota {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cartao-titulo h3 {
+  flex: 1;                     /* empurra o botão para a base do card */
+  font-size: var(--tam-botao);
+  line-height: var(--alt-botao);
+}
+
+.cartao-titulo h3 a {
+  color: var(--cor-texto);
+  text-decoration: none;
+}
+
+.cartao-titulo h3 a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Item de lista (pôster pequeno + dados + ações) — Busca, Watchlist, Top 250 mobile
+   ========================================================================== */
+.lista-itens {
+  display: grid;
+  gap: var(--espaco-3);
+}
+
+.item-lista {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: var(--espaco-3);
+  padding: var(--espaco-3);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-card);
+  background: var(--cor-card);
+  transition: border-color var(--transicao);
+}
+
+.item-lista:hover {
+  border-color: var(--cor-texto-2);
+}
+
+.item-lista .poster {
+  border-radius: var(--raio-campo);
+}
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-1);
+  min-width: 0;
+}
+
+.item-info h2,
+.item-info h3 {
+  font-size: var(--tam-texto);
+  line-height: var(--alt-texto);
+  font-weight: var(--peso-medio);
+}
+
+.item-sinopse {
+  color: var(--cor-texto-2);
+  font-size: var(--tam-botao);
+  line-height: var(--alt-botao);
+}
+
+.item-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2);
+  grid-column: 1 / -1;        /* no mobile as ações ficam embaixo */
+}
+
+@media (min-width: 600px) {
+  .item-lista {
+    grid-template-columns: 72px 1fr auto;
+    align-items: center;
+  }
+
+  .item-acoes {
+    flex-direction: column;
+    grid-column: auto;
+  }
+}
+
+/* ==========================================================================
+   Formulários: raio 4 px e borda cinza; foco com borda azul de 2 px;
+   erro com borda vermelha e mensagem logo abaixo do campo.
+   ========================================================================== */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-1);
+}
+
+.rotulo,
+.campo legend {
+  font-size: var(--tam-botao);
+  line-height: var(--alt-botao);
+  font-weight: var(--peso-medio);
+}
+
+.obrigatorio {
+  color: var(--cor-erro);
+}
+
+.controle {
+  width: 100%;
+  min-height: 40px;
+  padding: var(--espaco-2) var(--espaco-3);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-campo);
+  background: var(--cor-fundo);
+  transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+
+textarea.controle {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.controle::placeholder {
+  color: var(--cor-texto-2);
+}
+
+.controle:hover {
+  border-color: var(--cor-texto-2);
+}
+
+/* Foco: a borda vira azul e a sombra completa os 2 px */
+.controle:focus-visible {
+  outline: none;
+  border-color: var(--cor-foco);
+  box-shadow: 0 0 0 1px var(--cor-foco);
+}
+
+/* Erro: o JS marca aria-invalid="true"; sem JS, :user-invalid (depois que a pessoa mexe) */
+.controle[aria-invalid="true"],
+.controle:user-invalid {
+  border-color: var(--cor-erro);
+}
+
+.controle[aria-invalid="true"]:focus-visible,
+.controle:user-invalid:focus-visible {
+  box-shadow: 0 0 0 1px var(--cor-erro);
+}
+
+/* Mensagem de erro do campo: fica vazia até o JS escrever nela */
+.mensagem-erro {
+  color: var(--cor-erro);
+  font-size: var(--tam-legenda);
+  line-height: var(--alt-legenda);
+}
+
+.mensagem-erro:empty {
+  display: none;
+}
+
+.mensagem-erro:not(:empty)::before {
+  content: "✕ ";               /* símbolo junto do texto: o erro não depende só da cor */
+}
+
+.dica {
+  color: var(--cor-texto-2);
+  font-size: var(--tam-legenda);
+  line-height: var(--alt-legenda);
+}
+
+/* Campo de senha com o botão "Mostrar" dentro */
+.campo-senha {
+  position: relative;
+}
+
+.campo-senha .controle {
+  padding-right: 5.5rem;
+}
+
+.campo-senha .botao-texto {
+  position: absolute;
+  top: 50%;
+  right: var(--espaco-3);
+  transform: translateY(-50%);
+  font-size: var(--tam-legenda);
+}
+
+/* Grupos de checkbox e radio */
+fieldset.campo {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+}
+
+fieldset.campo legend {
+  padding: 0;
+  margin-bottom: var(--espaco-1);
+}
+
+.opcoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espaco-2) var(--espaco-4);
+}
+
+.opcoes-coluna {
+  flex-direction: column;
+}
+
+.opcao {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  font-size: var(--tam-botao);
+  cursor: pointer;
+}
+
+.opcao input {
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0;
+  accent-color: var(--cor-link);
+  cursor: pointer;
+}
+
+/* Linha com dois ou mais campos lado a lado */
+.campos-linha {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--espaco-3);
+}
+
+/* ---- Nota com estrelas (radios 10 → 1 em ordem invertida) ----
+   row-reverse mostra 1 → 10 na tela; assim "~" (irmãos seguintes)
+   pinta as estrelas à esquerda da escolhida ou da que está sob o mouse. */
+.estrelas {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 2px;
+}
+
+.estrelas input {
+  position: absolute;
+  opacity: 0;
+}
+
+.estrelas label {
+  color: var(--cor-borda);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color var(--transicao), transform var(--transicao);
+}
+
+.estrelas input:checked ~ label,
+.estrelas label:hover,
+.estrelas label:hover ~ label {
+  color: var(--cor-destaque);
+}
+
+.estrelas label:hover {
+  transform: scale(1.15);
+}
+
+.estrelas input:focus-visible + label {
+  outline: 2px solid var(--cor-foco);
+  outline-offset: 2px;
+  border-radius: var(--raio-campo);
+}
+
+/* ==========================================================================
+   Alertas: ícone + borda colorida + texto (não dependem só da cor)
+   ========================================================================== */
+.alerta {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espaco-2);
+  padding: var(--espaco-2) var(--espaco-3);
+  border: 1px solid;
+  border-left-width: var(--barra-titulo);
+  border-radius: var(--raio-campo);
+  color: var(--cor-texto);
+  font-size: var(--tam-botao);
+  line-height: var(--alt-botao);
+  animation: aparecer 0.3s ease;
+}
+
+.alerta-sucesso {
+  border-color: var(--cor-sucesso);
+  background: color-mix(in srgb, var(--cor-sucesso) 8%, var(--cor-fundo));
+}
+
+.alerta-sucesso .bi {
+  color: var(--cor-sucesso);
+}
+
+.alerta-erro {
+  border-color: var(--cor-erro);
+  background: color-mix(in srgb, var(--cor-erro) 8%, var(--cor-fundo));
+}
+
+.alerta-erro .bi {
+  color: var(--cor-erro);
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   Modal (<dialog>): o JS abre com showModal() e fecha com close()
+   ========================================================================== */
+.modal {
+  width: min(560px, calc(100% - 2rem));
+  max-height: calc(100% - 2rem);
+  padding: var(--espaco-4);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-card);
+  background: var(--cor-card);
+  color: var(--cor-texto);
+  box-shadow: 0 16px 40px var(--cor-sombra);
+}
+
+.modal[open] {
+  animation: aparecer 0.25s ease;
+}
+
+.modal::backdrop {
+  background: var(--cor-fundo-modal);
+}
+
+.modal-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espaco-3);
+  margin-bottom: var(--espaco-3);
+}
+
+.modal-topo h2 {
+  font-size: var(--tam-h2);
+}
+
+.modal-corpo {
+  display: grid;
+  gap: var(--espaco-3);
+}
+
+.modal-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--espaco-2);
+  margin-top: var(--espaco-4);
+}
+
+/* ==========================================================================
+   Tabela (Top 250 e painel)
+   ========================================================================== */
+.tabela-rolagem {
+  overflow-x: auto;            /* no celular a tabela rola de lado em vez de quebrar a página */
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-card);
+}
+
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--tam-botao);
+  line-height: var(--alt-botao);
+}
+
+.tabela caption {
+  padding: var(--espaco-2) var(--espaco-3);
+  color: var(--cor-texto-2);
+  font-size: var(--tam-legenda);
+  text-align: left;
+}
+
+.tabela th,
+.tabela td {
+  padding: var(--espaco-2) var(--espaco-3);
+  border-bottom: 1px solid var(--cor-borda);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.tabela thead th {
+  background: var(--cor-superficie);
+  font-weight: var(--peso-forte);
+  white-space: nowrap;
+}
+
+.tabela tbody tr:last-child td,
+.tabela tbody tr:last-child th {
+  border-bottom: 0;
+}
+
+/* Linhas zebradas e destaque ao passar o mouse */
+.tabela tbody tr:nth-child(even) {
+  background: var(--cor-superficie);
+}
+
+.tabela tbody tr {
+  transition: background-color var(--transicao);
+}
+
+.tabela tbody tr:hover {
+  background: var(--cor-botao-secundario);
+}
+
+.tabela .numero {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabela .centro {
+  text-align: center;
+}
+
+/* Cabeçalho ordenável: o JS troca aria-sort no <th> */
+.botao-ordenar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-1);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--cor-link);
+  font-weight: var(--peso-forte);
+  cursor: pointer;
+}
+
+.botao-ordenar .bi {
+  transition: transform var(--transicao);
+}
+
+th[aria-sort="ascending"] .botao-ordenar .bi {
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   Carrossel (Início): o JS move .carrossel-trilho e marca o indicador atual
+   ========================================================================== */
+.carrossel {
+  position: relative;
+  border-radius: var(--raio-card);
+  background: var(--cor-card);
+  overflow: hidden;
+}
+
+.carrossel-trilho {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carrossel-slide {
+  position: relative;
+  flex: 0 0 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.carrossel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Legenda sobre a imagem, com degradê para garantir leitura */
+.carrossel-legenda {
+  position: absolute;
+  inset: auto 0 0;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--espaco-3);
+  padding: var(--espaco-5) var(--espaco-4) var(--espaco-5);
+  background: linear-gradient(transparent, var(--cor-veu-foto));
+  color: var(--cor-sobre-foto);  /* sempre branco: fica sobre foto escura nos dois temas */
+}
+
+.carrossel-legenda h3 {
+  font-size: var(--tam-h2);
+  line-height: var(--alt-h2);
+}
+
+.carrossel-legenda p {
+  font-size: var(--tam-botao);
+}
+
+.carrossel-legenda .bi-play-circle {
+  font-size: 3rem;
+  line-height: 1;
+  transition: color var(--transicao);
+}
+
+.carrossel-legenda a {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--espaco-3);
+  color: inherit;
+  text-decoration: none;
+}
+
+.carrossel-legenda a:hover .bi-play-circle {
+  color: var(--cor-destaque);
+}
+
+.carrossel-seta {
+  position: absolute;
+  top: 40%;
+  z-index: 1;
+  width: 44px;
+  height: 64px;
+  border: 1px solid var(--cor-borda-foto);
+  border-radius: var(--raio-campo);
+  background: var(--cor-veu-leve);
+  color: var(--cor-sobre-foto);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color var(--transicao), background-color var(--transicao);
+}
+
+.carrossel-seta:hover {
+  background: var(--cor-veu-foto);
+  color: var(--cor-destaque);
+}
+
+.carrossel-anterior {
+  left: var(--espaco-3);
+}
+
+.carrossel-proximo {
+  right: var(--espaco-3);
+}
+
+.carrossel-indicadores {
+  position: absolute;
+  bottom: var(--espaco-2);
+  left: 50%;
+  display: flex;
+  gap: var(--espaco-2);
+  transform: translateX(-50%);
+}
+
+.carrossel-indicadores button {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--cor-borda-foto);
+  cursor: pointer;
+  transition: background-color var(--transicao), width var(--transicao);
+}
+
+/* Indicador do slide atual: o JS coloca aria-current="true" */
+.carrossel-indicadores button[aria-current="true"] {
+  width: 24px;
+  border-radius: 5px;
+  background: var(--cor-destaque);
+}
+
+/* ==========================================================================
+   Paginação (Busca)
+   ========================================================================== */
+.paginacao ol {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: var(--espaco-2);
+}
+
+.paginacao a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--altura-botao);
+  height: var(--altura-botao);
+  border: 1px solid var(--cor-borda);
+  border-radius: 50%;
+  color: var(--cor-link);
+  font-size: var(--tam-botao);
+  text-decoration: none;
+  transition: background-color var(--transicao), border-color var(--transicao);
+}
+
+.paginacao a:hover {
+  border-color: var(--cor-link);
+}
+
+.paginacao a[aria-current="page"] {
+  border-color: var(--cor-destaque);
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+  font-weight: var(--peso-forte);
+}
+
+/* ==========================================================================
+   Estado vazio (ex.: Watchlist sem itens)
+   ========================================================================== */
+.estado-vazio {
+  display: grid;
+  justify-items: center;
+  gap: var(--espaco-3);
+  padding: var(--espaco-5) var(--espaco-3);
+  border: 1px dashed var(--cor-borda);
+  border-radius: var(--raio-card);
+  text-align: center;
+}
+
+.estado-vazio .bi {
+  color: var(--cor-texto-2);
+  font-size: 3rem;
+}
+
+.estado-vazio p {
+  color: var(--cor-texto-2);
+}
