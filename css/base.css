@@ -1,1 +1,461 @@
-/* base.css: reset, tipografia, layout geral, cabeçalho, rodapé e utilitários. */
+/* ==========================================================================
+   base.css — reset, tipografia, layout geral, cabeçalho, rodapé e utilitários.
+   Usa só as variáveis de variaveis.css (cores e fontes do guia de estilo).
+   ========================================================================== */
+
+/* ---- Reset mínimo ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1, h2, h3, h4,
+p, ul, ol, figure, fieldset {
+  margin: 0;
+}
+
+ul[class],
+ol[class] {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* ---- Página ---- */
+body {
+  display: flex;               /* rodapé sempre no fim, mesmo com pouco conteúdo */
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte);
+  font-size: var(--tam-texto);
+  line-height: var(--alt-texto);
+  font-weight: var(--peso-normal);
+  transition: background-color var(--transicao), color var(--transicao);
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--largura-maxima);
+  margin: 0 auto;
+  padding: var(--espaco-4) var(--espaco-3) var(--espaco-5);
+}
+
+/* ---- Tipografia (escala da Tabela 4 da Parte 1) ---- */
+h1 {
+  font-size: var(--tam-h1);
+  line-height: var(--alt-h1);
+  font-weight: var(--peso-normal);
+}
+
+h2 {
+  font-size: var(--tam-h2);
+  line-height: var(--alt-h2);
+  font-weight: var(--peso-forte);
+}
+
+h3 {
+  font-size: var(--tam-texto);
+  line-height: var(--alt-texto);
+  font-weight: var(--peso-forte);
+}
+
+a {
+  color: var(--cor-link);
+  text-underline-offset: 2px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* Foco visível para quem navega pelo teclado (2.4 do enunciado) */
+:focus-visible {
+  outline: 2px solid var(--cor-foco);
+  outline-offset: 2px;
+}
+
+/* Título de seção com a barra amarela de 4 px à esquerda (guia 4.3) */
+.titulo-secao {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  padding-left: var(--espaco-3);
+  border-left: var(--barra-titulo) solid var(--cor-destaque);
+}
+
+.subtitulo {
+  color: var(--cor-texto-2);
+  font-size: var(--tam-legenda);
+  line-height: var(--alt-legenda);
+}
+
+/* Cabeçalho da página: h1 + linha de apoio */
+.cabecalho-pagina {
+  margin-bottom: var(--espaco-4);
+}
+
+.cabecalho-pagina .subtitulo {
+  margin-top: var(--espaco-1);
+}
+
+/* ==========================================================================
+   Cabeçalho global (o mesmo HTML em todas as páginas)
+   ========================================================================== */
+.cabecalho {
+  position: sticky;            /* continua visível ao rolar */
+  top: 0;
+  z-index: 10;
+  background: var(--cor-cabecalho);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.cabecalho-interno {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  max-width: var(--largura-maxima);
+  min-height: var(--altura-cabecalho);
+  margin: 0 auto;
+  padding: var(--espaco-2) var(--espaco-3);
+}
+
+.logo {
+  flex-shrink: 0;
+  border-radius: var(--raio-campo);
+}
+
+.logo img {
+  width: 64px;
+  height: 32px;
+}
+
+/* Botão ☰ / "Menu": o JS do colega alterna a classe .aberta na gaveta */
+.botao-menu {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-1);
+  height: var(--altura-botao);
+  padding: 0 var(--espaco-2);
+  border: 0;
+  border-radius: var(--raio-campo);
+  background: transparent;
+  font-size: var(--tam-botao);
+  font-weight: var(--peso-medio);
+  cursor: pointer;
+  transition: background-color var(--transicao);
+}
+
+.botao-menu:hover {
+  background: var(--cor-botao-secundario);
+}
+
+.botao-menu .bi {
+  font-size: 1.5rem;
+}
+
+.botao-menu-texto {
+  display: none;               /* no mobile só o ícone ☰ */
+}
+
+/* Busca do cabeçalho (GET → busca.html) */
+.busca-cabecalho {
+  display: none;               /* no mobile vira o link "Buscar" */
+  flex: 1;
+  height: var(--altura-botao);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio-campo);
+  background: var(--cor-superficie);
+  overflow: hidden;
+  transition: border-color var(--transicao);
+}
+
+.busca-cabecalho:focus-within {
+  border-color: var(--cor-foco);
+  box-shadow: 0 0 0 1px var(--cor-foco);
+}
+
+.busca-cabecalho select,
+.busca-cabecalho input,
+.busca-cabecalho button {
+  border: 0;
+  background: transparent;
+}
+
+.busca-cabecalho select {
+  padding: 0 var(--espaco-2);
+  border-right: 1px solid var(--cor-borda);
+  font-size: var(--tam-botao);
+  font-weight: var(--peso-medio);
+}
+
+.busca-cabecalho input {
+  flex: 1;
+  min-width: 0;
+  padding: 0 var(--espaco-2);
+}
+
+.busca-cabecalho button {
+  padding: 0 var(--espaco-3);
+  cursor: pointer;
+}
+
+/* O contorno de foco fica no formulário inteiro (:focus-within acima) */
+.busca-cabecalho input:focus-visible,
+.busca-cabecalho select:focus-visible,
+.busca-cabecalho button:focus-visible {
+  outline: none;
+}
+
+/* Atalhos à direita: Buscar (mobile), Top 250, Watchlist, Entrar */
+.atalhos {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-1);
+  margin-left: auto;
+}
+
+.atalho {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espaco-1);
+  height: var(--altura-botao);
+  padding: 0 var(--espaco-2);
+  border-radius: var(--raio-campo);
+  color: var(--cor-texto);
+  font-size: var(--tam-botao);
+  font-weight: var(--peso-medio);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--transicao);
+}
+
+.atalho:hover {
+  background: var(--cor-botao-secundario);
+}
+
+.atalho-desktop {
+  display: none;
+}
+
+/* Contador da Watchlist (o JS atualiza o número) */
+.contador {
+  min-width: 1.25rem;
+  padding: 0 var(--espaco-1);
+  border-radius: var(--raio-chip);
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+  font-size: var(--tam-legenda);
+  line-height: var(--alt-legenda);
+  text-align: center;
+}
+
+/* Botão de alternar tema (o JS troca html[data-tema]) */
+.botao-tema {
+  flex-shrink: 0;
+  width: var(--altura-botao);
+  height: var(--altura-botao);
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color var(--transicao);
+}
+
+.botao-tema:hover {
+  background: var(--cor-botao-secundario);
+}
+
+/* ---- Gaveta do menu (estado "menu aberto" do wireframe) ----
+   Fechada: fora da tela e invisível (não recebe foco pelo Tab).
+   Aberta: o JS adiciona .aberta e muda aria-expanded do botão. */
+.gaveta {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 20;
+  width: min(300px, 85vw);
+  padding: var(--espaco-3);
+  background: var(--cor-cabecalho);
+  box-shadow: 4px 0 16px var(--cor-sombra);
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition: transform var(--transicao), visibility var(--transicao);
+}
+
+.gaveta.aberta {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.gaveta-topo {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--espaco-2);
+}
+
+.gaveta-lista a {
+  display: flex;
+  align-items: center;
+  gap: var(--espaco-2);
+  padding: var(--espaco-2) var(--espaco-3);
+  border-radius: var(--raio-campo);
+  color: var(--cor-texto);
+  font-weight: var(--peso-medio);
+  text-decoration: none;
+  transition: background-color var(--transicao);
+}
+
+.gaveta-lista a:hover,
+.gaveta-lista a[aria-current="page"] {
+  background: var(--cor-botao-secundario);
+}
+
+.gaveta-lista a[aria-current="page"] {
+  box-shadow: inset var(--barra-titulo) 0 0 var(--cor-destaque);
+}
+
+/* ==========================================================================
+   Cabeçalho do painel (páginas admin com sessão)
+   ========================================================================== */
+.titulo-painel {
+  font-weight: var(--peso-forte);
+  white-space: nowrap;
+}
+
+.titulo-painel-completo,
+.saudacao {
+  display: none;
+}
+
+.saudacao {
+  color: var(--cor-texto-2);
+  font-size: var(--tam-botao);
+}
+
+/* ==========================================================================
+   Rodapé (aviso de clone educacional exigido pelo enunciado)
+   ========================================================================== */
+.rodape {
+  padding: var(--espaco-4) var(--espaco-3);
+  background: var(--cor-cabecalho);
+  border-top: 1px solid var(--cor-borda);
+  color: var(--cor-texto-2);
+  font-size: var(--tam-legenda);
+  line-height: var(--alt-legenda);
+  text-align: center;
+}
+
+.rodape-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--espaco-2) var(--espaco-4);
+  margin-bottom: var(--espaco-3);
+  font-size: var(--tam-botao);
+}
+
+.rodape p + p {
+  margin-top: var(--espaco-1);
+}
+
+/* ==========================================================================
+   Utilitários
+   ========================================================================== */
+
+/* Esconde da tela mas mantém para leitores de tela (rótulos e textos de ícones) */
+.visualmente-oculto {
+  position: absolute;
+  top: 0;                      /* sem isso, dentro de listas com rolagem lateral ele "empurra" a página */
+  left: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Link "Pular para o conteúdo": aparece só ao receber foco pelo Tab */
+.pular-conteudo {
+  position: absolute;
+  top: var(--espaco-2);
+  left: var(--espaco-2);
+  z-index: 30;
+  padding: var(--espaco-2) var(--espaco-3);
+  background: var(--cor-destaque);
+  color: var(--cor-sobre-destaque);
+  transform: translateY(-200%);
+  transition: transform var(--transicao);
+}
+
+.pular-conteudo:focus {
+  transform: translateY(0);
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Breakpoints (600 px e 1024 px, guia 4.3)
+   ========================================================================== */
+
+/* Tablet: busca do cabeçalho aparece e o link "Buscar" some */
+@media (min-width: 600px) {
+  main {
+    padding-left: var(--espaco-4);
+    padding-right: var(--espaco-4);
+  }
+
+  .busca-cabecalho {
+    display: flex;
+  }
+
+  .atalho-mobile {
+    display: none;
+  }
+
+  .titulo-painel-completo {
+    display: inline;
+  }
+
+  .titulo-painel-curto {
+    display: none;
+  }
+}
+
+/* Desktop: botão "Menu" com texto, atalhos Top 250/Watchlist e saudação do painel */
+@media (min-width: 1024px) {
+  .botao-menu-texto,
+  .saudacao {
+    display: inline;
+  }
+
+  .atalho-desktop {
+    display: inline-flex;
+  }
+}
+
+/* Respeita quem pede menos movimento no sistema */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
