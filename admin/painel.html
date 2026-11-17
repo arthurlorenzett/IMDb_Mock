@@ -3,17 +3,270 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Painel administrativo · IMDb Clone</title>
+  <title>Painel · IMDb Clone</title>
+  <meta name="description" content="Painel administrativo do IMDb Clone: títulos e avaliações.">
+  <!-- Fonte Roboto (Google Fonts) e Bootstrap Icons (CDN), conforme a Tabela 5 da Parte 1 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- CSS próprio, em camadas: variáveis → base → componentes → páginas -->
   <link rel="stylesheet" href="../css/variaveis.css">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/componentes.css">
   <link rel="stylesheet" href="../css/paginas.css">
 </head>
 <body data-pagina="painel" data-raiz="..">
-  <header id="cabecalho"></header>
-  <main id="conteudo">
-    <h1>Painel administrativo</h1>
-  </main>
-  <footer id="rodape"></footer>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ===== Cabeçalho do painel (área restrita) ===== -->
+  <header class="cabecalho" id="cabecalho">
+    <div class="cabecalho-interno">
+      <!-- No mobile o ☰ abre o menu do painel (#menu-admin); no desktop ele vira barra lateral -->
+      <button class="botao-menu botao-menu-admin" id="botao-menu" type="button" aria-controls="menu-admin" aria-expanded="false">
+        <i class="bi bi-list" aria-hidden="true"></i>
+        <span class="visualmente-oculto">Abrir menu do painel</span>
+      </button>
+      <a class="logo" href="../index.html">
+        <img src="../img/logo-imdb.svg" alt="IMDb Clone, ir para o site" width="64" height="32">
+      </a>
+      <span class="titulo-painel"><span class="titulo-painel-completo">Painel administrativo</span><span class="titulo-painel-curto">Painel</span></span>
+
+      <div class="atalhos">
+        <span class="saudacao">Olá, Administrador</span>
+        <a class="botao botao-contorno botao-pequeno" href="../admin/login.html" id="botao-sair">
+          <i class="bi bi-box-arrow-right" aria-hidden="true"></i> Sair
+        </a>
+      </div>
+
+      <button class="botao-tema" id="botao-tema" type="button" aria-pressed="false">
+        <i class="bi bi-moon" aria-hidden="true"></i>
+        <span class="visualmente-oculto">Ativar tema escuro</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="painel-layout">
+    <!-- Menu do painel: barra lateral no desktop, gaveta no mobile -->
+    <nav class="menu-admin gaveta" id="menu-admin" aria-label="Menu do painel">
+      <div class="gaveta-topo">
+        <button class="botao botao-contorno botao-icone" id="fechar-menu" type="button">
+          <i class="bi bi-x-lg" aria-hidden="true"></i>
+          <span class="visualmente-oculto">Fechar menu</span>
+        </button>
+      </div>
+      <ul class="gaveta-lista">
+        <li><a href="../admin/painel.html#titulos" aria-current="page"><i class="bi bi-film" aria-hidden="true"></i> Títulos</a></li>
+        <li><a href="../admin/painel.html#avaliacoes"><i class="bi bi-chat-square-text" aria-hidden="true"></i> Avaliações (3)</a></li>
+        <li><a href="../index.html"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Ver site</a></li>
+        <li><a href="../admin/login.html"><i class="bi bi-box-arrow-right" aria-hidden="true"></i> Sair</a></li>
+      </ul>
+    </nav>
+
+    <main id="conteudo">
+      <h1 class="visualmente-oculto">Painel administrativo</h1>
+
+      <!-- Mensagem de retorno (PHP na Parte 3); o JS pode esconder após alguns segundos -->
+      <p class="alerta alerta-sucesso" id="alerta-painel" role="status">
+        <i class="bi bi-check-circle" aria-hidden="true"></i>
+        <span>Título salvo com sucesso.</span>
+      </p>
+
+      <!-- ===== CRUD de títulos ===== -->
+      <section class="secao-painel" id="titulos" aria-labelledby="titulo-titulos">
+        <div class="secao-topo">
+          <h2 class="titulo-secao" id="titulo-titulos">Títulos</h2>
+          <div class="secao-topo-acoes">
+            <label class="visualmente-oculto" for="filtro-titulos">Filtrar por título</label>
+            <input class="controle" type="search" id="filtro-titulos" placeholder="Filtrar por título...">
+            <a class="botao botao-primario" href="titulo-form.html"><i class="bi bi-plus-lg" aria-hidden="true"></i> Novo título</a>
+          </div>
+        </div>
+        <div class="tabela-rolagem">
+          <table class="tabela" id="tabela-titulos">
+            <caption class="visualmente-oculto">Títulos cadastrados</caption>
+            <thead>
+              <tr>
+                <th scope="col" class="numero">ID</th>
+                <th scope="col">Pôster</th>
+                <th scope="col">Título</th>
+                <th scope="col" class="numero">Ano</th>
+                <th scope="col" class="numero">Nota</th>
+                <th scope="col" class="numero">Aval.</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-id="1">
+                <td class="numero">1</td>
+                <td><img class="poster poster-mini" src="https://picsum.photos/seed/farol/64/96" alt="Pôster de O Último Farol" width="32" height="48" loading="lazy"></td>
+                <th scope="row">O Último Farol</th>
+                <td class="numero">2024</td>
+                <td class="numero">8,1</td>
+                <td class="numero">16</td>
+                <td>
+                  <div class="acoes-tabela">
+                    <a class="botao botao-contorno botao-pequeno" href="titulo-form.html?id=1"><i class="bi bi-pencil-square" aria-hidden="true"></i> Editar<span class="visualmente-oculto"> O Último Farol</span></a>
+                    <button class="botao botao-contorno botao-pequeno botao-excluir" type="button" data-id="1" data-abrir-modal="modal-excluir"><i class="bi bi-trash" aria-hidden="true"></i> Excluir<span class="visualmente-oculto"> O Último Farol</span></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-id="2">
+                <td class="numero">2</td>
+                <td><img class="poster poster-mini" src="https://picsum.photos/seed/vidro/64/96" alt="Pôster de Cidade de Vidro" width="32" height="48" loading="lazy"></td>
+                <th scope="row">Cidade de Vidro</th>
+                <td class="numero">2023</td>
+                <td class="numero">7,9</td>
+                <td class="numero">14</td>
+                <td>
+                  <div class="acoes-tabela">
+                    <a class="botao botao-contorno botao-pequeno" href="titulo-form.html?id=2"><i class="bi bi-pencil-square" aria-hidden="true"></i> Editar<span class="visualmente-oculto"> Cidade de Vidro</span></a>
+                    <button class="botao botao-contorno botao-pequeno botao-excluir" type="button" data-id="2" data-abrir-modal="modal-excluir"><i class="bi bi-trash" aria-hidden="true"></i> Excluir<span class="visualmente-oculto"> Cidade de Vidro</span></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-id="3">
+                <td class="numero">3</td>
+                <td><img class="poster poster-mini" src="https://picsum.photos/seed/mares/64/96" alt="Pôster de Marés de Inverno" width="32" height="48" loading="lazy"></td>
+                <th scope="row">Marés de Inverno</th>
+                <td class="numero">2022</td>
+                <td class="numero">7,8</td>
+                <td class="numero">12</td>
+                <td>
+                  <div class="acoes-tabela">
+                    <a class="botao botao-contorno botao-pequeno" href="titulo-form.html?id=3"><i class="bi bi-pencil-square" aria-hidden="true"></i> Editar<span class="visualmente-oculto"> Marés de Inverno</span></a>
+                    <button class="botao botao-contorno botao-pequeno botao-excluir" type="button" data-id="3" data-abrir-modal="modal-excluir"><i class="bi bi-trash" aria-hidden="true"></i> Excluir<span class="visualmente-oculto"> Marés de Inverno</span></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-id="4">
+                <td class="numero">4</td>
+                <td><img class="poster poster-mini" src="https://picsum.photos/seed/ventos/64/96" alt="Pôster de A Rota dos Ventos" width="32" height="48" loading="lazy"></td>
+                <th scope="row">A Rota dos Ventos</th>
+                <td class="numero">2021</td>
+                <td class="numero">7,6</td>
+                <td class="numero">9</td>
+                <td>
+                  <div class="acoes-tabela">
+                    <a class="botao botao-contorno botao-pequeno" href="titulo-form.html?id=4"><i class="bi bi-pencil-square" aria-hidden="true"></i> Editar<span class="visualmente-oculto"> A Rota dos Ventos</span></a>
+                    <button class="botao botao-contorno botao-pequeno botao-excluir" type="button" data-id="4" data-abrir-modal="modal-excluir"><i class="bi bi-trash" aria-hidden="true"></i> Excluir<span class="visualmente-oculto"> A Rota dos Ventos</span></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-id="5">
+                <td class="numero">5</td>
+                <td><img class="poster poster-mini" src="https://picsum.photos/seed/clara/64/96" alt="Pôster de Noites em Santa Clara" width="32" height="48" loading="lazy"></td>
+                <th scope="row">Noites em Santa Clara</th>
+                <td class="numero">2020</td>
+                <td class="numero">7,4</td>
+                <td class="numero">8</td>
+                <td>
+                  <div class="acoes-tabela">
+                    <a class="botao botao-contorno botao-pequeno" href="titulo-form.html?id=5"><i class="bi bi-pencil-square" aria-hidden="true"></i> Editar<span class="visualmente-oculto"> Noites em Santa Clara</span></a>
+                    <button class="botao botao-contorno botao-pequeno botao-excluir" type="button" data-id="5" data-abrir-modal="modal-excluir"><i class="bi bi-trash" aria-hidden="true"></i> Excluir<span class="visualmente-oculto"> Noites em Santa Clara</span></button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-id="6">
+                <td class="numero">6</td>
+                <td><img class="poster poster-mini" src="https://picsum.photos/seed/arquivo/64/96" alt="Pôster de O Arquivo Esquecido" width="32" height="48" loading="lazy"></td>
+                <th scope="row">O Arquivo Esquecido</th>
+                <td class="numero">2019</td>
+                <td class="numero">7,3</td>
+                <td class="numero">7</td>
+                <td>
+                  <div class="acoes-tabela">
+                    <a class="botao botao-contorno botao-pequeno" href="titulo-form.html?id=6"><i class="bi bi-pencil-square" aria-hidden="true"></i> Editar<span class="visualmente-oculto"> O Arquivo Esquecido</span></a>
+                    <button class="botao botao-contorno botao-pequeno botao-excluir" type="button" data-id="6" data-abrir-modal="modal-excluir"><i class="bi bi-trash" aria-hidden="true"></i> Excluir<span class="visualmente-oculto"> O Arquivo Esquecido</span></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== Moderação de avaliações (RN02) ===== -->
+      <section class="secao-painel" id="avaliacoes" aria-labelledby="titulo-pendentes">
+        <h2 class="titulo-secao" id="titulo-pendentes">Avaliações pendentes <span class="nota-votos">(3)</span></h2>
+        <div class="tabela-rolagem">
+          <table class="tabela" id="tabela-pendentes">
+            <caption class="visualmente-oculto">Avaliações aguardando moderação</caption>
+            <thead>
+              <tr>
+                <th scope="col">Título</th>
+                <th scope="col">Autor (e-mail)</th>
+                <th scope="col" class="numero">Nota</th>
+                <th scope="col">Comentário</th>
+                <th scope="col">Moderação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-id-avaliacao="1">
+                <th scope="row">O Último Farol</th>
+                <td>usuario1@exemplo.com</td>
+                <td class="numero">9</td>
+                <td class="comentario-celula">Gostei muito do clima de suspense e da trilha.</td>
+                <td>
+                  <div class="acoes-tabela">
+                    <button class="botao botao-contorno botao-pequeno botao-aprovar" type="button" data-id-avaliacao="1"><i class="bi bi-check-lg" aria-hidden="true"></i> Aprovar</button>
+                    <button class="botao botao-contorno botao-pequeno botao-rejeitar" type="button" data-id-avaliacao="1"><i class="bi bi-x-lg" aria-hidden="true"></i> Rejeitar</button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-id-avaliacao="2">
+                <th scope="row">Marés de Inverno</th>
+                <td>usuario2@exemplo.com</td>
+                <td class="numero">8</td>
+                <td class="comentario-celula">Bonito, mas o final poderia ser mais claro.</td>
+                <td>
+                  <div class="acoes-tabela">
+                    <button class="botao botao-contorno botao-pequeno botao-aprovar" type="button" data-id-avaliacao="2"><i class="bi bi-check-lg" aria-hidden="true"></i> Aprovar</button>
+                    <button class="botao botao-contorno botao-pequeno botao-rejeitar" type="button" data-id-avaliacao="2"><i class="bi bi-x-lg" aria-hidden="true"></i> Rejeitar</button>
+                  </div>
+                </td>
+              </tr>
+              <tr data-id-avaliacao="3">
+                <th scope="row">Os Relojoeiros</th>
+                <td>usuario3@exemplo.com</td>
+                <td class="numero">7</td>
+                <td class="comentario-celula">Primeira temporada promissora, alguns episódios lentos.</td>
+                <td>
+                  <div class="acoes-tabela">
+                    <button class="botao botao-contorno botao-pequeno botao-aprovar" type="button" data-id-avaliacao="3"><i class="bi bi-check-lg" aria-hidden="true"></i> Aprovar</button>
+                    <button class="botao botao-contorno botao-pequeno botao-rejeitar" type="button" data-id-avaliacao="3"><i class="bi bi-x-lg" aria-hidden="true"></i> Rejeitar</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== Modal: confirmar exclusão ===== -->
+      <dialog class="modal modal-pequeno" id="modal-excluir" aria-labelledby="titulo-modal-excluir">
+        <h2 id="titulo-modal-excluir">Excluir título?</h2>
+        <p class="modal-texto">“<span id="nome-excluir">Título selecionado</span>” e as avaliações dele serão removidos.</p>
+        <div class="modal-acoes">
+          <button class="botao botao-contorno" type="button" data-fechar-modal>Cancelar</button>
+          <button class="botao botao-perigo" type="button" id="confirmar-excluir">Excluir</button>
+        </div>
+      </dialog>
+    </main>
+  </div>
+
+  <!-- ===== Rodapé (aviso de clone educacional exigido pelo enunciado) ===== -->
+  <footer class="rodape" id="rodape">
+    <nav aria-label="Links do rodapé">
+      <ul class="rodape-links">
+        <li><a href="#">Ajuda</a></li>
+        <li><a href="#">Termos de uso</a></li>
+        <li><a href="#">Privacidade</a></li>
+        <li><a href="https://github.com/arthurlorenzett/IMDb_Mock">Repositório no GitHub</a></li>
+      </ul>
+    </nav>
+    <p>IMDb Clone: projeto acadêmico para fins educacionais (Desenvolvimento Web I, IFC Concórdia), sem vínculo com o IMDb ou a Amazon. Todos os dados são fictícios.</p>
+    <p>Logotipo: marca registrada da IMDb.com, Inc., arquivo do Wikimedia Commons. Imagens: Lorem Picsum. Ícones: Bootstrap Icons.</p>
+  </footer>
 </body>
 </html>

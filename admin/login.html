@@ -4,16 +4,134 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Entrar · IMDb Clone</title>
+  <meta name="description" content="Login do administrador do IMDb Clone.">
+  <!-- Fonte Roboto (Google Fonts) e Bootstrap Icons (CDN), conforme a Tabela 5 da Parte 1 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- CSS próprio, em camadas: variáveis → base → componentes → páginas -->
   <link rel="stylesheet" href="../css/variaveis.css">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/componentes.css">
   <link rel="stylesheet" href="../css/paginas.css">
 </head>
 <body data-pagina="login" data-raiz="..">
-  <header id="cabecalho"></header>
-  <main id="conteudo">
-    <h1>Entrar</h1>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+
+  <!-- ===== Cabeçalho global (igual em todas as páginas públicas) ===== -->
+  <header class="cabecalho" id="cabecalho">
+    <div class="cabecalho-interno">
+      <!-- Botão do menu: o JS alterna .aberta em #menu-principal e aria-expanded -->
+      <button class="botao-menu" id="botao-menu" type="button" aria-controls="menu-principal" aria-expanded="false">
+        <i class="bi bi-list" aria-hidden="true"></i>
+        <span class="botao-menu-texto">Menu</span>
+        <span class="visualmente-oculto">Abrir menu</span>
+      </button>
+
+      <a class="logo" href="../index.html">
+        <img src="../img/logo-imdb.svg" alt="IMDb Clone, ir para a página inicial" width="64" height="32">
+      </a>
+
+      <!-- Busca do cabeçalho: envia por GET para a página de busca -->
+      <form class="busca-cabecalho" id="form-busca-cabecalho" action="../busca.html" method="get" role="search">
+        <label class="visualmente-oculto" for="busca-tipo">Tipo de título</label>
+        <select id="busca-tipo" name="tipo">
+          <option value="">Todos</option>
+          <option value="filme">Filmes</option>
+          <option value="serie">Séries</option>
+        </select>
+        <label class="visualmente-oculto" for="busca-termo">Buscar títulos</label>
+        <input type="search" id="busca-termo" name="q" placeholder="Buscar filmes, séries..." autocomplete="off">
+        <button type="submit">
+          <i class="bi bi-search" aria-hidden="true"></i>
+          <span class="visualmente-oculto">Buscar</span>
+        </button>
+      </form>
+
+      <div class="atalhos">
+        <a class="atalho atalho-mobile" href="../busca.html"><i class="bi bi-search" aria-hidden="true"></i> Buscar</a>
+        <a class="atalho atalho-desktop" href="../top250.html">Top 250</a>
+        <a class="atalho atalho-desktop" href="../watchlist.html">
+          <i class="bi bi-bookmark-plus" aria-hidden="true"></i> Watchlist
+          <span class="contador" data-contador-watchlist>3</span>
+        </a>
+        <a class="atalho" href="../admin/login.html" aria-current="page">Entrar</a>
+      </div>
+
+      <!-- Alternar tema: o JS troca html[data-tema="escuro"] -->
+      <button class="botao-tema" id="botao-tema" type="button" aria-pressed="false">
+        <i class="bi bi-moon" aria-hidden="true"></i>
+        <span class="visualmente-oculto">Ativar tema escuro</span>
+      </button>
+    </div>
+
+    <!-- Gaveta do menu (estado "menu aberto" do wireframe) -->
+    <nav class="gaveta" id="menu-principal" aria-label="Menu principal">
+      <div class="gaveta-topo">
+        <button class="botao botao-contorno botao-icone" id="fechar-menu" type="button">
+          <i class="bi bi-x-lg" aria-hidden="true"></i>
+          <span class="visualmente-oculto">Fechar menu</span>
+        </button>
+      </div>
+      <ul class="gaveta-lista">
+        <li><a href="../index.html"><i class="bi bi-house" aria-hidden="true"></i> Início</a></li>
+        <li><a href="../busca.html"><i class="bi bi-search" aria-hidden="true"></i> Busca</a></li>
+        <li><a href="../top250.html"><i class="bi bi-trophy" aria-hidden="true"></i> Top 250</a></li>
+        <li><a href="../watchlist.html"><i class="bi bi-bookmark-plus" aria-hidden="true"></i> <span>Watchlist (<span data-contador-watchlist>3</span>)</span></a></li>
+        <li><a href="../admin/login.html" aria-current="page"><i class="bi bi-person-circle" aria-hidden="true"></i> Entrar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="conteudo" class="main-centralizado">
+    <!-- ===== Login do administrador (POST com $_SESSION na Parte 3) ===== -->
+    <section class="cartao-form" aria-labelledby="titulo-login">
+      <h1 id="titulo-login">Entrar</h1>
+      <p class="subtitulo">Área administrativa do IMDb Clone</p>
+
+      <form class="form-login" id="form-login" action="painel.html" method="post">
+        <div class="campo">
+          <label class="rotulo" for="login-email">E-mail</label>
+          <input class="controle" type="email" id="login-email" name="email" required maxlength="120" autocomplete="username" placeholder="admin@exemplo.com" aria-describedby="erro-login-email">
+          <p class="mensagem-erro" id="erro-login-email" aria-live="polite"></p>
+        </div>
+
+        <div class="campo">
+          <label class="rotulo" for="login-senha">Senha</label>
+          <div class="campo-senha">
+            <input class="controle" type="password" id="login-senha" name="senha" required minlength="6" autocomplete="current-password" aria-describedby="erro-login-senha">
+            <!-- O JS alterna type="password"/"text" e o texto do botão -->
+            <button class="botao botao-texto" id="mostrar-senha" type="button" aria-controls="login-senha" aria-pressed="false">Mostrar</button>
+          </div>
+          <p class="mensagem-erro" id="erro-login-senha" aria-live="polite"></p>
+        </div>
+
+        <!-- Erro geral do login: o JS/PHP remove o hidden -->
+        <p class="alerta alerta-erro" id="alerta-login" role="alert" hidden>
+          <i class="bi bi-x-circle" aria-hidden="true"></i>
+          <span>E-mail ou senha inválidos.</span>
+        </p>
+
+        <button class="botao botao-primario botao-grande botao-bloco" type="submit">Entrar</button>
+      </form>
+
+      <a class="link-voltar" href="../index.html"><i class="bi bi-arrow-left" aria-hidden="true"></i> Voltar ao site</a>
+    </section>
   </main>
-  <footer id="rodape"></footer>
+
+  <!-- ===== Rodapé (aviso de clone educacional exigido pelo enunciado) ===== -->
+  <footer class="rodape" id="rodape">
+    <nav aria-label="Links do rodapé">
+      <ul class="rodape-links">
+        <li><a href="#">Ajuda</a></li>
+        <li><a href="#">Termos de uso</a></li>
+        <li><a href="#">Privacidade</a></li>
+        <li><a href="https://github.com/arthurlorenzett/IMDb_Mock">Repositório no GitHub</a></li>
+      </ul>
+    </nav>
+    <p>IMDb Clone: projeto acadêmico para fins educacionais (Desenvolvimento Web I, IFC Concórdia), sem vínculo com o IMDb ou a Amazon. Todos os dados são fictícios.</p>
+    <p>Logotipo: marca registrada da IMDb.com, Inc., arquivo do Wikimedia Commons. Imagens: Lorem Picsum. Ícones: Bootstrap Icons.</p>
+  </footer>
 </body>
 </html>
