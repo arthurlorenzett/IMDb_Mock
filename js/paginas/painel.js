@@ -1,13 +1,13 @@
 /* ==========================================================================
-   painel.js — P7: área restrita. Lista os títulos (com filtro, editar e excluir
-   com confirmação) e modera as avaliações pendentes (RN02: aprovar/rejeitar
-   recalcula a média). Na Parte 2 as alterações ficam no localStorage.
+   painel.js — P7: área restrita (o PHP já bloqueou o acesso sem login).
+   Lista os títulos (filtro, editar e excluir com confirmação) e modera as
+   avaliações pendentes (RN02: aprovar/rejeitar recalcula a média).
+   Exclusão e moderação vão por POST (JSON) para os endpoints em admin/.
    ========================================================================== */
 
 import { config } from '../nucleo/config.js';
 import { carregarDados } from '../nucleo/dados.js';
 import { comEstatisticas } from '../nucleo/regras.js';
-import { exigirLogin } from '../nucleo/sessao.js';
 import { escaparHtml, formatarNota, normalizar, parametros } from '../nucleo/util.js';
 import { urlPoster } from '../componentes/card.js';
 import { abrirModal, fecharModal } from '../componentes/modal.js';
@@ -34,10 +34,25 @@ async function carregarPendentes() {
   return resposta.json();
 }
 
+// Mostra o alerta do painel (sucesso ou erro) sem usar alert()
+function mostrarAviso(tipo, texto) {
+  const alerta = document.getElementById('alerta-painel');
+  alerta.className = `alerta alerta-${tipo}`;
+  alerta.querySelector('.bi').className = `bi ${tipo === 'sucesso' ? 'bi-check-circle' : 'bi-x-circle'}`;
+  alerta.setAttribute('role', tipo === 'sucesso' ? 'status' : 'alert');
+  alerta.querySelector('span').textContent = texto;
+  alerta.hidden = false;
+  alerta.scrollIntoView({ block: 'nearest' });
+}
+
+function mostrarErro(texto) {
+  clearTimeout(temporizadorAlerta);
+  mostrarAviso('erro', texto);
+}
+
 function mostrarAlerta(chave) {
   const alerta = document.getElementById('alerta-painel');
-  alerta.querySelector('span').textContent = MENSAGENS[chave];
-  alerta.hidden = false;
+  mostrarAviso('sucesso', MENSAGENS[chave]);
   // Esconde sozinho depois de alguns segundos
   clearTimeout(temporizadorAlerta);
   temporizadorAlerta = setTimeout(() => (alerta.hidden = true), config().interface.alerta_some_ms);
@@ -55,7 +70,7 @@ function linhaTitulo(t) {
       <td class="numero">${t.votos}</td>
       <td>
         <div class="acoes-tabela">
-          <a class="botao botao-contorno botao-pequeno" href="titulo-form.html?id=${t.id}"><i class="bi bi-pencil-square" aria-hidden="true"></i> Editar<span class="visualmente-oculto"> ${nome}</span></a>
+          <a class="botao botao-contorno botao-pequeno" href="titulo-form.php?id=${t.id}"><i class="bi bi-pencil-square" aria-hidden="true"></i> Editar<span class="visualmente-oculto"> ${nome}</span></a>
           <button class="botao botao-contorno botao-pequeno botao-excluir" type="button" data-id="${t.id}"><i class="bi bi-trash" aria-hidden="true"></i> Excluir<span class="visualmente-oculto"> ${nome}</span></button>
         </div>
       </td>
@@ -79,7 +94,7 @@ function linhaPendente(a, nomeTitulo) {
 }
 
 export async function iniciar() {
-  if (!exigirLogin()) return;
+  // Quem bloqueia o acesso sem login é o PHP (painel.php redireciona)
 
   const dados = await carregarDados();
     let avaliacoesPendentes = await carregarPendentes();
@@ -180,7 +195,7 @@ document.getElementById('confirmar-excluir').addEventListener('click', async () 
 
   } catch (erro) {
     console.error(erro);
-    alert(erro.message);
+    mostrarErro(erro.message);
 
   } finally {
     botao.disabled = false;
@@ -213,19 +228,17 @@ corpoPendentes.addEventListener('click', async (evento) => {
       throw new Error(resultado.erro || 'Erro ao moderar avaliação.');
     }
 
+    // A avaliação aprovada passa a contar na média da tabela de títulos (RN02).
+    // A API pública só traz aprovadas, então ela é acrescentada aqui.
+    const moderada = avaliacoesPendentes.find((a) => Number(a.id) === id);
+    if (moderada && status === 'aprovada') {
+      dados.avaliacoes.push({ ...moderada, status });
+    }
+
     // Atualiza a lista recebida do MySQL
     avaliacoesPendentes = avaliacoesPendentes.filter(
       (a) => Number(a.id) !== id
     );
-
-    // Atualiza os dados locais usados no cálculo das médias
-    const avaliacaoLocal = dados.avaliacoes.find(
-      (a) => Number(a.id) === id
-    );
-
-    if (avaliacaoLocal) {
-      avaliacaoLocal.status = status;
-    }
 
     desenharPendentes();
     desenharTitulos();
@@ -236,7 +249,7 @@ corpoPendentes.addEventListener('click', async (evento) => {
   } catch (erro) {
     console.error(erro);
     botao.disabled = false;
-    alert(erro.message);
+    mostrarErro(erro.message);
   }
 });
 

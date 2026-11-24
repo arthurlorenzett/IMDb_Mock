@@ -1,4 +1,7 @@
 <?php
+/* ==========================================================================
+   admin/sair.php — logout: limpa a sessão, apaga o cookie e volta ao login.
+   ========================================================================== */
 
 session_start();
 
@@ -24,5 +27,5 @@ if (ini_get('session.use_cookies')) {
 session_destroy();
 
 // Volta para o login
-header('Location: login.html');
+header('Location: login.php?saiu=1');
 exit;

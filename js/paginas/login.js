@@ -1,5 +1,7 @@
 /* ==========================================================================
-   login.js — login autenticado pelo PHP usando $_SESSION.
+   login.js — valida e-mail e senha antes de enviar e alterna "Mostrar/Ocultar"
+   senha. O login.php confere a senha (password_verify), abre a $_SESSION e,
+   em caso de erro, devolve a página com a mensagem e o e-mail digitado.
    ========================================================================== */
 
 import { prepararFormulario } from '../componentes/validacao.js';
@@ -27,10 +29,7 @@ export async function iniciar() {
     alerta.hidden = true;
   });
 
+  // Sem aoEnviar: com os campos válidos, o formulário segue por POST para o login.php
   prepararFormulario(form);
-  
-  if (new URLSearchParams(window.location.search).has('erro')) {
-    alerta.hidden = false;
-  }
 }
 

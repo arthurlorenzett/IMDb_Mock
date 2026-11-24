@@ -1,76 +1,30 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Novo título · IMDb Clone</title>
-  <meta name="description" content="Cadastro e edição de títulos no painel do IMDb Clone.">
-  <!-- Fonte Roboto (Google Fonts) e Bootstrap Icons (CDN), conforme a Tabela 5 da Parte 1 -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <!-- CSS próprio, em camadas: variáveis → base → componentes → páginas -->
-  <link rel="stylesheet" href="../css/variaveis.css">
-  <link rel="stylesheet" href="../css/base.css">
-  <link rel="stylesheet" href="../css/componentes.css">
-  <link rel="stylesheet" href="../css/paginas.css">
-  <!-- Aplica o tema salvo antes de desenhar a página (evita piscar) -->
-  <script src="../js/tema-inicial.js"></script>
-</head>
-<body data-pagina="titulo-form" data-raiz="..">
-  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
-  <noscript><p class="alerta alerta-erro">Este site precisa de JavaScript ativado para carregar os títulos e as interações.</p></noscript>
+<?php
+/* ==========================================================================
+   titulo-form.php — P8 Cadastro (sem ?id) e edição (?id=) de título
+   (área restrita). Sem login, o PHP redireciona para login.php.
+   O js/paginas/titulo-form.js preenche o formulário na edição, valida e
+   envia por POST (JSON) para admin/salvar-titulo.php, que valida de novo.
+   ========================================================================== */
 
-  <!-- ===== Cabeçalho do painel (área restrita) ===== -->
-  <header class="cabecalho" id="cabecalho">
-    <div class="cabecalho-interno">
-      <!-- No mobile o ☰ abre o menu do painel (#menu-admin); no desktop ele vira barra lateral -->
-      <button class="botao-menu botao-menu-admin" id="botao-menu" type="button" aria-controls="menu-admin" aria-expanded="false">
-        <i class="bi bi-list" aria-hidden="true"></i>
-        <span class="visualmente-oculto">Abrir menu do painel</span>
-      </button>
-      <a class="logo" href="../index.html">
-        <img src="../img/logo-imdb.svg" alt="IMDb Clone, ir para o site" width="64" height="32">
-      </a>
-      <span class="titulo-painel"><span class="titulo-painel-completo">Painel administrativo</span><span class="titulo-painel-curto">Painel</span></span>
+require __DIR__ . '/../includes/config.php';
 
-      <div class="atalhos">
-        <span class="saudacao">Olá, Administrador</span>
-        <a class="botao botao-contorno botao-pequeno" href="../admin/login.html" id="botao-sair">
-          <i class="bi bi-box-arrow-right" aria-hidden="true"></i> Sair
-        </a>
-      </div>
+$admin = exigir_login();
+$editando = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT) > 0;
 
-      <button class="botao-tema" id="botao-tema" type="button" aria-pressed="false">
-        <i class="bi bi-moon" aria-hidden="true"></i>
-        <span class="visualmente-oculto">Ativar tema escuro</span>
-      </button>
-    </div>
-  </header>
+$pagina = 'titulo-form';
+$titulo_pagina = $editando ? 'Editar título' : 'Novo título';
+$descricao = 'Cadastro e edição de títulos no painel do IMDb Clone.';
+$raiz = '..';
+$area = 'admin';
 
-  <div class="painel-layout">
-    <!-- Menu do painel: barra lateral no desktop, gaveta no mobile -->
-    <nav class="menu-admin gaveta" id="menu-admin" aria-label="Menu do painel">
-      <div class="gaveta-topo">
-        <button class="botao botao-contorno botao-icone" id="fechar-menu" type="button">
-          <i class="bi bi-x-lg" aria-hidden="true"></i>
-          <span class="visualmente-oculto">Fechar menu</span>
-        </button>
-      </div>
-      <ul class="gaveta-lista">
-        <li><a href="../admin/painel.html#titulos"><i class="bi bi-film" aria-hidden="true"></i> Títulos</a></li>
-        <li><a href="../admin/painel.html#avaliacoes"><i class="bi bi-chat-square-text" aria-hidden="true"></i> Avaliações (3)</a></li>
-        <li><a href="../index.html"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> Ver site</a></li>
-        <li><a href="../admin/login.html"><i class="bi bi-box-arrow-right" aria-hidden="true"></i> Sair</a></li>
-      </ul>
-    </nav>
+require __DIR__ . '/../includes/cabecalho.php';
+?>
 
     <main id="conteudo">
       <!-- Trilha de navegação -->
       <nav class="trilha" aria-label="Trilha de navegação">
         <ol>
-          <li><a href="painel.html#titulos">Títulos</a></li>
+          <li><a href="painel.php#titulos">Títulos</a></li>
           <li aria-current="page">Novo título</li>
         </ol>
       </nav>
@@ -81,8 +35,14 @@
         <p class="subtitulo"><span class="obrigatorio" aria-hidden="true">*</span> campos obrigatórios</p>
       </header>
 
-      <!-- ===== Formulário de título (validação no navegador e, na Parte 3, no PHP) ===== -->
-      <form class="form-titulo" id="form-titulo" action="painel.html" method="post">
+      <!-- Erro devolvido pelo PHP (salvar-titulo.php); o JS mostra o texto aqui -->
+      <p class="alerta alerta-erro" id="alerta-form" role="alert" hidden>
+        <i class="bi bi-x-circle" aria-hidden="true"></i>
+        <span></span>
+      </p>
+
+      <!-- ===== Formulário de título (validação no navegador e no PHP) ===== -->
+      <form class="form-titulo" id="form-titulo" action="salvar-titulo.php" method="post">
         <input type="hidden" name="id" value="">
 
         <div class="campo area-nome">
@@ -176,26 +136,9 @@
 
         <div class="form-acoes area-acoes">
           <button class="botao botao-primario botao-grande" type="submit">Salvar</button>
-          <a class="botao botao-contorno botao-grande" href="painel.html">Cancelar</a>
+          <a class="botao botao-contorno botao-grande" href="painel.php">Cancelar</a>
         </div>
       </form>
     </main>
-  </div>
 
-  <!-- ===== Rodapé (aviso de clone educacional exigido pelo enunciado) ===== -->
-  <footer class="rodape" id="rodape">
-    <nav aria-label="Links do rodapé">
-      <ul class="rodape-links">
-        <li><a href="#">Ajuda</a></li>
-        <li><a href="#">Termos de uso</a></li>
-        <li><a href="#">Privacidade</a></li>
-        <li><a href="https://github.com/arthurlorenzett/IMDb_Mock">Repositório no GitHub</a></li>
-      </ul>
-    </nav>
-    <p>IMDb Clone: trabalho acadêmico feito apenas para fins educacionais (Desenvolvimento Web I, IFC Concórdia). Este não é o site oficial do IMDb e não representa o IMDb nem a Amazon. As informações dos filmes e séries foram consultadas no IMDb; os pôsteres e as imagens pertencem aos seus detentores e são exibidos a partir do IMDb; avaliações e usuários são ilustrativos.</p>
-    <p>Logotipo: marca registrada da IMDb.com, Inc., arquivo do Wikimedia Commons. Dados, pôsteres e imagens dos títulos: IMDb. Ícones: Bootstrap Icons.</p>
-  </footer>
-  <!-- JS externo (módulos ES): app.js carrega o site.json e o script desta página -->
-  <script type="module" src="../js/app.js"></script>
-</body>
-</html>
+<?php require __DIR__ . '/../includes/rodape.php'; ?>

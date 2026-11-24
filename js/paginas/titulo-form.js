@@ -6,7 +6,6 @@
 
 import { config, caminho } from '../nucleo/config.js';
 import { carregarDados } from '../nucleo/dados.js';
-import { exigirLogin } from '../nucleo/sessao.js';
 import { escaparHtml, parametros } from '../nucleo/util.js';
 import { prepararFormulario, mostrarErro } from '../componentes/validacao.js';
 
@@ -63,8 +62,7 @@ function preencher(form, t) {
 }
 
 export async function iniciar() {
-  if (!exigirLogin()) return;
-
+  // Quem bloqueia o acesso sem login é o PHP (titulo-form.php redireciona)
   const { titulos } = await carregarDados();
   const form = $('form-titulo');
   const id = Number(parametros().get('id'));
@@ -72,7 +70,7 @@ export async function iniciar() {
 
   // ?id= de um título que não existe mais: volta ao painel
   if (id && !existente) {
-    window.location.replace('painel.html');
+    window.location.replace('painel.php');
     return;
   }
 
@@ -127,22 +125,39 @@ async aoEnviar() {
     destaque: existente?.destaque ?? false
   };
 
-  const resposta = await fetch('salvar-titulo.php', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(titulo)
-  });
+  const alerta = $('alerta-form');
+  alerta.hidden = true;
 
-  const resultado = await resposta.json();
+  try {
+    const resposta = await fetch('salvar-titulo.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(titulo)
+    });
 
-  if (!resposta.ok) {
-    throw new Error(resultado.erro || 'Não foi possível salvar o título.');
+    const resultado = await resposta.json();
+
+    if (!resposta.ok) {
+      // Erros por campo vindos do PHP: aparecem ao lado de cada campo e
+      // o formulário continua preenchido
+      Object.entries(resultado.erros || {}).forEach(([campo, texto]) => {
+        const elemento = campo === 'generos' ? erroGeneros() : form.elements[campo];
+        if (elemento) mostrarErro(elemento instanceof RadioNodeList ? elemento[0] : elemento, texto);
+      });
+      throw new Error(resultado.erro || 'Não foi possível salvar o título.');
+    }
+
+    window.location.href = 'painel.php?msg=salvo';
+
+  } catch (erro) {
+    alerta.querySelector('span').textContent = erro.message;
+    alerta.hidden = false;
+    alerta.scrollIntoView({ block: 'center' });
   }
-
-  window.location.href = 'painel.html?msg=salvo';
-}  });
+}
+  });
 
   // Ao marcar um gênero, o erro "escolha pelo menos um" some
   form.querySelector('.area-generos').addEventListener('change', () => {
