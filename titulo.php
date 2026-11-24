@@ -1,91 +1,18 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Título · IMDb Clone</title>
-  <meta name="description" content="Ficha do título: sinopse, elenco, nota média e avaliações.">
-  <!-- Fonte Roboto (Google Fonts) e Bootstrap Icons (CDN), conforme a Tabela 5 da Parte 1 -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <!-- CSS próprio, em camadas: variáveis → base → componentes → páginas -->
-  <link rel="stylesheet" href="css/variaveis.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/componentes.css">
-  <link rel="stylesheet" href="css/paginas.css">
-  <!-- Aplica o tema salvo antes de desenhar a página (evita piscar) -->
-  <script src="js/tema-inicial.js"></script>
-</head>
-<body data-pagina="titulo" data-raiz=".">
-  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
-  <noscript><p class="alerta alerta-erro">Este site precisa de JavaScript ativado para carregar os títulos e as interações.</p></noscript>
+<?php
+/* ==========================================================================
+   titulo.php — P3 Detalhe do título.
+   ========================================================================== */
 
-  <!-- ===== Cabeçalho global (igual em todas as páginas públicas) ===== -->
-  <header class="cabecalho" id="cabecalho">
-    <div class="cabecalho-interno">
-      <!-- Botão do menu: o JS alterna .aberta em #menu-principal e aria-expanded -->
-      <button class="botao-menu" id="botao-menu" type="button" aria-controls="menu-principal" aria-expanded="false">
-        <i class="bi bi-list" aria-hidden="true"></i>
-        <span class="botao-menu-texto">Menu</span>
-        <span class="visualmente-oculto">Abrir menu</span>
-      </button>
+require __DIR__ . '/includes/config.php';
 
-      <a class="logo" href="index.html">
-        <img src="img/logo-imdb.svg" alt="IMDb Clone, ir para a página inicial" width="64" height="32">
-      </a>
+$pagina = 'titulo';
+$titulo_pagina = 'Título';
+$descricao = 'Ficha do título: sinopse, elenco, nota média e avaliações.';
+$raiz = '.';
+$area = 'publica';
 
-      <!-- Busca do cabeçalho: envia por GET para a página de busca -->
-      <form class="busca-cabecalho" id="form-busca-cabecalho" action="busca.html" method="get" role="search">
-        <label class="visualmente-oculto" for="busca-tipo">Tipo de título</label>
-        <select id="busca-tipo" name="tipo">
-          <option value="">Todos</option>
-          <option value="filme">Filmes</option>
-          <option value="serie">Séries</option>
-        </select>
-        <label class="visualmente-oculto" for="busca-termo">Buscar títulos</label>
-        <input type="search" id="busca-termo" name="q" placeholder="Buscar filmes, séries..." autocomplete="off">
-        <button type="submit">
-          <i class="bi bi-search" aria-hidden="true"></i>
-          <span class="visualmente-oculto">Buscar</span>
-        </button>
-      </form>
-
-      <div class="atalhos">
-        <a class="atalho atalho-mobile" href="busca.html"><i class="bi bi-search" aria-hidden="true"></i> Buscar</a>
-        <a class="atalho atalho-desktop" href="top250.html">Top 250</a>
-        <a class="atalho atalho-desktop" href="watchlist.html">
-          <i class="bi bi-bookmark-plus" aria-hidden="true"></i> Watchlist
-          <span class="contador" data-contador-watchlist>0</span>
-        </a>
-        <a class="atalho" href="admin/login.html">Entrar</a>
-      </div>
-
-      <!-- Alternar tema: o JS troca html[data-tema="escuro"] -->
-      <button class="botao-tema" id="botao-tema" type="button" aria-pressed="false">
-        <i class="bi bi-moon" aria-hidden="true"></i>
-        <span class="visualmente-oculto">Ativar tema escuro</span>
-      </button>
-    </div>
-
-    <!-- Gaveta do menu (estado "menu aberto" do wireframe) -->
-    <nav class="gaveta" id="menu-principal" aria-label="Menu principal">
-      <div class="gaveta-topo">
-        <button class="botao botao-contorno botao-icone" id="fechar-menu" type="button">
-          <i class="bi bi-x-lg" aria-hidden="true"></i>
-          <span class="visualmente-oculto">Fechar menu</span>
-        </button>
-      </div>
-      <ul class="gaveta-lista">
-        <li><a href="index.html"><i class="bi bi-house" aria-hidden="true"></i> Início</a></li>
-        <li><a href="busca.html"><i class="bi bi-search" aria-hidden="true"></i> Busca</a></li>
-        <li><a href="top250.html"><i class="bi bi-trophy" aria-hidden="true"></i> Top 250</a></li>
-        <li><a href="watchlist.html"><i class="bi bi-bookmark-plus" aria-hidden="true"></i> <span>Watchlist (<span data-contador-watchlist>0</span>)</span></a></li>
-        <li><a href="admin/login.html"><i class="bi bi-person-circle" aria-hidden="true"></i> Entrar</a></li>
-      </ul>
-    </nav>
-  </header>
+require __DIR__ . '/includes/cabecalho.php';
+?>
 
   <main id="conteudo">
     <!-- ===== Ficha do título (o JS/PHP preenche a partir do id na URL) ===== -->
@@ -270,20 +197,4 @@
     </dialog>
   </main>
 
-  <!-- ===== Rodapé (aviso de clone educacional exigido pelo enunciado) ===== -->
-  <footer class="rodape" id="rodape">
-    <nav aria-label="Links do rodapé">
-      <ul class="rodape-links">
-        <li><a href="#">Ajuda</a></li>
-        <li><a href="#">Termos de uso</a></li>
-        <li><a href="#">Privacidade</a></li>
-        <li><a href="https://github.com/arthurlorenzett/IMDb_Mock">Repositório no GitHub</a></li>
-      </ul>
-    </nav>
-    <p>IMDb Clone: trabalho acadêmico feito apenas para fins educacionais (Desenvolvimento Web I, IFC Concórdia). Este não é o site oficial do IMDb e não representa o IMDb nem a Amazon. As informações dos filmes e séries foram consultadas no IMDb; os pôsteres e as imagens pertencem aos seus detentores e são exibidos a partir do IMDb; avaliações e usuários são ilustrativos.</p>
-    <p>Logotipo: marca registrada da IMDb.com, Inc., arquivo do Wikimedia Commons. Dados, pôsteres e imagens dos títulos: IMDb. Ícones: Bootstrap Icons.</p>
-  </footer>
-  <!-- JS externo (módulos ES): app.js carrega o site.json e o script desta página -->
-  <script type="module" src="js/app.js"></script>
-</body>
-</html>
+<?php require __DIR__ . '/includes/rodape.php'; ?>

@@ -34,14 +34,14 @@
   },
 
   "paginas": [
-    { "id": "P1", "pagina": "inicio",      "arquivo": "index.html",             "titulo": "Início",              "acesso": "publica" },
-    { "id": "P2", "pagina": "busca",       "arquivo": "busca.html",             "titulo": "Busca",               "acesso": "publica" },
-    { "id": "P3", "pagina": "titulo",      "arquivo": "titulo.html",            "titulo": "Detalhe do título",   "acesso": "publica" },
-    { "id": "P4", "pagina": "top250",      "arquivo": "top250.html",            "titulo": "Top 250",             "acesso": "publica" },
-    { "id": "P5", "pagina": "watchlist",   "arquivo": "watchlist.html",         "titulo": "Watchlist",           "acesso": "publica" },
-    { "id": "P6", "pagina": "login",       "arquivo": "admin/login.html",       "titulo": "Entrar",              "acesso": "publica" },
-    { "id": "P7", "pagina": "painel",      "arquivo": "admin/painel.html",      "titulo": "Painel",              "acesso": "restrita" },
-    { "id": "P8", "pagina": "titulo-form", "arquivo": "admin/titulo-form.html", "titulo": "Cadastro de título",  "acesso": "restrita" }
+    { "id": "P1", "pagina": "inicio",      "arquivo": "index.php",              "titulo": "Início",              "acesso": "publica" },
+    { "id": "P2", "pagina": "busca",       "arquivo": "busca.php",              "titulo": "Busca",               "acesso": "publica" },
+    { "id": "P3", "pagina": "titulo",      "arquivo": "titulo.php",             "titulo": "Detalhe do título",   "acesso": "publica" },
+    { "id": "P4", "pagina": "top250",      "arquivo": "top250.php",             "titulo": "Top 250",             "acesso": "publica" },
+    { "id": "P5", "pagina": "watchlist",   "arquivo": "watchlist.php",          "titulo": "Watchlist",           "acesso": "publica" },
+    { "id": "P6", "pagina": "login",       "arquivo": "admin/login.php",        "titulo": "Entrar",              "acesso": "publica" },
+    { "id": "P7", "pagina": "painel",      "arquivo": "admin/painel.php",       "titulo": "Painel",              "acesso": "restrita" },
+    { "id": "P8", "pagina": "titulo-form", "arquivo": "admin/titulo-form.php",  "titulo": "Cadastro de título",  "acesso": "restrita" }
   ],
 
   "regras": {
@@ -80,13 +80,6 @@
       "login_invalido": "E-mail ou senha inválidos.",
       "corrija": "Corrija os campos destacados."
     }
-  },
-
-  "admin_demo": {
-    "aviso": "Login de demonstração só para a Parte 2. Na Parte 3 a senha fica no MySQL com password_hash.",
-    "email": "admin@exemplo.com",
-    "senha": "admin123",
-    "nome": "Administrador"
   },
 
   "catalogo": {

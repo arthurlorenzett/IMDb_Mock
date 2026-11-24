@@ -120,7 +120,7 @@ function prepararVisualizacao() {
 function linkPagina(numero) {
   const p = parametros();
   p.set('pagina', numero);
-  return `busca.html?${escaparHtml(p.toString())}`;
+  return `busca.php?${escaparHtml(p.toString())}`;
 }
 
 function montarPaginacao(paginaAtual, totalPaginas) {
@@ -174,7 +174,7 @@ export async function iniciar() {
 
   if (resultados.length === 0) {
     lista.innerHTML = `<li class="estado-vazio"><i class="bi bi-search" aria-hidden="true"></i>
-      <h2>Nada por aqui</h2><p>Tente outro termo ou <a href="busca.html">limpe os filtros</a>.</p></li>`;
+      <h2>Nada por aqui</h2><p>Tente outro termo ou <a href="busca.php">limpe os filtros</a>.</p></li>`;
   } else {
     lista.innerHTML = htmlItens((pagina - 1) * porPagina, exibidos);
   }

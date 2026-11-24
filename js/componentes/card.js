@@ -17,7 +17,7 @@ export function urlPoster(titulo) {
 
 // Caminho para a ficha do título (as páginas do admin estão uma pasta abaixo)
 export function linkTitulo(id, ancora = '') {
-  return caminho(`titulo.html?id=${id}${ancora}`);
+  return caminho(`titulo.php?id=${id}${ancora}`);
 }
 
 /* ---- Botão Watchlist: o conteúdo muda conforme a variante e o estado ---- */
