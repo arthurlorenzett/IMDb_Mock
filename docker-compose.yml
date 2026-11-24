@@ -6,6 +6,12 @@ services:
       - "8080:80"
     volumes:
       - ./:/var/www/html
+    # Credenciais lidas pelo includes/config.php (fora do Docker ele usa o padrão do XAMPP)
+    environment:
+      DB_HOST: database
+      DB_NAME: imdb_clone
+      DB_USER: imdb_user
+      DB_PASS: imdb_password
     depends_on:
       database:
         condition: service_healthy
@@ -19,8 +25,9 @@ services:
       MYSQL_DATABASE: imdb_clone
       MYSQL_USER: imdb_user
       MYSQL_PASSWORD: imdb_password
+    # 3307 no computador, para não brigar com um MySQL/XAMPP já ligado na 3306
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./db/seed.sql:/docker-entrypoint-initdb.d/seed.sql:ro
