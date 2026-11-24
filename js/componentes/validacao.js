@@ -97,15 +97,17 @@ export function prepararFormulario(formulario, { validarExtra, aoEnviar } = {}) 
 
     if (!valido) {
       evento.preventDefault();
-        // Leva o foco ao primeiro campo com erro
-        formulario.querySelector('[aria-invalid="true"]')?.focus();
-        return;
+      // Leva o foco ao primeiro campo com erro
+      formulario.querySelector('[aria-invalid="true"]')?.focus();
+      return;
     }
-      if (aoEnviar) {
-          evento.preventDefault();
-          Promise.resolve(aoEnviar(formulario)).catch((erro) => {
-              console.error('Erro ao enviar formulário:', erro);
-          });
-      }
+    // Com aoEnviar, o JS envia por fetch (POST em JSON) e mostra a resposta do PHP;
+    // sem aoEnviar (login), o formulário segue normalmente por POST
+    if (aoEnviar) {
+      evento.preventDefault();
+      Promise.resolve(aoEnviar(formulario)).catch((erro) => {
+        console.error('Erro ao enviar formulário:', erro);
+      });
+    }
   });
 }

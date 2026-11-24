@@ -30,7 +30,7 @@ function mostrarNaoEncontrado() {
       <i class="bi bi-film" aria-hidden="true"></i>
       <h1>Título não encontrado</h1>
       <p>O endereço pode estar errado ou o título foi removido do catálogo.</p>
-      <a class="botao botao-primario" href="busca.html">Ver todos os títulos</a>
+      <a class="botao botao-primario" href="busca.php">Ver todos os títulos</a>
     </section>`;
 }
 
@@ -81,12 +81,12 @@ function preencherFicha(t, media, votos) {
 
   // Chips de gênero levam para a busca já filtrada
   document.querySelector('.lista-chips').innerHTML = t.generos.map((g) =>
-    `<li><a class="chip" href="busca.html?genero=${encodeURIComponent(g)}">${escaparHtml(g)}</a></li>`).join('');
+    `<li><a class="chip" href="busca.php?genero=${encodeURIComponent(g)}">${escaparHtml(g)}</a></li>`).join('');
 
   $('titulo-sinopse').textContent = t.sinopse;
 
   const linkBusca = (pessoa) =>
-    `<a href="busca.html?q=${encodeURIComponent(pessoa)}">${escaparHtml(pessoa)}</a>`;
+    `<a href="busca.php?q=${encodeURIComponent(pessoa)}">${escaparHtml(pessoa)}</a>`;
   const [direcao, elenco] = document.querySelectorAll('.ficha-equipe dd');
   direcao.innerHTML = t.direcao ? linkBusca(t.direcao) : '—';
   elenco.innerHTML = t.elenco.length
@@ -164,13 +164,19 @@ function prepararModalAvaliacao(avaliacoes) {
         const resultado = await resposta.json();
 
         if (!resposta.ok) {
+          // O PHP devolve os erros por campo (validação e RN01): mostra ao lado de
+          // cada um, sem apagar o que foi digitado
+          Object.entries(resultado.erros || {}).forEach(([campo, texto]) => {
+            const elemento = form.elements[campo];
+            if (elemento) mostrarErro(elemento instanceof RadioNodeList ? elemento[0] : elemento, texto);
+          });
           throw new Error(resultado.erro || 'Não foi possível enviar a avaliação.');
         }
 
         form.reset();
         form.elements.titulo_id.value = tituloId;
 
-        mostrarAlerta('sucesso', regras.RN02.mensagem);
+        mostrarAlerta('sucesso', resultado.mensagem || regras.RN02.mensagem);
 
       } catch (erro) {
         mostrarAlerta('erro', erro.message);
