@@ -5,8 +5,8 @@
    ========================================================================== */
 
 import { config } from '../nucleo/config.js';
-import { carregarDados, enviarAvaliacao } from '../nucleo/dados.js';
-import { avaliacoesVisiveis, estatisticas, emailJaAvaliou } from '../nucleo/regras.js';
+import { carregarDados } from '../nucleo/dados.js';
+import { avaliacoesVisiveis, estatisticas } from '../nucleo/regras.js';
 import {
   escaparHtml, formatarNota, formatarDuracao, formatarClassificacao, formatarTipo,
   formatarData, parametros, plural
@@ -134,42 +134,55 @@ function mostrarAlerta(tipo, texto) {
   alerta.hidden = false;
 }
 
+
+
 function prepararModalAvaliacao(avaliacoes) {
   const form = $('form-avaliacao');
   const regras = config().regras;
 
   prepararFormulario(form, {
-    aoEnviar() {
+    async aoEnviar() {
       const dados = Object.fromEntries(new FormData(form));
       const tituloId = Number(dados.titulo_id);
 
-      // RN01: mantém o que foi digitado e avisa no próprio modal
-      if (emailJaAvaliou(avaliacoes, tituloId, dados.email)) {
-        mostrarErro(form.elements.email, regras.RN01.mensagem);
-        mostrarAlerta('erro', regras.RN01.mensagem);
-        form.elements.email.focus();
-        return;
-      }
+      try {
+        const resposta = await fetch('api/enviar-avaliacao.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            titulo_id: tituloId,
+            nome: dados.nome.trim(),
+            email: dados.email.trim(),
+            nota: Number(dados.nota),
+            titulo: dados.titulo.trim(),
+            comentario: dados.comentario.trim()
+          })
+        });
 
-      enviarAvaliacao({
-        titulo_id: tituloId,
-        nome: dados.nome.trim(),
-        email: dados.email.trim(),
-        nota: Number(dados.nota),
-        titulo: dados.titulo.trim(),
-        comentario: dados.comentario.trim()
-      });
-      form.reset();
-      form.elements.titulo_id.value = tituloId; // reset() limparia o campo escondido
-      mostrarAlerta('sucesso', regras.RN02.mensagem);
+        const resultado = await resposta.json();
+
+        if (!resposta.ok) {
+          throw new Error(resultado.erro || 'Não foi possível enviar a avaliação.');
+        }
+
+        form.reset();
+        form.elements.titulo_id.value = tituloId;
+
+        mostrarAlerta('sucesso', regras.RN02.mensagem);
+
+      } catch (erro) {
+        mostrarAlerta('erro', erro.message);
+      }
     }
   });
 
-  // Ao fechar o modal, some o alerta da tentativa anterior
   $('modal-avaliacao').addEventListener('close', () => {
     $('alerta-avaliacao').hidden = true;
   });
 }
+
 
 export async function iniciar() {
   const { titulos, avaliacoes } = await carregarDados();

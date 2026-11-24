@@ -97,13 +97,15 @@ export function prepararFormulario(formulario, { validarExtra, aoEnviar } = {}) 
 
     if (!valido) {
       evento.preventDefault();
-      // Leva o foco ao primeiro campo com erro
-      formulario.querySelector('[aria-invalid="true"]')?.focus();
-      return;
+        // Leva o foco ao primeiro campo com erro
+        formulario.querySelector('[aria-invalid="true"]')?.focus();
+        return;
     }
-    if (aoEnviar) {
-      evento.preventDefault(); // na Parte 2 o JS trata o envio; na Parte 3 o PHP recebe o POST
-      aoEnviar(formulario);
-    }
+      if (aoEnviar) {
+          evento.preventDefault();
+          Promise.resolve(aoEnviar(formulario)).catch((erro) => {
+              console.error('Erro ao enviar formulário:', erro);
+          });
+      }
   });
 }

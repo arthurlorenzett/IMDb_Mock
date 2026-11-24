@@ -5,7 +5,7 @@
    ========================================================================== */
 
 import { config, caminho } from '../nucleo/config.js';
-import { carregarDados, salvarTitulo } from '../nucleo/dados.js';
+import { carregarDados } from '../nucleo/dados.js';
 import { exigirLogin } from '../nucleo/sessao.js';
 import { escaparHtml, parametros } from '../nucleo/util.js';
 import { prepararFormulario, mostrarErro } from '../componentes/validacao.js';
@@ -90,37 +90,59 @@ export async function iniciar() {
       mostrarErro(erroGeneros(), algum ? '' : config().validacao.mensagens.generos);
       return algum;
     },
-    aoEnviar() {
-      const f = form.elements;
-      const generos = [...form.querySelectorAll('input[name="generos[]"]:checked')].map((c) => c.value);
-      const tipo = form.querySelector('input[name="tipo"]:checked').value;
 
-      salvarTitulo({
-        ...(existente || {}),                     // mantém popularidade, banner, criado_em…
-        id: existente ? existente.id : null,
-        slug: f.titulo.value.trim().toLowerCase().normalize('NFD')
-          .replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
-        titulo: f.titulo.value.trim(),
-        tipo,
-        ano: Number(f.ano.value),
-        lancamento: f.lancamento.value || null,
-        duracao_min: Number(f.duracao.value) || null,
-        episodios: existente?.episodios ?? null,
-        classificacao: f.classificacao.value,
-        generos,
-        sinopse: f.sinopse.value.trim(),
-        direcao: f.direcao.value.trim(),
-        elenco: f.elenco.value.split(',').map((nome) => nome.trim()).filter(Boolean),
-        poster: f.poster.value.trim() || null,
-        banner: existente?.banner || null,
-        trailer: f.trailer.value.trim() || null,
-        popularidade: existente?.popularidade ?? 50,
-        destaque: existente?.destaque ?? false,
-        criado_em: existente?.criado_em || new Date().toISOString().slice(0, 19)
-      });
-      window.location.href = 'painel.html?msg=salvo';
-    }
+async aoEnviar() {
+  const f = form.elements;
+
+  const generos = [
+    ...form.querySelectorAll('input[name="generos[]"]:checked')
+  ].map(c => c.value);
+
+  const tipo = form.querySelector('input[name="tipo"]:checked').value;
+
+  const titulo = {
+    id: existente ? existente.id : null,
+
+    titulo: f.titulo.value.trim(),
+    tipo,
+    ano: Number(f.ano.value),
+    lancamento: f.lancamento.value || null,
+    duracao_min: Number(f.duracao.value) || null,
+    episodios: existente?.episodios ?? null,
+    classificacao: f.classificacao.value,
+    generos,
+
+    sinopse: f.sinopse.value.trim(),
+    direcao: f.direcao.value.trim(),
+    elenco: f.elenco.value
+      .split(',')
+      .map(nome => nome.trim())
+      .filter(Boolean),
+
+    poster: f.poster.value.trim() || null,
+    banner: existente?.banner || null,
+    trailer: f.trailer.value.trim() || null,
+
+    popularidade: existente?.popularidade ?? 50,
+    destaque: existente?.destaque ?? false
+  };
+
+  const resposta = await fetch('salvar-titulo.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(titulo)
   });
+
+  const resultado = await resposta.json();
+
+  if (!resposta.ok) {
+    throw new Error(resultado.erro || 'Não foi possível salvar o título.');
+  }
+
+  window.location.href = 'painel.html?msg=salvo';
+}  });
 
   // Ao marcar um gênero, o erro "escolha pelo menos um" some
   form.querySelector('.area-generos').addEventListener('change', () => {

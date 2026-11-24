@@ -5,7 +5,7 @@
    ========================================================================== */
 
 import { config } from '../nucleo/config.js';
-import { carregarDados, excluirTitulo, moderarAvaliacao } from '../nucleo/dados.js';
+import { carregarDados } from '../nucleo/dados.js';
 import { comEstatisticas } from '../nucleo/regras.js';
 import { exigirLogin } from '../nucleo/sessao.js';
 import { escaparHtml, formatarNota, normalizar, parametros } from '../nucleo/util.js';
@@ -21,6 +21,18 @@ const MENSAGENS = {
 };
 
 let temporizadorAlerta = null;
+
+async function carregarPendentes() {
+  const resposta = await fetch('avaliacoes-pendentes.php', {
+    credentials: 'same-origin'
+  });
+
+  if (!resposta.ok) {
+    throw new Error(`Erro ao carregar avaliações: ${resposta.status}`);
+  }
+
+  return resposta.json();
+}
 
 function mostrarAlerta(chave) {
   const alerta = document.getElementById('alerta-painel');
@@ -70,6 +82,7 @@ export async function iniciar() {
   if (!exigirLogin()) return;
 
   const dados = await carregarDados();
+    let avaliacoesPendentes = await carregarPendentes();
   const filtro = document.getElementById('filtro-titulos');
   const corpoTitulos = document.querySelector('#tabela-titulos tbody');
   const corpoPendentes = document.querySelector('#tabela-pendentes tbody');
@@ -85,22 +98,24 @@ export async function iniciar() {
       : '<tr><td colspan="7" class="centro">Nenhum título encontrado.</td></tr>';
   }
 
-  function desenharPendentes() {
-    const nomes = new Map(dados.titulos.map((t) => [t.id, t.titulo]));
-    const pendentes = dados.avaliacoes
-      .filter((a) => a.status === config().regras.RN02.status_inicial)
-      .sort((a, b) => a.criada_em.localeCompare(b.criada_em)); // mais antigas primeiro
-    corpoPendentes.innerHTML = pendentes.length
-      ? pendentes.map((a) => linhaPendente(a, nomes.get(a.titulo_id))).join('')
-      : '<tr><td colspan="5" class="centro">Nenhuma avaliação aguardando moderação.</td></tr>';
+function desenharPendentes() {
+  const pendentes = [...avaliacoesPendentes]
+    .sort((a, b) => a.criada_em.localeCompare(b.criada_em));
 
-    // Contadores "(n)" no título da seção e no menu do painel
-    document.querySelector('#titulo-pendentes .nota-votos').textContent = `(${pendentes.length})`;
-    const linkMenu = document.querySelector('#menu-admin a[href$="#avaliacoes"]');
-    if (linkMenu) {
-      linkMenu.innerHTML = `<i class="bi bi-chat-square-text" aria-hidden="true"></i> Avaliações (${pendentes.length})`;
-    }
+  corpoPendentes.innerHTML = pendentes.length
+    ? pendentes.map((a) => linhaPendente(a, a.nome_titulo)).join('')
+    : '<tr><td colspan="5" class="centro">Nenhuma avaliação aguardando moderação.</td></tr>';
+
+  document.querySelector('#titulo-pendentes .nota-votos').textContent =
+    `(${pendentes.length})`;
+
+  const linkMenu = document.querySelector('#menu-admin a[href$="#avaliacoes"]');
+
+  if (linkMenu) {
+    linkMenu.innerHTML =
+      `<i class="bi bi-chat-square-text" aria-hidden="true"></i> Avaliações (${pendentes.length})`;
   }
+}
 
   // Alerta só aparece quando há mensagem na URL (?msg=salvo)
   const msg = parametros().get('msg');
@@ -119,24 +134,111 @@ export async function iniciar() {
     abrirModal('modal-excluir');
   });
 
-  document.getElementById('confirmar-excluir').addEventListener('click', () => {
-    excluirTitulo(idParaExcluir);
+document.getElementById('confirmar-excluir').addEventListener('click', async () => {
+  if (!idParaExcluir) return;
+
+  const botao = document.getElementById('confirmar-excluir');
+  botao.disabled = true;
+
+  try {
+    const resposta = await fetch('excluir-titulo.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify({ id: idParaExcluir })
+    });
+
+    const resultado = await resposta.json();
+
+    if (!resposta.ok) {
+      throw new Error(resultado.erro || 'Erro ao excluir título.');
+    }
+
+    // Remove o título dos dados carregados no navegador
+    dados.titulos = dados.titulos.filter(
+      (t) => Number(t.id) !== idParaExcluir
+    );
+
+    // Remove as avaliações relacionadas ao título
+    dados.avaliacoes = dados.avaliacoes.filter(
+      (a) => Number(a.titulo_id) !== idParaExcluir
+    );
+
+    avaliacoesPendentes = avaliacoesPendentes.filter(
+      (a) => Number(a.titulo_id) !== idParaExcluir
+    );
+
     fecharModal('modal-excluir');
+
     desenharTitulos();
     desenharPendentes();
     mostrarAlerta('excluido');
-  });
 
-  // Aprovar/Rejeitar: muda o status e redesenha as duas tabelas (média recalculada)
-  corpoPendentes.addEventListener('click', (evento) => {
-    const botao = evento.target.closest('[data-status]');
-    if (!botao) return;
-    moderarAvaliacao(botao.dataset.idAvaliacao, botao.dataset.status);
+    idParaExcluir = null;
+
+  } catch (erro) {
+    console.error(erro);
+    alert(erro.message);
+
+  } finally {
+    botao.disabled = false;
+  }
+});
+
+// Aprovar/Rejeitar: envia a alteração para o PHP
+corpoPendentes.addEventListener('click', async (evento) => {
+  const botao = evento.target.closest('[data-status]');
+  if (!botao) return;
+
+  const id = Number(botao.dataset.idAvaliacao);
+  const status = botao.dataset.status;
+
+  botao.disabled = true;
+
+  try {
+    const resposta = await fetch('moderar-avaliacao.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'same-origin',
+      body: JSON.stringify({ id, status })
+    });
+
+    const resultado = await resposta.json();
+
+    if (!resposta.ok) {
+      throw new Error(resultado.erro || 'Erro ao moderar avaliação.');
+    }
+
+    // Atualiza a lista recebida do MySQL
+    avaliacoesPendentes = avaliacoesPendentes.filter(
+      (a) => Number(a.id) !== id
+    );
+
+    // Atualiza os dados locais usados no cálculo das médias
+    const avaliacaoLocal = dados.avaliacoes.find(
+      (a) => Number(a.id) === id
+    );
+
+    if (avaliacaoLocal) {
+      avaliacaoLocal.status = status;
+    }
+
     desenharPendentes();
     desenharTitulos();
-    mostrarAlerta(botao.dataset.status);
-    corpoPendentes.querySelector('button')?.focus(); // o foco não se perde ao sumir a linha
-  });
+    mostrarAlerta(status);
+
+    corpoPendentes.querySelector('button')?.focus();
+
+  } catch (erro) {
+    console.error(erro);
+    botao.disabled = false;
+    alert(erro.message);
+  }
+});
 
   desenharTitulos();
   desenharPendentes();

@@ -9,7 +9,7 @@
   },
 
   "dados": {
-    "fonte": "json",
+    "fonte": "api",
     "json": {
       "titulos": "data/titulos.json",
       "avaliacoes": "data/avaliacoes.json"
