@@ -1,98 +1,32 @@
 <?php
-
-require_once __DIR__ . '/../includes/config.php';
+/* ==========================================================================
+   api/enviar-avaliacao.php — POST (JSON) do modal "Avaliar" da página do
+   título. Valida no servidor (mesmos limites do formulário), aplica a RN01
+   (um e-mail por título) e grava como pendente (RN02).
+   Erros voltam por campo, para o JS mostrar ao lado de cada um sem apagar
+   o que foi digitado.
+   ========================================================================== */
 
 header('Content-Type: application/json; charset=utf-8');
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    exit(json_encode(['erro' => 'Método não permitido.']));
+require_once __DIR__ . '/../includes/config.php';
+
+[$avaliacao, $erros] = validar_avaliacao(ler_json());
+
+if ($avaliacao['titulo_id'] <= 0 || !titulo_existe($avaliacao['titulo_id'])) {
+    responder_json(['erro' => 'Título não encontrado.'], 404);
 }
 
-$dados = json_decode(file_get_contents('php://input'), true);
-
-if (!is_array($dados)) {
-    http_response_code(400);
-    exit(json_encode(['erro' => 'Dados inválidos.']));
+if ($erros) {
+    responder_json(['erro' => mensagem('corrija'), 'erros' => $erros], 422);
 }
 
-$tituloId = filter_var($dados['titulo_id'] ?? null, FILTER_VALIDATE_INT);
-$nome = trim($dados['nome'] ?? '');
-$email = trim($dados['email'] ?? '');
-$nota = filter_var($dados['nota'] ?? null, FILTER_VALIDATE_INT);
-$titulo = trim($dados['titulo'] ?? '');
-$comentario = trim($dados['comentario'] ?? '');
-
-if (
-    !$tituloId || $tituloId <= 0 ||
-    $nome === '' ||
-    strlen($nome) > 150 ||
-    !filter_var($email, FILTER_VALIDATE_EMAIL) ||
-    strlen($email) > 254 ||
-    $nota === false || $nota < 1 || $nota > 10 ||
-    strlen($titulo) > 150 ||
-    $comentario === ''
-) {
-    http_response_code(400);
-    exit(json_encode([
-        'erro' => 'Preencha corretamente os campos da avaliação.'
-    ], JSON_UNESCAPED_UNICODE));
+// RN01: confere antes de gravar; o UNIQUE do banco garante mesmo com dois envios ao mesmo tempo
+if (!rn01_pode_avaliar($avaliacao['titulo_id'], $avaliacao['email']) || !inserir_avaliacao($avaliacao)) {
+    responder_json(['erro' => rn01_mensagem(), 'erros' => ['email' => rn01_mensagem()]], 409);
 }
 
-try {
-    $sql = "
-        INSERT INTO avaliacoes (
-            titulo_id,
-            nome,
-            email,
-            nota,
-            titulo,
-            comentario,
-            status,
-            criada_em
-        ) VALUES (
-            :titulo_id,
-            :nome,
-            :email,
-            :nota,
-            :titulo,
-            :comentario,
-            'pendente',
-            NOW()
-        )
-    ";
-
-    $stmt = $pdo->prepare($sql);
-
-    $stmt->execute([
-        'titulo_id' => $tituloId,
-        'nome' => $nome,
-        'email' => $email,
-        'nota' => $nota,
-        'titulo' => $titulo,
-        'comentario' => $comentario
-    ]);
-
-    echo json_encode([
-        'sucesso' => true,
-        'mensagem' => 'Avaliação enviada para moderação.'
-    ], JSON_UNESCAPED_UNICODE);
-
-} catch (PDOException $erro) {
-    if ($erro->getCode() === '23000') {
-        http_response_code(409);
-
-        echo json_encode([
-            'erro' => 'Este e-mail já enviou uma avaliação para este título.'
-        ], JSON_UNESCAPED_UNICODE);
-
-        exit;
-    }
-
-    http_response_code(500);
-
-    echo json_encode([
-        'erro' => 'Não foi possível enviar sua avaliação.'
-    ], JSON_UNESCAPED_UNICODE);
-}
-
+responder_json([
+    'sucesso'  => true,
+    'mensagem' => site()['regras']['RN02']['mensagem']
+]);

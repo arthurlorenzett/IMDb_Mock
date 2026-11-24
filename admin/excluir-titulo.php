@@ -1,35 +1,26 @@
 <?php
-
-require_once __DIR__ . '/../includes/verificar-sessao.php';
-require_once __DIR__ . '/../includes/config.php';
+/* ==========================================================================
+   admin/excluir-titulo.php — POST (JSON, só com login): exclui um título.
+   As avaliações e os gêneros dele saem junto (ON DELETE CASCADE).
+   ========================================================================== */
 
 header('Content-Type: application/json; charset=utf-8');
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    exit(json_encode(['erro' => 'Método não permitido.']));
-}
+require_once __DIR__ . '/../includes/config.php';
+require_once __DIR__ . '/../includes/verificar-sessao.php';
 
-$dados = json_decode(file_get_contents('php://input'), true);
-
+$dados = ler_json();
 $id = filter_var($dados['id'] ?? null, FILTER_VALIDATE_INT);
 
 if (!$id || $id <= 0) {
-    http_response_code(400);
-    exit(json_encode(['erro' => 'ID do título inválido.']));
+    responder_json(['erro' => 'ID do título inválido.'], 400);
 }
 
-$sql = "DELETE FROM titulos WHERE id = :id";
-
-$stmt = $pdo->prepare($sql);
-$stmt->execute(['id' => $id]);
-
-if ($stmt->rowCount() === 0) {
-    http_response_code(404);
-    exit(json_encode(['erro' => 'Título não encontrado.']));
+if (!excluir_titulo($id)) {
+    responder_json(['erro' => 'Título não encontrado.'], 404);
 }
 
-echo json_encode([
-    'sucesso' => true,
+responder_json([
+    'sucesso'  => true,
     'mensagem' => 'Título excluído com sucesso.'
 ]);

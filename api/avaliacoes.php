@@ -1,47 +1,16 @@
 <?php
+/* ==========================================================================
+   api/avaliacoes.php — GET: só as avaliações APROVADAS em JSON (RN02), sem o
+   e-mail de quem avaliou. Pendentes e rejeitadas só aparecem no painel.
+   ========================================================================== */
 
 header('Content-Type: application/json; charset=utf-8');
 
 require_once __DIR__ . '/../includes/config.php';
 
 try {
-    $sql = "
-        SELECT
-            id,
-            titulo_id,
-            nome,
-            nota,
-            titulo,
-            comentario,
-            status,
-            criada_em
-        FROM avaliacoes
-        WHERE status = 'aprovada'
-        ORDER BY id
-    ";
-
-    $stmt = $pdo->query($sql);
-
-    $avaliacoes = $stmt->fetchAll();
-
-    foreach ($avaliacoes as &$avaliacao) {
-        $avaliacao['id'] = (int) $avaliacao['id'];
-        $avaliacao['titulo_id'] = (int) $avaliacao['titulo_id'];
-        $avaliacao['nota'] = (int) $avaliacao['nota'];
-    }
-
-    unset($avaliacao);
-
-    echo json_encode(
-        $avaliacoes,
-        JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
-    );
-
+    responder_json(listar_avaliacoes_aprovadas());
 } catch (PDOException $erro) {
-    http_response_code(500);
-
-    echo json_encode([
-        'erro' => 'Não foi possível consultar as avaliações.'
-    ], JSON_UNESCAPED_UNICODE);
+    error_log($erro->getMessage());
+    responder_json(['erro' => 'Não foi possível consultar as avaliações.'], 500);
 }
-

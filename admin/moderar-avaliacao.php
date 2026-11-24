@@ -1,44 +1,27 @@
 <?php
-
-require_once __DIR__ . '/../includes/verificar-sessao.php';
-require_once __DIR__ . '/../includes/config.php';
+/* ==========================================================================
+   admin/moderar-avaliacao.php — POST (JSON, só com login): aprova ou
+   rejeita uma avaliação pendente (RN02). Só as aprovadas entram na média.
+   ========================================================================== */
 
 header('Content-Type: application/json; charset=utf-8');
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    exit(json_encode(['erro' => 'Método não permitido.']));
-}
+require_once __DIR__ . '/../includes/config.php';
+require_once __DIR__ . '/../includes/verificar-sessao.php';
 
-$dados = json_decode(file_get_contents('php://input'), true);
-
+$dados = ler_json();
 $id = filter_var($dados['id'] ?? null, FILTER_VALIDATE_INT);
-$status = $dados['status'] ?? '';
+$status = texto($dados['status'] ?? '');
 
-if (!$id || !in_array($status, ['aprovada', 'rejeitada'], true)) {
-    http_response_code(400);
-    exit(json_encode(['erro' => 'Dados inválidos.']));
+if (!$id || !rn02_status_moderacao_valido($status)) {
+    responder_json(['erro' => 'Dados inválidos.'], 400);
 }
 
-$sql = "
-    UPDATE avaliacoes
-    SET status = :status
-    WHERE id = :id
-      AND status = 'pendente'
-";
-
-$stmt = $pdo->prepare($sql);
-$stmt->execute([
-    'status' => $status,
-    'id' => $id
-]);
-
-if ($stmt->rowCount() === 0) {
-    http_response_code(404);
-    exit(json_encode(['erro' => 'Avaliação não encontrada ou já moderada.']));
+if (!moderar_avaliacao($id, $status)) {
+    responder_json(['erro' => 'Avaliação não encontrada ou já moderada.'], 404);
 }
 
-echo json_encode([
-    'sucesso' => true,
+responder_json([
+    'sucesso'  => true,
     'mensagem' => 'Avaliação moderada com sucesso.'
 ]);
