@@ -44,3 +44,19 @@
 *   **Prompt completo:** "Acesse o site do IMDb e, com base nele, sugira melhorias na interface do nosso site."
 *   **Como a resposta foi aproveitada ou modificada:** Aprovamos as alterações.
 
+# Parte 3 (Implementação BackEnd)
+
+## Uso 5: Verificação de requisitos
+
+*   **Ferramenta utilizada:** Claude
+*   **Parte do trabalho a que se refere:** Backend
+*   **Prompt completo:** "Verifique se os requisitos do trabalho foram atendidos"
+*   **Como a resposta foi aproveitada ou modificada:** Analisamos o que foi sugerido e implementamos as alterações necessárias.
+
+## Uso 6: REDME.md
+
+*   **Ferramenta utilizada:** Claude
+*   **Parte do trabalho a que se refere:** Site
+*   **Prompt completo:** "Faça o REDME.md com as orientações para teste do site"
+*   **Como a resposta foi aproveitada ou modificada:** Aprovamos o REDME.md.
+
