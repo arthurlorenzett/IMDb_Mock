@@ -273,7 +273,6 @@ function validar_titulo(array $entrada): array
         'elenco'        => array_values(array_filter(array_map('texto', $elenco), 'strlen')),
         'poster'        => texto($entrada['poster'] ?? ''),
         'banner'        => texto($entrada['banner'] ?? ''),
-        'trailer'       => texto($entrada['trailer'] ?? ''),
         // Só aceita gêneros da lista oficial (o HTML pode ser alterado no navegador)
         'generos'       => array_values(array_intersect(array_map('texto', $generos), $catalogo['generos'])),
         'episodios'     => filter_var($entrada['episodios'] ?? null, FILTER_VALIDATE_INT) ?: null,
@@ -314,7 +313,7 @@ function validar_titulo(array $entrada): array
     if (!$dados['generos']) {
         $erros['generos'] = mensagem('generos');
     }
-    foreach (['poster', 'trailer', 'banner'] as $campo) {
+    foreach (['poster', 'banner'] as $campo) {
         if ($erro = erro_url($dados[$campo])) {
             $erros[$campo] = $erro;
         }

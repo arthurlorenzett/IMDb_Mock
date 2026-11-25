@@ -112,12 +112,6 @@ require __DIR__ . '/../includes/cabecalho.php';
           <figcaption class="dica">Prévia</figcaption>
         </figure>
 
-        <div class="campo area-trailer">
-          <label class="rotulo" for="titulo-trailer">URL do trailer</label>
-          <input class="controle" type="url" id="titulo-trailer" name="trailer" pattern="https://.*" placeholder="https://..." aria-describedby="erro-titulo-trailer">
-          <p class="mensagem-erro" id="erro-titulo-trailer" aria-live="polite"></p>
-        </div>
-
         <div class="campo area-direcao">
           <label class="rotulo" for="titulo-direcao">Direção</label>
           <input class="controle" type="text" id="titulo-direcao" name="direcao" maxlength="120" placeholder="Nome da direção">

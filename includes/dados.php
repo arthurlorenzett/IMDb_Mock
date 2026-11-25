@@ -12,7 +12,7 @@ const SQL_TITULO = "
     SELECT
         t.id, t.slug, t.titulo, t.tipo, t.ano, t.lancamento, t.duracao_min,
         t.episodios, t.classificacao, t.sinopse, t.direcao, t.elenco,
-        t.poster, t.banner, t.trailer, t.popularidade, t.destaque, t.criado_em,
+        t.poster, t.banner, t.popularidade, t.destaque, t.criado_em,
         GROUP_CONCAT(g.nome ORDER BY g.nome SEPARATOR '|||') AS generos
     FROM titulos t
     LEFT JOIN titulo_genero tg ON tg.titulo_id = t.id
@@ -104,7 +104,6 @@ function salvar_titulo(array $d, ?int $id = null): int
         'elenco'        => implode(', ', $d['elenco']),
         'poster'        => $d['poster'] ?: null,
         'banner'        => $d['banner'] ?: null,
-        'trailer'       => $d['trailer'] ?: null,
         'popularidade'  => $d['popularidade'],
         'destaque'      => $d['destaque'] ? 1 : 0
     ];
@@ -117,11 +116,11 @@ function salvar_titulo(array $d, ?int $id = null): int
                 INSERT INTO titulos (
                     slug, titulo, tipo, ano, lancamento, duracao_min,
                     episodios, classificacao, sinopse, direcao, elenco,
-                    poster, banner, trailer, popularidade, destaque, criado_em
+                    poster, banner, popularidade, destaque, criado_em
                 ) VALUES (
                     :slug, :titulo, :tipo, :ano, :lancamento, :duracao_min,
                     :episodios, :classificacao, :sinopse, :direcao, :elenco,
-                    :poster, :banner, :trailer, :popularidade, :destaque, :criado_em
+                    :poster, :banner, :popularidade, :destaque, :criado_em
                 )
             ";
             $pdo->prepare($sql)->execute($campos);
@@ -133,7 +132,7 @@ function salvar_titulo(array $d, ?int $id = null): int
                     lancamento = :lancamento, duracao_min = :duracao_min,
                     episodios = :episodios, classificacao = :classificacao,
                     sinopse = :sinopse, direcao = :direcao, elenco = :elenco,
-                    poster = :poster, banner = :banner, trailer = :trailer,
+                    poster = :poster, banner = :banner,
                     popularidade = :popularidade, destaque = :destaque
                 WHERE id = :id
             ";

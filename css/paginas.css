@@ -312,7 +312,7 @@
   line-height: var(--alt-h2);
 }
 
-/* Mobile: trailer em cima; pôster e ações embaixo */
+/* Mobile: cena em cima; pôster e ações embaixo */
 .ficha-midia {
   display: grid;
   grid-template-columns: 110px 1fr;
@@ -324,44 +324,18 @@
   border-radius: var(--raio-card);
 }
 
-.trailer {
+.cena {
   position: relative;
   grid-column: 1 / -1;
   border-radius: var(--raio-card);
   overflow: hidden;
 }
 
-.trailer img {
+.cena img {
   width: 100%;
   height: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-}
-
-.trailer-play {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  gap: var(--espaco-2);
-  padding: var(--espaco-3);
-  border: 0;
-  background: linear-gradient(transparent 50%, var(--cor-veu-foto));
-  color: var(--cor-sobre-foto);  /* fica sobre a foto nos dois temas */
-  font-size: var(--tam-h2);
-  font-weight: var(--peso-medio);
-  cursor: pointer;
-}
-
-.trailer-play .bi {
-  font-size: 3rem;
-  line-height: 1;
-  transition: color var(--transicao), transform var(--transicao);
-}
-
-.trailer-play:hover .bi {
-  color: var(--cor-destaque);
-  transform: scale(1.1);
 }
 
 .ficha-acoes {
@@ -449,7 +423,7 @@
   }
 }
 
-/* Desktop: pôster | trailer | ações lado a lado (wireframe P3) */
+/* Desktop: pôster | cena | ações lado a lado (wireframe P3) */
 @media (min-width: 1024px) {
   .ficha-midia {
     grid-template-columns: 1fr 3fr 1.2fr;
@@ -457,14 +431,14 @@
   }
 
   .ficha-poster,
-  .trailer,
+  .cena,
   .ficha-acoes {
     grid-row: auto;
     grid-column: auto;
   }
 
   .ficha-poster,
-  .trailer img {
+  .cena img {
     height: 100%;
   }
 }
@@ -558,18 +532,6 @@
   .top-meta {
     display: block;
   }
-}
-
-/* Modal do trailer (P3): cena em 16:9 ocupando a largura do modal */
-.modal-trailer {
-  width: min(720px, calc(100% - 2rem));
-}
-
-.modal-trailer img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border-radius: var(--raio-card);
 }
 
 /* ==========================================================================
@@ -753,7 +715,6 @@
     "generos"
     "poster"
     "previa"
-    "trailer"
     "direcao"
     "elenco"
     "sinopse"
@@ -768,7 +729,6 @@
 .area-generos       { grid-area: generos; }
 .area-poster        { grid-area: poster; }
 .area-previa        { grid-area: previa; }
-.area-trailer       { grid-area: trailer; }
 .area-direcao       { grid-area: direcao; }
 .area-elenco        { grid-area: elenco; }
 .area-sinopse       { grid-area: sinopse; }
@@ -804,7 +764,7 @@
       "nome    tipo          tipo"
       "numeros classificacao classificacao"
       "generos poster        previa"
-      "direcao trailer       previa"
+      "direcao direcao       previa"
       "elenco  elenco        elenco"
       "sinopse sinopse       sinopse"
       "acoes   acoes         acoes";

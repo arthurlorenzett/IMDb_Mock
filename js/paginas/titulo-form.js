@@ -55,7 +55,6 @@ function preencher(form, t) {
   form.elements.duracao.value = t.duracao_min || '';
   form.elements.classificacao.value = t.classificacao;
   form.elements.poster.value = t.poster || '';
-  form.elements.trailer.value = t.trailer || '';
   form.elements.direcao.value = t.direcao || '';
   form.elements.elenco.value = t.elenco.join(', ');
   form.elements.sinopse.value = t.sinopse;
@@ -119,7 +118,6 @@ async aoEnviar() {
 
     poster: f.poster.value.trim() || null,
     banner: existente?.banner || null,
-    trailer: f.trailer.value.trim() || null,
 
     popularidade: existente?.popularidade ?? 50,
     destaque: existente?.destaque ?? false
