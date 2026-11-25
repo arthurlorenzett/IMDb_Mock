@@ -95,7 +95,7 @@ export function cartaoTitulo(titulo) {
 }
 
 /* ---- Item de lista (resultados da busca e Watchlist) ----
-   acoes: "watchlist" mostra o botão + Watchlist; "remover" mostra Trailer e Remover */
+   acoes: "watchlist" mostra o botão + Watchlist; "remover" mostra Remover */
 export function itemLista(titulo, numero, acoes = 'watchlist') {
   const nome = escaparHtml(titulo.titulo);
   const metadados = [titulo.ano, formatarClassificacao(titulo.classificacao), formatarDuracao(titulo), titulo.generos.join(', ')]
@@ -105,8 +105,7 @@ export function itemLista(titulo, numero, acoes = 'watchlist') {
   const votos = titulo.votos ? ` <span class="nota-votos">(${plural(titulo.votos, 'voto', 'votos')})</span>` : '';
 
   const botoes = acoes === 'remover'
-    ? `<a class="botao botao-contorno botao-pequeno" href="${linkTitulo(titulo.id, '#trailer')}"><i class="bi bi-play-fill" aria-hidden="true"></i> Trailer<span class="visualmente-oculto"> de ${nome}</span></a>
-       <button class="botao botao-contorno botao-pequeno botao-remover" type="button" data-id="${titulo.id}">
+    ? `<button class="botao botao-contorno botao-pequeno botao-remover" type="button" data-id="${titulo.id}">
          <i class="bi bi-x-lg" aria-hidden="true"></i> Remover<span class="visualmente-oculto"> ${nome}</span>
        </button>`
     : botaoWatchlist(titulo, 'lista', 'botao-secundario');

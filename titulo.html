@@ -110,26 +110,18 @@
         </div>
       </header>
 
-      <!-- Mídia: pôster, trailer e ações principais -->
+      <!-- Mídia: pôster, cena e ações principais -->
       <div class="ficha-midia">
         <img class="poster ficha-poster" src="img/sem-poster.svg" alt="" width="300" height="450">
 
-        <!-- Trailer: imagem de capa com botão; o JS pode abrir um modal com o vídeo -->
-        <figure class="trailer">
+        <!-- Cena do título (o JS preenche com a imagem de banner) -->
+        <figure class="cena">
           <img src="img/sem-poster.svg" alt="" width="1280" height="720">
-          <button class="trailer-play" id="botao-trailer" type="button">
-            <i class="bi bi-play-circle-fill" aria-hidden="true"></i>
-            <span>Trailer <span class="visualmente-oculto"></span></span>
-          </button>
-          <figcaption class="visualmente-oculto">Trailer do título</figcaption>
         </figure>
 
         <div class="ficha-acoes">
           <button class="botao botao-primario botao-grande botao-bloco botao-watchlist" type="button" aria-pressed="false">
             <i class="bi bi-plus-lg" aria-hidden="true"></i> Adicionar à Watchlist
-          </button>
-          <button class="botao botao-contorno botao-bloco ficha-acao-secundaria" type="button" data-abrir-trailer>
-            <i class="bi bi-play-fill" aria-hidden="true"></i> Assistir trailer
           </button>
           <a class="botao botao-contorno botao-bloco ficha-acao-secundaria" href="#">
             <i class="bi bi-images" aria-hidden="true"></i> Ver foto
@@ -248,26 +240,6 @@
       </form>
     </dialog>
 
-    <!-- ===== Modal: trailer (o JS preenche a cena e o link para o vídeo no IMDb) ===== -->
-    <dialog class="modal modal-trailer" id="modal-trailer" aria-labelledby="titulo-modal-trailer">
-      <div class="modal-topo">
-        <h2 id="titulo-modal-trailer">Trailer</h2>
-        <button class="botao botao-contorno botao-icone" type="button" data-fechar-modal>
-          <i class="bi bi-x-lg" aria-hidden="true"></i>
-          <span class="visualmente-oculto">Fechar</span>
-        </button>
-      </div>
-      <div class="modal-corpo">
-        <img id="trailer-imagem" src="img/sem-poster.svg" alt="" width="1280" height="720">
-        <p class="modal-texto" id="trailer-texto">O vídeo do trailer abre no site do IMDb, em uma nova aba.</p>
-      </div>
-      <div class="modal-acoes">
-        <a class="botao botao-primario" id="trailer-link" href="#" target="_blank" rel="noopener" hidden>
-          <i class="bi bi-play-fill" aria-hidden="true"></i> Abrir trailer
-        </a>
-        <button class="botao botao-contorno" type="button" data-fechar-modal>Fechar</button>
-      </div>
-    </dialog>
   </main>
 
   <!-- ===== Rodapé (aviso de clone educacional exigido pelo enunciado) ===== -->

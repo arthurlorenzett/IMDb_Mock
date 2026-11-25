@@ -1,7 +1,7 @@
 # IMDb Clone (Trabalho III · Desenvolvimento Web I)
 
 Clone educacional do [IMDb](https://www.imdb.com/), feito para a disciplina de Desenvolvimento Web I do IFC Campus Concórdia (Prof. Alisson Borges Zanetti).
-**Este não é o site oficial do IMDb** e não tem vínculo com o IMDb ou a Amazon. As informações dos filmes e séries (título, ano, duração, gêneros, classificação, direção, elenco e link do trailer) foram consultadas no IMDb; as sinopses foram escritas pelo grupo. Pôsteres e imagens de cena são carregados direto do IMDb e pertencem aos seus detentores. **Avaliações e usuários são ilustrativos.**
+**Este não é o site oficial do IMDb** e não tem vínculo com o IMDb ou a Amazon. As informações dos filmes e séries (título, ano, duração, gêneros, classificação, direção e elenco) foram consultadas no IMDb; as sinopses foram escritas pelo grupo. Pôsteres e imagens de cena são carregados direto do IMDb e pertencem aos seus detentores. **Avaliações e usuários são ilustrativos.**
 
 - **Site reproduzido:** IMDb
 - **Grupo 9:** Arthur Lorenzett, Lorenzo May e Carlos Conceição
@@ -16,7 +16,7 @@ O site permite navegar por um catálogo de 24 filmes e séries reais, buscar com
 |---|---|---|
 | P1 · Início | `index.html` | Carrossel de destaques, Top da semana e "Em alta" |
 | P2 · Busca | `busca.html` | Busca por termo e filtros (gênero, ano, nota, tipo), ordenação, grade/lista e paginação |
-| P3 · Título | `titulo.html?id=` | Ficha do título, avaliações aprovadas, modal de avaliação e trailer |
+| P3 · Título | `titulo.html?id=` | Ficha do título, avaliações aprovadas, modal de avaliação |
 | P4 · Top 250 | `top250.html` | Tabela do ranking com ordenação por coluna e filtro de gênero |
 | P5 · Watchlist | `watchlist.html` | Lista salva no navegador, com ordenação, filtro e limpeza |
 | P6 · Login | `admin/login.html` | Entrada da área administrativa |

@@ -8,7 +8,7 @@
   /* ---- Cores fixas (iguais nos dois temas) ---- */
   --cor-destaque: #F5C518;        /* botão primário, estrelas, barra dos títulos */
   --cor-sobre-destaque: #000000;  /* texto em cima do amarelo (contraste 12,9:1) */
-  --cor-sobre-foto: #FFFFFF;      /* texto e setas em cima de fotos (carrossel, trailer) */
+  --cor-sobre-foto: #FFFFFF;      /* texto e setas em cima de fotos (carrossel) */
   --cor-veu-foto: rgba(0, 0, 0, 0.8);        /* degradê que garante leitura sobre a foto */
   --cor-veu-leve: rgba(0, 0, 0, 0.45);       /* fundo das setas do carrossel */
   --cor-borda-foto: rgba(255, 255, 255, 0.6); /* borda das setas e indicadores do carrossel */

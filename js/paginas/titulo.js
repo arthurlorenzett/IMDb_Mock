@@ -57,15 +57,9 @@ function preencherFicha(t, media, votos) {
   poster.src = urlPoster(t);
   poster.alt = `Pôster de ${t.titulo}`;
 
-  const capa = document.querySelector('.trailer img');
+  const capa = document.querySelector('.cena img');
   capa.src = t.banner || urlPoster(t);
-  capa.alt = `Cena ilustrativa do trailer de ${t.titulo}`;
-  $('botao-trailer').querySelector('.visualmente-oculto').textContent = `de ${t.titulo}`;
-
-  // Botões de trailer abrem o modal do trailer
-  document.querySelectorAll('#botao-trailer, [data-abrir-trailer]').forEach((botao) => {
-    botao.dataset.abrirModal = 'modal-trailer';
-  });
+  capa.alt = `Cena de ${t.titulo}`;
 
   // Botão principal da Watchlist (amarelo)
   const botaoWatchlist = document.querySelector('.ficha-acoes .botao-watchlist');
@@ -92,17 +86,6 @@ function preencherFicha(t, media, votos) {
   elenco.innerHTML = t.elenco.length
     ? `<ul class="lista-elenco">${t.elenco.map((p) => `<li>${linkBusca(p)}</li>`).join('')}</ul>`
     : '—';
-
-  // Modal do trailer: mostra a cena e, se houver, o link para o vídeo no IMDb
-  $('titulo-modal-trailer').textContent = `Trailer: ${t.titulo}`;
-  $('trailer-imagem').src = capa.src;
-  $('trailer-imagem').alt = capa.alt;
-  const link = $('trailer-link');
-  link.hidden = !t.trailer;
-  if (t.trailer) link.href = t.trailer;
-  $('trailer-texto').textContent = t.trailer
-    ? 'O vídeo do trailer abre no site do IMDb, em uma nova aba.'
-    : 'Este título ainda não tem trailer cadastrado.';
 
   $('titulo-modal-avaliacao').innerHTML = `Avaliar: ${nome}`;
   document.querySelector('#form-avaliacao input[name="titulo_id"]').value = t.id;
@@ -189,7 +172,6 @@ export async function iniciar() {
   $('ficha-titulo').hidden = false;
   $('avaliacoes').hidden = false;
 
-  // Links "Avaliar" e "Trailer" de outras páginas chegam com #avaliar / #trailer
+  // O link "Avaliar" de outras páginas chega com #avaliar
   if (window.location.hash === '#avaliar') abrirModal('modal-avaliacao');
-  if (window.location.hash === '#trailer') abrirModal('modal-trailer');
 }
