@@ -53,10 +53,10 @@
 *   **Prompt completo:** "Verifique se os requisitos do trabalho foram atendidos"
 *   **Como a resposta foi aproveitada ou modificada:** Analisamos o que foi sugerido e implementamos as alterações necessárias.
 
-## Uso 6: REDME.md
+## Uso 6: README.md
 
 *   **Ferramenta utilizada:** Claude
 *   **Parte do trabalho a que se refere:** Site
-*   **Prompt completo:** "Faça o REDME.md com as orientações para teste do site"
+*   **Prompt completo:** "Faça o README.md com as orientações para teste do site"
 *   **Como a resposta foi aproveitada ou modificada:** Aprovamos o REDME.md.
 
