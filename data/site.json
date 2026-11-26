@@ -5,7 +5,7 @@
     "integrantes": ["Arthur Lorenzett", "Lorenzo May", "Carlos Conceição"],
     "repositorio": "https://github.com/arthurlorenzett/IMDb_Mock",
     "site_publicado": "https://arthurlorenzett.github.io/IMDb_Mock/",
-    "aviso_rodape": "IMDb Clone: trabalho acadêmico feito apenas para fins educacionais. Este não é o site oficial do IMDb e não representa o IMDb nem a Amazon. As informações dos filmes e séries foram consultadas no IMDb; os pôsteres e as imagens pertencem aos seus detentores e são exibidos a partir do IMDb; avaliações e usuários são ilustrativos."
+    "aviso_rodape": "IMDb Clone: trabalho acadêmico feito apenas para fins educacionais. Este não é o site oficial do IMDb e não representa o IMDb nem a Amazon. As informações dos filmes e séries foram consultadas no IMDb; os pôsteres e as imagens pertencem aos seus detentores e ficam salvos no próprio site; os trailers são fictícios, feitos pelo grupo; avaliações e usuários são ilustrativos."
   },
 
   "dados": {
@@ -68,7 +68,7 @@
       "obrigatorio": "Preencha este campo.",
       "obrigatorio_opcao": "Escolha uma opção.",
       "email": "Informe um e-mail válido, como nome@exemplo.com.",
-      "url": "Informe um endereço válido começando com https://.",
+      "url": "Informe um caminho local começando com img/ (ex.: img/titulos/nome-poster.jpg) ou um endereço https://.",
       "curto": "Use pelo menos {min} caracteres.",
       "longo": "Use no máximo {max} caracteres.",
       "menor": "O valor mínimo é {min}.",

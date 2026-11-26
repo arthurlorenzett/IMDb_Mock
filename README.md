@@ -1,7 +1,7 @@
 # IMDb Clone (Trabalho III · Desenvolvimento Web I)
 
-Clone educacional do [IMDb](https://www.imdb.com/) para a disciplina de Desenvolvimento Web I do IFC Campus Concórdia.
-**Não é o site oficial do IMDb** e não tem vínculo com o IMDb ou a Amazon. Os dados dos títulos foram consultados no IMDb, as sinopses foram escritas pelo grupo e os pôsteres pertencem aos seus detentores. Avaliações e usuários são ilustrativos.
+Clone educacional do IMDb para a disciplina de Desenvolvimento Web I do IFC Campus Concórdia.
+**Não é o site oficial do IMDb** e não tem vínculo com o IMDb ou a Amazon. Os dados dos títulos foram consultados no IMDb, as sinopses foram escritas pelo grupo e os pôsteres pertencem aos seus detentores (salvos em `img/titulos/`). Os trailers em `video/trailers/` são fictícios, gerados pelo grupo. O site não tem links nem imagens carregadas do IMDb original. Avaliações e usuários são ilustrativos.
 
 - **Grupo 9:** Arthur Lorenzett, Lorenzo May e Carlos Conceição
 - **Repositório:** https://github.com/arthurlorenzett/IMDb_Mock

@@ -19,8 +19,8 @@
       "Morgan Freeman",
       "Bob Gunton"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2UxYWVkNGY2ZjljXkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BNjQ2NDA3MDcxMF5BMl5BanBnXkFtZTgwMjE5NTU0NzE@._V1_SX1280.jpg",
+    "poster": "img/titulos/um-sonho-de-liberdade-poster.jpg",
+    "banner": "img/titulos/um-sonho-de-liberdade-banner.jpg",
     "popularidade": 90,
     "destaque": false,
     "criado_em": "2026-11-01T10:00:00"
@@ -46,8 +46,8 @@
       "Al Pacino",
       "James Caan"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BYTRmMjkwYzYtYTRiMi00NDJjLTk1NjctMDA3MjY2ZWIyMGQ5XkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BYWNlN2U4YjQtMzI3NC00ZjkxLWEwMTItYWRlNDUxYTYwYjVlXkEyXkFqcGdeQWpvaG5oYXJ0._V1_SX1280.jpg",
+    "poster": "img/titulos/o-poderoso-chefao-poster.jpg",
+    "banner": "img/titulos/o-poderoso-chefao-banner.jpg",
     "popularidade": 86,
     "destaque": false,
     "criado_em": "2026-11-01T10:05:00"
@@ -73,8 +73,8 @@
       "Heath Ledger",
       "Aaron Eckhart"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BMTRkYjU1MjQtODMxMS00YTNmLThkOTYtZThlMjE4YWZkZDI0XkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BNWJkYWJlOWMtY2ZhZi00YWM0LTliZDktYmRiMGYwNzczMTZhXkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_SX1280.jpg",
+    "poster": "img/titulos/batman-o-cavaleiro-das-trevas-poster.jpg",
+    "banner": "img/titulos/batman-o-cavaleiro-das-trevas-banner.jpg",
     "popularidade": 95,
     "destaque": true,
     "criado_em": "2026-11-01T10:10:00"
@@ -101,8 +101,8 @@
       "Joseph Gordon-Levitt",
       "Elliot Page"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BZmIxYzJkYWQtOWQ4ZS00NjhlLTk0OTMtN2I4ZWQxZGEyZDVhXkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BMTQ1ZmIzOTAtNDcwZi00NDVkLWE4NWItYWNhZGY1MmVlZGU0XkEyXkFqcGdeQWRvb2xpbmhk._V1_SX1280.jpg",
+    "poster": "img/titulos/a-origem-poster.jpg",
+    "banner": "img/titulos/a-origem-banner.jpg",
     "popularidade": 88,
     "destaque": false,
     "criado_em": "2026-11-01T10:15:00"
@@ -128,8 +128,8 @@
       "Anne Hathaway",
       "Jessica Chastain"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BMmUwMmFlMzktYWVlNy00N2I0LWFhMTYtZWI2ZTM4N2I3ZTk0XkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BNjM5OTQzMTg4N15BMl5BanBnXkFtZTgwOTgyMjM0NTE@._V1_SX1280.jpg",
+    "poster": "img/titulos/interestelar-poster.jpg",
+    "banner": "img/titulos/interestelar-banner.jpg",
     "popularidade": 92,
     "destaque": true,
     "criado_em": "2026-11-01T10:20:00"
@@ -155,8 +155,8 @@
       "Leandro Firmino",
       "Matheus Nachtergaele"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BNTUyODNkNTItMGUwNi00MTlhLWE5YzMtOTA5MTljNTFhNGRhXkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BNTQzY2M4ZTctZWRjZS00NzlmLWI4YzgtMDUzZGU5YjlmYzkxXkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_SX1280.jpg",
+    "poster": "img/titulos/cidade-de-deus-poster.jpg",
+    "banner": "img/titulos/cidade-de-deus-banner.jpg",
     "popularidade": 84,
     "destaque": true,
     "criado_em": "2026-11-01T10:25:00"
@@ -183,8 +183,8 @@
       "Aaron Paul",
       "Anna Gunn"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BMzU5ZGYzNmQtMTdhYy00OGRiLTg0NmQtYjVjNzliZTg1ZGE4XkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BMTJiMzgwZTktYzZhZC00YzhhLWEzZDUtMGM2NTE4MzQ4NGFmXkEyXkFqcGdeQWpybA@@._V1_SX1280.jpg",
+    "poster": "img/titulos/breaking-bad-poster.jpg",
+    "banner": "img/titulos/breaking-bad-banner.jpg",
     "popularidade": 99,
     "destaque": true,
     "criado_em": "2026-11-01T10:30:00"
@@ -210,8 +210,8 @@
       "Lee Sun-kyun",
       "Cho Yeo-jeong"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BYjk1Y2U4MjQtY2ZiNS00OWQyLWI3MmYtZWUwNmRjYWRiNWNhXkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BYWJjNWYzMzItYmEyNC00ODdmLWJmOGEtMWY0N2E2NGJlNTY0XkEyXkFqcGdeQWFybm8@._V1_SX1280.jpg",
+    "poster": "img/titulos/parasita-poster.jpg",
+    "banner": "img/titulos/parasita-banner.jpg",
     "popularidade": 80,
     "destaque": false,
     "criado_em": "2026-11-01T10:35:00"
@@ -238,8 +238,8 @@
       "Selton Mello",
       "Rogério Cardoso"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BYzE4YzlmNjctNGFmOC00Nzg3LWFlOWQtMDU4YTA0MTJhODY3XkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BOTliNTYyZTgtMjQzYS00ODVlLWFkMWEtMGVjZmM0MTJlMzJmXkEyXkFqcGdeQWRpZWdtb25n._V1_SX1280.jpg",
+    "poster": "img/titulos/o-auto-da-compadecida-poster.jpg",
+    "banner": "img/titulos/o-auto-da-compadecida-banner.jpg",
     "popularidade": 78,
     "destaque": false,
     "criado_em": "2026-11-01T10:40:00"
@@ -265,8 +265,8 @@
       "Shelley Duvall",
       "Danny Lloyd"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BMGMzODJhZmYtODFhOC00N2Y2LThkMDEtNzAxMGUwMTFlNWQxXkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BN2NmM2ZlMmMtN2Q0MS00N2FkLWE4NzUtMzljNTIyNGJjNmE0XkEyXkFqcGdeQTNwaW5nZXN0._V1_SX1280.jpg",
+    "poster": "img/titulos/o-iluminado-poster.jpg",
+    "banner": "img/titulos/o-iluminado-banner.jpg",
     "popularidade": 74,
     "destaque": false,
     "criado_em": "2026-11-01T10:45:00"
@@ -293,8 +293,8 @@
       "Rumi Hiiragi",
       "Mari Natsuki"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BYmZmMmM4OTYtMDkyNi00ZDI5LThiODItNzhlZGI3ZDJmZDZiXkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BMzZjOWEyNTEtNjhmMC00YmZlLTkyMzAtM2Y5MzFjYmJlODIzXkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_SX1280.jpg",
+    "poster": "img/titulos/a-viagem-de-chihiro-poster.jpg",
+    "banner": "img/titulos/a-viagem-de-chihiro-banner.jpg",
     "popularidade": 82,
     "destaque": false,
     "criado_em": "2026-11-01T10:50:00"
@@ -318,8 +318,8 @@
     "elenco": [
       "David Attenborough"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BMzY4NDBkMWYtYzdkYy00YzBjLWJmODctMWM4YjYzZTdjNWE5XkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BMzBjOGVlODctMjgzNi00OGMwLTkzYjYtYTIwZjcyZDUwOTQ2XkEyXkFqcGdeQXVyNzkyNzc3NjU@._V1_SX1280.jpg",
+    "poster": "img/titulos/planeta-terra-ii-poster.jpg",
+    "banner": "img/titulos/planeta-terra-ii-banner.jpg",
     "popularidade": 70,
     "destaque": false,
     "criado_em": "2026-11-01T10:55:00"
@@ -345,8 +345,8 @@
       "Laurence Fishburne",
       "Carrie-Anne Moss"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BNThiYTQzOTUtNmFjYy00OWEwLTg2NWUtMmM3NGE0YjFjOWRjXkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BNDQ4NTRmN2ItYjgzMS00MzY3LWEwNmYtYmE2ODllZDdhNGI1XkEyXkFqcGdeQXdvbmtpbQ@@._V1_SX1280.jpg",
+    "poster": "img/titulos/matrix-poster.jpg",
+    "banner": "img/titulos/matrix-banner.jpg",
     "popularidade": 87,
     "destaque": true,
     "criado_em": "2026-11-02T10:00:00"
@@ -373,8 +373,8 @@
       "Ian McKellen",
       "Orlando Bloom"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BNzIxMDQ2YTctNDY4MC00ZTRhLTk4ODQtMTVlOWY4NTdiYmMwXkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BMzQ2YjI2YzgtZmNmMy00ZjUyLWE0NGItY2Y3NjUzZWM4NmM3XkEyXkFqcGdeQWxiaWFtb250._V1_SX1280.jpg",
+    "poster": "img/titulos/o-senhor-dos-aneis-a-sociedade-do-anel-poster.jpg",
+    "banner": "img/titulos/o-senhor-dos-aneis-a-sociedade-do-anel-banner.jpg",
     "popularidade": 85,
     "destaque": false,
     "criado_em": "2026-11-02T10:05:00"
@@ -400,8 +400,8 @@
       "Robin Wright",
       "Gary Sinise"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BOGE2OTRmZTAtN2ViZS00YTEzLWIxYzQtMjc1YmNmODBmZDdmXkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BYzQyMWQ1ODMtZGE2OS00YzQyLWE2OWYtZmU5OGFiMWMwYmIyXkEyXkFqcGdeQXVyNzU1NzE3NTg@._V1_SX1280.jpg",
+    "poster": "img/titulos/forrest-gump-poster.jpg",
+    "banner": "img/titulos/forrest-gump-banner.jpg",
     "popularidade": 79,
     "destaque": false,
     "criado_em": "2026-11-02T10:10:00"
@@ -428,8 +428,8 @@
       "Edward Norton",
       "Meat Loaf"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BNjQ3NzM1ZWMtMTExZS00YWU3LTk2MGYtNDI1NDkxZDhiMWJjXkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BMzVjNDRkMTYtMTczYS00ZTEyLWI3NTQtYTc3NWE4MTY3OGNkXkEyXkFqcGdeQWRvb2xpbmhk._V1_SX1280.jpg",
+    "poster": "img/titulos/clube-da-luta-poster.jpg",
+    "banner": "img/titulos/clube-da-luta-banner.jpg",
     "popularidade": 77,
     "destaque": false,
     "criado_em": "2026-11-02T10:15:00"
@@ -456,8 +456,8 @@
       "Anthony Hopkins",
       "Scott Glenn"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BMTBlY2FjM2EtMWIxYy00NWE2LWE0MWUtMjI2NjZjZDE2YWYwXkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BN2ZiYzIyMWQtNDUyNy00YmExLWIwNmMtN2FhNzFiODgyYmU4XkEyXkFqcGdeQXRodW1ibmFpbC1pbml0aWFsaXplcg@@._V1_SX1280.jpg",
+    "poster": "img/titulos/o-silencio-dos-inocentes-poster.jpg",
+    "banner": "img/titulos/o-silencio-dos-inocentes-banner.jpg",
     "popularidade": 72,
     "destaque": false,
     "criado_em": "2026-11-02T10:20:00"
@@ -484,8 +484,8 @@
       "Tim Allen",
       "Don Rickles"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BODdhYzcxYmYtOTAzZS00YTRkLTgzODYtNGUzN2Y2ZjNlZTBmXkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BMjAwOTYzODExMF5BMl5BanBnXkFtZTcwNDYyNjc4Mg@@._V1_SX1280.jpg",
+    "poster": "img/titulos/toy-story-poster.jpg",
+    "banner": "img/titulos/toy-story-banner.jpg",
     "popularidade": 76,
     "destaque": false,
     "criado_em": "2026-11-02T10:25:00"
@@ -512,8 +512,8 @@
       "André Ramiro",
       "Caio Junqueira"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BZTE1ZTlhNWEtNTAwMi00MmUzLTk3MGEtZjJiYjc3NTc0ZTc1XkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BMTc3ODI0MTQ1OF5BMl5BanBnXkFtZTcwODM0MjQ5MQ@@._V1_SX1280.jpg",
+    "poster": "img/titulos/tropa-de-elite-poster.jpg",
+    "banner": "img/titulos/tropa-de-elite-banner.jpg",
     "popularidade": 83,
     "destaque": true,
     "criado_em": "2026-11-02T10:30:00"
@@ -540,8 +540,8 @@
       "Jeremy Irons",
       "James Earl Jones"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BNzJmNDVmNTAtODI3Mi00Y2Y2LTg4MDItNGI0ODE4NTQ1ZmNlXkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BMTU1MzkwNDI5OV5BMl5BanBnXkFtZTgwODU2MTkwMDI@._V1_SX1280.jpg",
+    "poster": "img/titulos/o-rei-leao-poster.jpg",
+    "banner": "img/titulos/o-rei-leao-banner.jpg",
     "popularidade": 75,
     "destaque": false,
     "criado_em": "2026-11-02T10:35:00"
@@ -568,8 +568,8 @@
       "Joaquin Phoenix",
       "Connie Nielsen"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BNWQxNzkzMmEtNTliNy00NWU2LWI0ZjgtNTI1NjBjZGRmZjAzXkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BMTU1NTQ0OTkyNF5BMl5BanBnXkFtZTgwMTQzMjIwMDI@._V1_SX1280.jpg",
+    "poster": "img/titulos/gladiador-poster.jpg",
+    "banner": "img/titulos/gladiador-banner.jpg",
     "popularidade": 73,
     "destaque": false,
     "criado_em": "2026-11-02T10:40:00"
@@ -596,8 +596,8 @@
       "Christopher Lloyd",
       "Lea Thompson"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BZDcyNmYxN2QtMmViZS00NTQ4LTlhZTAtZjc4MzY2Yjg0M2ZmXkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BNzQ0MmJjMzEtZTE4Zi00ZmU5LTlhYTEtMzdjY2EwOTliY2JkXkEyXkFqcGdeQXNvbG5vbXM@._V1_SX1280.jpg",
+    "poster": "img/titulos/de-volta-para-o-futuro-poster.jpg",
+    "banner": "img/titulos/de-volta-para-o-futuro-banner.jpg",
     "popularidade": 71,
     "destaque": false,
     "criado_em": "2026-11-02T10:45:00"
@@ -624,8 +624,8 @@
       "Finn Wolfhard",
       "Winona Ryder"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BMjEzMDAxOTUyMV5BMl5BanBnXkFtZTgwNzAxMzYzOTE@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BNTViYjE3NjUtYWM1MS00ODhmLTgwYmItZWQ5YzRlZTNmNGI4XkEyXkFqcGdeQWFybm8@._V1_SX1280.jpg",
+    "poster": "img/titulos/stranger-things-poster.jpg",
+    "banner": "img/titulos/stranger-things-banner.jpg",
     "popularidade": 96,
     "destaque": false,
     "criado_em": "2026-11-02T10:50:00"
@@ -651,8 +651,8 @@
       "Peter Dinklage",
       "Kit Harington"
     ],
-    "poster": "https://m.media-amazon.com/images/M/MV5BNGYxOGJkMjItZjVkZC00OGEzLWExNjktOTZmNGZhZmRlMTk2XkEyXkFqcGc@._V1_SX300.jpg",
-    "banner": "https://m.media-amazon.com/images/M/MV5BZTg4YzdjNTctNDg5Mi00ZmU1LTkzOWEtNmMyNDBjZjNhNTJiXkEyXkFqcGdeQXRyYW5zY29kZS13b3JrZmxvdw@@._V1_SX1280.jpg",
+    "poster": "img/titulos/game-of-thrones-poster.jpg",
+    "banner": "img/titulos/game-of-thrones-banner.jpg",
     "popularidade": 93,
     "destaque": false,
     "criado_em": "2026-11-02T10:55:00"

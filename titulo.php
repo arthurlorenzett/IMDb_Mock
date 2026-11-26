@@ -41,9 +41,12 @@ require __DIR__ . '/includes/cabecalho.php';
       <div class="ficha-midia">
         <img class="poster ficha-poster" src="img/sem-poster.svg" alt="" width="300" height="450">
 
-        <!-- Cena do título (o JS preenche com a imagem de banner) -->
+        <!-- Trailer fictício: vídeo local em video/trailers/<slug>.mp4 tocado no player do
+             próprio navegador, sem link para o site original. O JS define o src e a capa (banner). -->
         <figure class="cena">
-          <img src="img/sem-poster.svg" alt="" width="1280" height="720">
+          <video controls preload="none" width="1280" height="720" poster="img/sem-poster.svg" aria-label="Trailer fictício do título">
+            <p>Seu navegador não reproduz vídeos.</p>
+          </video>
         </figure>
 
         <div class="ficha-acoes">

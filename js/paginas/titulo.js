@@ -4,7 +4,7 @@
    com validação e a regra de e-mail único por título (RN01).
    ========================================================================== */
 
-import { config } from '../nucleo/config.js';
+import { config, caminho } from '../nucleo/config.js';
 import { carregarDados } from '../nucleo/dados.js';
 import { avaliacoesVisiveis, estatisticas } from '../nucleo/regras.js';
 import {
@@ -57,9 +57,11 @@ function preencherFicha(t, media, votos) {
   poster.src = urlPoster(t);
   poster.alt = `Pôster de ${t.titulo}`;
 
-  const capa = document.querySelector('.cena img');
-  capa.src = t.banner || urlPoster(t);
-  capa.alt = `Cena de ${t.titulo}`;
+  // Trailer fictício local (gerado a partir do banner); o banner vira a capa do player
+  const trailer = document.querySelector('.cena video');
+  trailer.poster = t.banner || urlPoster(t);
+  trailer.src = caminho(`video/trailers/${t.slug}.mp4`);
+  trailer.setAttribute('aria-label', `Trailer fictício de ${t.titulo}`);
 
   // Botão principal da Watchlist (amarelo)
   const botaoWatchlist = document.querySelector('.ficha-acoes .botao-watchlist');

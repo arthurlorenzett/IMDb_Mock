@@ -10,9 +10,11 @@ import {
   escaparHtml, formatarNota, formatarDuracao, formatarClassificacao, plural
 } from '../nucleo/util.js';
 
-// Pôster do título ou a imagem padrão (img/sem-poster.svg)
+// Pôster do título ou a imagem padrão (img/sem-poster.svg).
+// Caminhos locais (img/...) são resolvidos pela raiz para funcionar também dentro de admin/.
 export function urlPoster(titulo) {
-  return titulo.poster || caminho(config().interface.imagem_padrao);
+  const poster = titulo.poster || config().interface.imagem_padrao;
+  return poster.startsWith('https://') ? poster : caminho(poster);
 }
 
 // Caminho para a ficha do título (as páginas do admin estão uma pasta abaixo)

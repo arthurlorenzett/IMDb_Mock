@@ -31,7 +31,10 @@ function prepararPrevia() {
   const padrao = caminho(config().interface.imagem_padrao);
 
   function atualizar() {
-    previa.src = campo.value && campo.checkValidity() ? campo.value : padrao;
+    const valor = campo.value.trim();
+    // Caminho local (img/...) é relativo à raiz; o form fica dentro de admin/
+    const src = valor.startsWith('https://') ? valor : caminho(valor);
+    previa.src = valor && campo.checkValidity() ? src : padrao;
   }
   previa.addEventListener('error', () => {
     if (!previa.src.endsWith('sem-poster.svg')) previa.src = padrao;

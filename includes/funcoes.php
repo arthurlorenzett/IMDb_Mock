@@ -210,7 +210,12 @@ function erro_url(string $valor): string
     if ($valor === '') {
         return '';
     }
-    $ok = filter_var($valor, FILTER_VALIDATE_URL) !== false && str_starts_with(strtolower($valor), 'https://');
+    // Caminho local dentro de img/ (sem "..", para não sair da pasta) ou endereço https://
+    if (str_starts_with($valor, 'img/')) {
+        $ok = preg_match('#^img/[a-z0-9/_.-]+\.(jpe?g|png|webp|svg)$#i', $valor) === 1 && !str_contains($valor, '..');
+    } else {
+        $ok = filter_var($valor, FILTER_VALIDATE_URL) !== false && str_starts_with(strtolower($valor), 'https://');
+    }
     return $ok ? '' : mensagem('url');
 }
 

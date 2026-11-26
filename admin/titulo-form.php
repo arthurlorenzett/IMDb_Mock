@@ -100,9 +100,10 @@ require __DIR__ . '/../includes/cabecalho.php';
         </fieldset>
 
         <div class="campo area-poster">
-          <label class="rotulo" for="titulo-poster">URL do pôster</label>
-          <input class="controle" type="url" id="titulo-poster" name="poster" pattern="https://.*" placeholder="https://..." aria-describedby="dica-poster erro-titulo-poster">
-          <p class="dica" id="dica-poster">Endereço começando com https://</p>
+          <!-- Aceita caminho local (img/...) para as imagens ficarem no próprio site -->
+          <label class="rotulo" for="titulo-poster">Pôster (caminho da imagem)</label>
+          <input class="controle" type="text" id="titulo-poster" name="poster" pattern="(img/|https://).+" placeholder="img/titulos/nome-poster.jpg" aria-describedby="dica-poster erro-titulo-poster">
+          <p class="dica" id="dica-poster">Caminho local começando com img/ (ou endereço https://)</p>
           <p class="mensagem-erro" id="erro-titulo-poster" aria-live="polite"></p>
         </div>
 
